@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace 속성값과 동일한 이름의 인터페이스 맵퍼 작성 -->
+<!-- 인터페이스 맵퍼에는 엘리먼트 id 속성값과 동일한 이름의 메소드 작성 -->
+<!-- => parameterType 속성 생략 가능(추상메소드의 매개변수 사용) -->
+<mapper namespace="site.itwill.mapper.MyMemberXMLInterfaceMapper">
+	<insert id="insertMember">
+		insert into mymember values(#{id},#{name},#{phone},#{email})
+	</insert>
+	
+	<update id="updateMember">
+		update mymember set name=#{name}, phone=#{phone}, email=#{email}
+			where id=#{id}
+	</update>
+	
+	<delete id="deleteMember">
+		delete from mymember where id=#{id}
+	</delete>
+	
+	<select id="selectMember" resultType="MyMemberDTO">
+		select * from mymember where id=#{id}
+	</select>
+	
+	<select id="selectAllMember" resultType="MyMemberDTO">
+		select * from mymember order by id
+	</select>
+</mapper>

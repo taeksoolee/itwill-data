@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>내장클래스 - String</h1>
+	<hr>
+	<p>String 클래스 : 문자값을 저장한 객체를 생성하기 위한 클래스</p>
+	
+	<script type="text/javascript">
+	var text=new String("Hello, JavaScript!!!");
+	//alert(typeof(text));//자료형 : object
+	
+	//String.toString() : 객체에 저장된 문자값을 반환하는 메소드
+	//alert("문자값 = "+text.toString());
+	//alert("문자값 = "+text);
+	
+	//String.length : 객체에 저장된 문자값의 문자 갯수를 저장한 속성
+	//alert("text.length = "+text.length);
+	
+	//String.charAt(index) : 객체에 저장된 문자값의 특정 위치의 문자를 반환하는 메소드
+	//alert("text.charAt(7) = "+text.charAt(7));
+	
+	//문자값은 내부적으로 배열객체로 인식되어 처리
+	// => [] 연산자로 배열객체의 요소로 문자를 제공받아 사용
+	//alert("text[7] = "+text[7]);
+	
+	//String.indexOf(search) : 객체에 저장된 문자값의 특정값을 검색하여 
+	//위치값(index)을 반환하는 메소드 - 검색되지 않는 경우 -1 반환 
+	//alert("text.indexOf('Script') = "+text.indexOf('Script'));
+	
+	//String.replace(search,replace) : 객체에 저장된 문자값의 특정값을 
+	//검색하여 원하는 문자값으로 변환하여 반환하는 메소드 
+	//alert("text.replace('Hello','Hi') = "+text.replace('Hello','Hi'));
+	
+	//String.toUpperCase() : 객체에 저장된 문자값을 대문자로 변환하여 반환하는 메소드 
+	//alert("text.toUpperCase() = "+text.toUpperCase());
+	//String.toLowerCase() : 객체에 저장된 문자값을 소문자로 변환하여 반환하는 메소드 
+	//alert("text.toLowerCase() = "+text.toLowerCase());
+	
+	//String.substring(beginIndex, lastIndex) : 객체에 저장된 문자값을 
+	//시작 위치부터 마지막 위치의 문자값을 분리하여 반환하는 메소드 
+	//alert("text.substring(7,11) = "+text.substring(7,11));
+
+	//String.substr(index, count) : 객체에 저장된 문자값을 시작 위치부터
+	//원하는 갯수의 문자값을 분리하여 반환하는 메소드
+	//alert("text.substr(7,4) = "+text.substr(7,4));
+	
+	/*
+	//String.split(pattern) : 객체에 저장된 문자값을 패턴문자(정규표현식)를
+	//이용하여 분리해 배열객체로 반환하는 메소드
+	var array=text.split(" ");
+	for(i=0;i<array.length;i++) {
+		alert(array[i]);
+	}
+	*/
+	
+	var text="ABCDEFG";
+	//alert(typeof(text));//자료형 : string
+	
+	//변수의 자료형이 string인 경우 내부적으로 String 객체로 인식되어 처리
+	// => String 클래스 요소 사용 가능
+	alert("문자 갯수 = "+text.length);
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+

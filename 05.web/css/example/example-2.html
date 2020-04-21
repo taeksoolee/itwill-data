@@ -1,0 +1,42 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ex7-2</title>
+<style>
+/*
+1.#container 영역의 텍스트를 양쪽 정렬
+2.문서 전체에 배경이미지 삽입
+  => coffee.png 파일을 반복하지 않으며 왼쪽 아래에 고정으로 위치되도록 설정
+3.#container 영역에 선형 그러데이션 적용
+  => 위에서 아래로 white로 시작하여 skyblue로 종료
+*/
+
+
+#container {
+	width:300px;
+	border:1px solid black;
+	border-radius:10px;
+	margin:20px auto;
+	padding:10px;
+	
+	text-align: justify;
+	
+	background: linear-gradient(to bottom, white, skyblue);
+}
+
+body {
+	background: url("coffee.png") no-repeat left bottom fixed;
+}
+
+</style>
+</head>
+<body>
+	<div id="container">
+		<h3>아메리카노</h3>
+		<p>에스프레소의 향은 그대로 느끼면서 뜨거운 물을 부어 1:2 정도의 비율로 연하게 먹는 커피다.</p>
+		<p>원래 이탈리아 사람들이 마시던 에스프레소를 비싼 값 때문에 희석해서 먹었다는 설이 있다.</p>
+		<p>미국인들이 에스프레소가 너무 진해 물을 섞어 마셨다는 얘기도 있다.</p>
+	</div>
+</body>
+</html>

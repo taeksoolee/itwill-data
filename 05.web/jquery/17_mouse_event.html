@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<style type="text/css">
+a, a:visited {
+	text-decoration: none;
+	color: black;
+}
+
+.stylest {
+	border: 1px solid red;
+	background: yellow;
+}
+
+/*
+a:hover {
+	border: 1px solid red;
+	background: yellow;
+}
+*/
+</style>
+</head>
+<body>
+	<h1>마우스 이벤트</h1>
+	<hr>
+	<p>click : 마우스 버튼을 누른 경우 발생되는 이벤트</p>
+	<p>dblclick : 마우스 버튼을 연속적으로 두번 누른 경우 발생되는 이벤트</p>
+	<p>mouseenter : 마우스 커서가 엘리먼트 영역에 위치한 경우 발생되는 이벤트</p>
+	<p>mouseleave : 마우스 커서가 엘리먼트 영역에 위치하지 않은 경우 발생되는 이벤트</p>
+	<p>mouseover : 마우스 커서가 엘리먼트 영역에 진입한 경우 발생되는 이벤트</p>
+	<p>mouseout : 마우스 커서가 엘리먼트 영역을 벗어난 경우 발생되는 이벤트</p>
+	<p>hover : 마우스 커서가 엘리먼트 영역에 진입하거나 벗어난 경우 발생되는 이벤트</p>
+	<hr>
+	<p><a href="#" class="stylest">마우스 이벤트-1</a></p>
+	<p><a href="#">마우스 이벤트-2</a></p>
+	<p><a href="#">마우스 이벤트-3</a></p>
+	<p><a href="#">마우스 이벤트-4</a></p>
+	<p><a href="#">마우스 이벤트-5</a></p>
+	
+	<script type="text/javascript">
+	/*
+	$("a").click(function() {
+		//$(this).css({"border":"1px solid red","background":"yellow"});
+		
+		//$(selector).addClass(className) : 검색 엘리먼트에 CSS의 클래스
+		//선택자의 스타일을 적용하는 메소드  
+		//$(this).addClass("stylest");
+		
+		//$(selector).removeClass(className) : 검색 엘리먼트에 CSS의 클래스
+		//선택자의 스타일을 제거하는 메소드  
+		//$(this).removeClass("stylest");
+		
+		//$(selector).toggleClass(className) : 검색 엘리먼트에 CSS의 클래스
+		//선택자의 스타일을 적용하거나 제거하는 메소드  
+		$(this).toggleClass("stylest");
+		
+	});
+	*/
+	
+	/*
+	$("a").dblclick(function() {
+		$(this).toggleClass("stylest");
+	});
+	*/
+	
+	/*
+	$("a").mouseenter(function() {
+		$(this).addClass("stylest");
+	});
+	
+	$("a").mouseleave(function() {
+		$(this).removeClass("stylest");
+	});
+	*/
+	
+	/*
+	$("a").mouseover(function() {
+		$(this).addClass("stylest");
+	});
+	
+	$("a").mouseout(function() {
+		$(this).removeClass("stylest");
+	});
+	*/
+	
+	$("a").hover(function() {
+		$(this).addClass("stylest");
+	}, function() {
+		$(this).removeClass("stylest");
+	});
+	</script>
+</body>
+</html>

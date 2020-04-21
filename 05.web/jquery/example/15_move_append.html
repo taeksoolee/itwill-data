@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style>
+body {
+	font-size: 24pt;
+	font-family: "굴림";
+}
+
+div, p {
+	border: 1px #eeeeee solid;
+	margin: 10px;
+}
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+	//미션1 : .menu_2를 마지막으로 이동시켜 주세요.		 	
+	//$("ul").append($(".menu_2"));
+	$(".menu_2").appendTo("ul");
+});
+</script>
+</head>
+<body>
+	<ul>
+		<li class="menu_1">menu01</li>
+		<li class="menu_2">menu02</li>
+		<li class="menu_3">menu03</li>
+		<li class="menu_4">menu04</li>
+		<li class="menu_5">menu05</li>
+		<li class="menu_6">menu06</li>
+		<li class="menu_7">menu07</li>
+	</ul>
+</body>
+
+</html>

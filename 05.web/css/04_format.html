@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS</title>
+<!-- link 태그 : 외부파일을 불러와 내용을 포함하는 기능 제공 -->
+<!-- => CSS 파일을 읽어 웹문서에서 CSS 스타일 적용 -->
+<!-- => 모든 웹문서에 동일한 스타일을 적용하기 위해 사용 - 웹사이트 일관성 제공 -->
+<link href="04_style.css" rel="stylesheet" type="text/css">
+
+<!-- style 태그로 현재 웹문서의 스타일 적용 -->
+<!-- => 선택자로 선택된 모든 엘리먼트에 동일한 스타일 적용 -->
+<style type="text/css">
+h2 {
+	color: skyblue;
+}
+
+h3 {
+	color: blue;
+}	
+
+h4 {
+	color: aqua;
+}
+</style>
+</head>
+<body>
+	<h1>CSS 적용 방법</h1>
+	<hr>
+	<h2>브라우저에 출력될 아주 중요한 내용입니다.</h2>
+	<h3>브라우저에 출력될 아주 중요한 내용입니다.</h3>
+	<!-- 태그의 style 속성값으로 CSS 스타일 속성과 속성값 설정 -->
+	<!-- => style 속성이 선언된 태그에만 스타일 적용 -->
+	<h4 style="color: maroon;">브라우저에 출력될 아주 중요한 내용입니다.</h4>
+</body>
+</html>
+
+
+

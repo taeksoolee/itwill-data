@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>HTML5 레이아웃</title>
+<style>
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+body {
+	font-family: "Nanum Gothic";
+}
+
+a:link {
+	text-decoration: none;
+}
+
+nav ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+/* 
+1.nav ul li 요소의 왼쪽 패딩을 7px로 지정
+2.nav ul li 요소의 아래 마진을 20px로 지정
+3.nav ul li 요소의 글자크기를 2em으로 지정 
+4.nav ul li 요소의 왼쪽테두리의 두께를 15px, 색상은 #990066, solid 스타일로 지정
+5.nav ul li 요소의 왼쪽부터 배치
+6.nav ul li 요소의 오른쪽 마진을 50px로 지정
+
+7.section 요소의 배치 초기화
+
+8.#content article 요소의 왼쪽 패딩 10px, 아래쪽 마진 10px 지정
+9.#content article 요소의 위,아래 테두리를 그리되 두께는 1px, 색상은 #a6a6a6, 스타일은 dashed로 지정
+*/
+
+nav ul li {
+	padding-left: 7px;
+	margin-bottom: 20px;
+	font-size: 2em;
+	border-left: 15px solid #990066;
+	float: left;
+	margin-right: 50px;
+}
+
+section {
+	clear: left;
+}
+
+#content article {
+	padding-left: 10px;
+	margin-bottom: 10px;
+	border-top: 1px dashed #a6a6a6;
+	border-bottom: 1px dashed #a6a6a6;
+}
+</style>
+</head>
+<body>
+	<nav>
+		<ul>
+			<li><a href="#">애완견 종류</a></li>
+			<li><a href="#">입양하기</a></li>
+			<li><a href="#">건강돌보기</a></li>
+			<li><a href="#">더불어살기</a></li>
+		</ul>
+	</nav>
+	<section id="content">
+		<h2>강아지 용품 준비하기</h2>
+		<article>
+			<h3>강아지 집</h3>
+			<p>강아지가 편히 쉴 수 있는 포근한 집이 필요합니다. 강아지의 집은 강아지가 다 큰 후에도 계속 쓸 수 있는
+				집으로 구입하세요.집을 구입하실 때는 박음질이 잘 되어 있는지, 세탁이 간편한 제품인지 꼭 확인하시고 고르시는 것이
+				좋습니다.</p>
+		</article>
+		<article>
+			<h3>강아지 먹이</h3>
+			<p>강아지의 먹이는 꼭 어린 강아지용으로 나와있는 사료를 선택하세요. 강아지들은 사람에 비해 성장속도가 8배정도
+				빠르답니다. 따라서 강아지에게는 성장속도에 맞는 사료를 급여하셔야 합니다. 사람이 먹는 음식을 먹게 되면 양념과 향신료에
+				입맛이 익숙해지고, 비만이 될 가능성이 매우 높아집니다. 강아지용 사료는 생후 12개월까지 급여하셔야 합니다.</p>
+		</article>
+	</section>
+	<footer>
+		<p>Copyright 2012 funnycom</p>
+	</footer>
+</body>
+</html>

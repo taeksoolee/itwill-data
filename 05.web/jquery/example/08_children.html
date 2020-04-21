@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style>
+body {
+	font-size: 9pt;
+	font-family: "굴림";
+}
+
+div, p {
+	border: 1px #eeeeee solid;
+	margin: 10px;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+	//미션1 : #content의 자식노드를 모두 찾아 border를 4px solid #ff0000으로 만들어주세요.
+	//$("#content").children().css("border","4px solid #ff0000");
+	//$(selector).contents() : 부모 엘리먼트의 자식 엘리먼트를 검색하는 메소드
+	//$("#content").contents().css("border","4px solid #ff0000");
+
+	//미션2 : #content의 자식노드를 모두 찾아 border를 4px solid #0000ff 만들어주세요.
+	//단, 자식 요소중 content_data라는 클래스가 적용된 요소만 스타일을 변경해주세요.
+	//$("#content").children().filter(".content_data").css("border","4px solid #ff0000");
+	//$("#content").contents().filter(".content_data").css("border","4px solid #ff0000");
+	//children() 메소드는 자식 엘리먼트의 필터 기능이 제공되지만 contents() 메소드는 미제공
+	$("#content").children(".content_data").css("border","4px solid #ff0000");
+});
+</script>
+</head>
+
+<body>
+	<div id="sample_page" class="page">
+		샘플 페이지(div, id=sample_page, class=page)
+		<div id="header">헤더 영역(div, id=header)</div>
+		<div id="content" class="sample_content">
+			컨텐츠 영역(div, id=content, class=sample_content)
+			<div>
+				JavaScript란?(div)
+				<p id="data_1">1. 자바스크립트 Core(p, id=data_1)</p>
+				<p id="data_2">2. 자바스크립트 BOM(p, id=data_2)</p>
+				<p id="data_3">3. 자바스크립트 DOM(p, id=data_3)</p>
+				을 배운다는것
+			</div>
+			<div class="content_data">
+				자바스크립트에서 배울 내용(div, class=content_data)
+				<p>1. 자바스크립트 DOM(p)</p>
+				<p>2. 자바스크립트 Ajax(p)</p>
+			</div>
+			<div class="content_data">
+				jQuery에서 배울 내용(div, class=content_data)
+				<p>1. jQuery DOM(p)</p>
+				<p>2. jQuery Ajax(p)</p>
+			</div>
+		</div>
+		<div id="footer">푸터 영역(div, id=footer)</div>
+	</div>
+</body>
+
+</html>

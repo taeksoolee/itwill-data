@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>내장함수 - parse 함수</h1>
+	<hr>
+	<p>parseInt(value) : 전달값을 정수값으로 변환하여 반환하는 함수</p>
+	<p>parseFloat(value) : 전달값을 실수값으로 변환하여 반환하는 함수</p>
+	
+	<script type="text/javascript">
+	var result=50/3;
+	//alert("결과 = "+result);
+	//alert("결과 = "+parseInt(result));
+	
+	//parseInt(string[, radix]) : 진수형식의 문자값을 전달받아 10진수 
+	//정수값으로 변환하여 반환하는 함수
+	// => 진수가 생략된 경우 10진수로 인식되어 처리
+	//alert(parseInt(123, 8));
+	//alert(parseInt(123, 16));
+	//alert(parseInt("abc", 16));
+	
+	/*
+	var num="100.5";
+	//alert(num+200);//문자 결과
+	
+	//Number(string) : 전달받은 문자값을 숫자값으로 변환하여 반환하는 함수
+	alert(Number(num)+200);//연산 결과
+	//parseInt(string) : 전달받은 문자값을 정수값으로 변환하여 반환하는 함수
+	alert(parseInt(num)+200);//연산 결과
+	*/
+	
+	var num="100abc";
+	//alert(Number(num)+200);//NaN
+	//parseInt() 함수를 이용하여 앞부분 숫자만 잘라내어 정수값으로 변환
+	alert(parseInt(num)+200);//300
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+

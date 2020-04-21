@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>전역변수와 지역변수</h1>
+	<hr>
+	<p>전역변수(Global Variable) : 함수 외부에서 선언된 변수 
+	- 모든 함수에서 변수(값) 사용 가능</p>
+	<p>지역변수(Local Variable) : 함수(블럭) 내부에서 선언된 변수
+	- 선언된 함수(블럭)에서만 변수(값) 사용 가능</p>
+	
+	<script type="text/javascript">
+	var glovalVar=100;//전역변수
+	
+	function print1() {
+		//alert("print1() 함수 = "+glovalVar);
+		//glovalVar=200;
+		
+		var localVar=300;//지역변수 - 함수 종료시 자동 소멸
+		alert("print1() 함수 = "+localVar);
+	}
+	
+	function print2() {
+		//alert("print2() 함수 = "+glovalVar);
+		
+		//다른 함수에서 선언된 지역변수 사용 불가능 - 변수 미존재
+		alert("print2() 함수 = "+localVar);//에러 발생
+	}
+	
+	print1();
+	print2();
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+

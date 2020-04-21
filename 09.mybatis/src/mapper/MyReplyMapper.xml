@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.itwill.mapper.MyReplyMapper">
+	<insert id="insertReply" parameterType="MyReply">
+		<selectKey resultType="int" keyProperty="replyNo" order="BEFORE">
+			select myreply_seq.nextval from dual
+		</selectKey>
+		insert into myreply values(#{replyNo},#{replyId},#{replyContent},sysdate,#{replyCommentNo})
+	</insert>
+	
+	<select id="selectReplyList" resultType="MyReply">
+		select * from myreply order by reply_no desc
+	</select>
+	
+	<!--  
+	<resultMap type="MyReplyUser" id="myReplyUserResultMap">
+		<association property="reply" javaType="MyReply">
+			<id column="reply_no" property="replyNo"/>
+			<result column="reply_id" property="replyId"/>
+			<result column="reply_content" property="replyContent"/>
+			<result column="reply_date" property="replyDate"/>
+			<result column="reply_comment_no" property="replyCommentNo"/>
+		</association>
+		<association property="user" javaType="MyUser">
+			<id column="user_id" property="userId"/>
+			<result column="user_name" property="userName"/>
+		</association>
+	</resultMap>
+	
+	<select id="selectReplyUserList" resultMap="myReplyUserResultMap">
+		select * from myreply join myuser on reply_id=user_id
+	</select>
+	-->
+	
+	<resultMap type="MyReply" id="MyReplyResultMap">
+		<id column="reply_no" property="replyNo"/>
+		<result column="reply_id" property="replyId"/>
+		<result column="reply_content" property="replyContent"/>
+		<result column="reply_date" property="replyDate"/>
+		<result column="reply_comment_no" property="replyCommentNo"/>
+	</resultMap>
+	
+	<resultMap type="MyReplyUser" id="myReplyUserResultMap">
+		<!-- resultMap 속성 : 다른 resultMap 엘리먼트의 고유갑을 속성값으로 설정 -->
+		<!-- => 다른 resultMap 엘리먼트의 수동매핑정보 재사용 -->
+		<association property="reply" javaType="MyReply" resultMap="MyReplyResultMap"/>
+		<!-- column 속성 : 조인조건을 구현하기 위한 값이 저장된 컬럼명을 속성값으로 설정 -->
+		<!-- => 조인조건에 전달값이 여러 개인 경우 속성값을 {컬럼명, 컬럼명, ...} 형식으로 전달 -->
+		<!-- select 속성 : SELECT 명령이 등록된 select 엘리먼트의 고유값을 속성값으로 설정 -->
+		<association property="user" column="reply_id" select="selectUser">
+			<id column="user_id" property="userId"/>
+			<result column="user_name" property="userName"/>
+		</association>
+	</resultMap>
+
+	<!-- JOIN 구문없이 원하는 결과를 검색하여 매핑하는 방법 -->
+	<select id="selectReplyUserList" resultMap="myReplyUserResultMap">
+		select * from myreply
+	</select>
+	
+	<!-- association 엘리먼트에서 사용하기 위한 SQL 명령이 등록된 엘리먼트 -->
+	<!-- => DAO 클래스의 메소드에서 사용할 SQL 명령이 아니므로 인터페이스 맵퍼에 미선언 -->
+	<!-- => where 구문으로 조인조건을 명시 : 조인을 위한 컬럼값을 전달받아 사용  -->
+	<select id="selectUser" resultType="MyUser" parameterType="string">
+		select * from myuser where user_id=#{replyId}
+	</select>
+		
+	<select id="selectCommentNoReplyList" parameterType="int" resultType="MyReply">
+		select * from myreply where reply_comment_no=#{replyCommentNo} order by reply_no desc
+	</select>
+</mapper>

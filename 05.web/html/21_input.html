@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>HTML</title>
+</head>
+<body>
+	<h1>input 태그</h1>
+	<hr>
+	<!-- input 태그 : 값을 입력 받거나 이벤트 기능 제공 - 인라인 레벨 -->
+	<!-- => type 속성 : input 태그의 기능을 속성값으로 설정  -->
+	<!-- => name 속성 : 태그의 이름을 속성값으로 설정 - 웹어플리케이션에서 입력값을 구분하기 위한 변수명 -->
+	<!-- => value 속성 : 입력태그의 초기값을 속성값으로 설정 -->
+	<!-- => size 속성 : 입력태그의 크기을 속성값으로 설정 -->
+	<!-- => maxlength 속성 : 입력태그의 문자 최대 입력갯수를 속성값으로 설정  -->
+	<!-- => readonly 속성 : 입력태그를 읽기 전용으로 설정(value 속성과 같이 사용) - 속성값 생략 가능 -->
+	<!-- => disabled 속성 : 입력태그를 비활성화 설정 - 속성값 생략 가능 -->
+	<!-- => autofocus 속성(HTML5) : 입력촛점이 위치되도록 설정 - 속성값 생략 가능 -->
+	<!-- => required 속성(HTML5) : 반드시 입력되도록 설정 - 속성값 생략 가능 -->
+	<!-- => placeholder 속성(HTML5) : 입력태그에 출력될 메세지를 속성값으로 설정 -->
+	
+	<!-- type 속성값 -->
+	<!-- => hidden : 사용자에게 입력받지 않고 값을 직접 전달 - value 속성과 같이 사용 -->
+	<!-- => text : 사용자에게 문자열을 입력받아 전달 -->
+	<!-- => password : 사용자에게 문자열을 입력받아 전달 - 특수기호 변환되어 입력 -->
+	<!-- => radio : name 속성값이 같은 목록 중 하나만 선택하여 문자열 전달 -->
+	<!-- => checkbox : name 속성값이 같은 목록에서 0개이상 선택하여 문자열 전달 -->
+	<!-- => file : 파일을 선택하여 전달 -->
+	<!-- => email(HTML5) : 이메일을 입력하여 문자열 전달 - 이메일 검증 -->
+	<!-- => number(HTML5) : 숫자를 입력하여 문자열 전달 - 숫자 제외 문자 입력 불가능 -->
+	<!-- => tel(HTML5) : 전화번호를 입력하여 문자열 전달 - 스마트기기의 입력패드 변경 -->
+	<!-- => url(HTML5) : URL를 입력하여 문자열 전달 - 스마트기기의 입력패드 변경 -->
+	<!-- => search(HTML5) : 키워드를 입력하여 문자열 전달 - 스마트기기의 자동완성기능 사용 -->
+	<!-- => color(HTML5) : 색을 선택하여 문자열 전달 - 색상값(#RRGGBB)으로 전달 -->
+	<!-- => range(HTML5) : 등급(숫자)을 선택하여 문자열 전달 - min 속성과 max 속성으로 등급 범위 설정 -->
+	<!-- => date(HTML5) : 날짜를 입력하여 문자열 전달 -->
+	<!-- => time(HTML5) : 시간를 입력하여 문자열 전달 -->
+	<!-- => datetime-local(HTML5) : 날짜와 시간를 입력하여 문자열 전달 -->
+	<form action="" method="post">
+		<input type="hidden" name="num" value="100">
+		<p>아이디 : <input type="text" name="id" size="10" maxlength="20" autofocus required></p>
+		<p>비밀번호 : <input type="password" name="passwd" placeholder="비밀번호 입력"></p>
+		<p>이름 : <input type="text" name="name" value="홍길동" readonly></p>
+		<p>성별 :
+			<!-- checked 속성(radio 또는 checkbox) : 우선 선택 설정 - 속성값 생략 가능  -->
+			<input type="radio" name="gender" value="M">남자&nbsp;&nbsp;
+			<input type="radio" name="gender" value="W" checked>여자
+		</p>
+		<p>취미 :
+			<input type="checkbox" name="hobby" value="등산">등산&nbsp;&nbsp;
+			<input type="checkbox" name="hobby" value="낚시">낚시&nbsp;&nbsp;
+			<input type="checkbox" name="hobby" value="게임">게임&nbsp;&nbsp;
+			<input type="checkbox" name="hobby" value="독서">독서&nbsp;&nbsp;
+		</p>
+		<!-- form 태그의 enctype 속성값을 반드시 "multipart/form-data" 변경 -->
+		<p>사진 : <input type="file" name="file"></p>
+		<p>이메일 : <input type="email" name="email"></p>
+		<!-- min 속성 또는 max 속성을 이용하여 범위 검증 가능 -->
+		<p>나이 : <input type="number" name="age" min="1" max="100"></p>
+		<p>전화번호 : <input type="tel" name="phone"></p>
+		<p>SNS : <input type="url" name="sns"></p>
+		<p>검색키워드 : <input type="search" name="keyword"></p>
+		<p>좋아하는 색 : <input type="color" name="color"></p>
+		<p>JAVA 실력 : <input type="range" name="grade" min="1" max="3"></p>
+		<p>생년월일 : <input type="date" name="birthday"></p>
+		<p>취침시간 : <input type="time" name="sleep"></p>
+		<p>알람시간 : <input type="datetime-local" name="alram"></p>
+		
+		<!-- form 태그의 입력값 전달 기능(Submit)을 구현 - 필수 -->
+		<!-- => input 태그의 type 속성값을 "submit" 설정 -->
+		<!-- => input 태그의 type 속성값을 "image" 설정하고 name 속성값을 "submit" 설정 -->
+		<!-- => button 태그의 type 속성값을 "submit" 설정 -->
+		<!-- => JavaScript를 이용하여 입력값 전달 기능(Submit)을 구현 -->
+		<p><input type="submit" value="회원가입"></p>
+		
+		<!-- form 태그의 입력값 초기화 기능(Reset)을 구현 - 선택 -->
+		<!-- => input 태그의 type 속성값을 "reset" 설정 -->
+		<!-- => input 태그의 type 속성값을 "image" 설정하고 name 속성값을 "reset" 설정 -->
+		<!-- => button 태그의 type 속성값을 "reset" 설정 -->
+		<!-- => JavaScript를 이용하여 입력값 전달 기능(Reset)을 구현 -->
+		<p><input type="reset" value="다시 입력"></p>
+	</form>
+</body>
+</html>
+
+
+
+
+
+
+

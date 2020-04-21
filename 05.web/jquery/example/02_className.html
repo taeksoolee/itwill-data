@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style>
+body {
+	font-size: 9pt;
+	font-family: "굴림";
+}
+
+div, p {
+	border: 1px #eeeeee solid;
+	margin: 10px;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+	//미션1 : 문서에서 content_data 클래스이름이 적용된 노드를 찾아 
+	//찾은 노드는 모두 border를 "4px solid #ff0000"으로 변경해주세요.
+	$(".content_data").css("border","4px solid #ff0000");
+});
+</script>
+</head>
+<body>
+	<div id="sample_page" class="page">
+		샘플 페이지(div, id=sample_page, class=page)
+		<div id="header">헤더 영역(div, id=header)</div>
+		<div id="content" class="sample_content">
+			컨텐츠 영역(div, id=content, class=sample_content)
+			<div>
+				JavaScript란?(div)
+				<p id="data_1">1. 자바스크립트 Core(p, id=data_1)</p>
+				<p id="data_2">2. 자바스크립트 BOM(p, id=data_2)</p>
+				<p id="data_3">3. 자바스크립트 DOM(p, id=data_3)</p>
+				을 배운다는것
+			</div>
+			<div class="content_data">
+				자바스크립트에서 배울 내용(div, class=content_data)
+				<p>1. 자바스크립트 DOM(p)</p>
+				<p>2. 자바스크립트 Ajax(p)</p>
+			</div>
+			<div class="content_data">
+				jQuery에서 배울 내용(div, class=content_data)
+				<p>1. jQuery DOM(p)</p>
+				<p>2. jQuery Ajax(p)</p>
+			</div>
+		</div>
+		<div id="footer">푸터 영역(div, id=footer)</div>
+	</div>
+</body>
+</html>

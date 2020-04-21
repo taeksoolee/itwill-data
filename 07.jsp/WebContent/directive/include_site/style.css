@@ -1,0 +1,39 @@
+@charset "UTF-8";
+div {
+	margin: 5px;
+	padding: 5px;
+}
+
+#header {
+	height: 140px;
+	border: 1px solid red;
+}
+
+#header h1 {
+	text-align: center;
+}
+
+#menu {
+	text-align: right;
+}
+
+a, a:visited {
+	text-decoration: none;
+	color: black;
+}
+
+a:hover {
+	color: orange;
+}
+
+#content {
+	min-height: 300px;
+	border: 1px solid green;
+	text-align: center;
+}
+
+#footer {
+	height: 100px;
+	border: 1px solid blue;
+	text-align: center;
+}

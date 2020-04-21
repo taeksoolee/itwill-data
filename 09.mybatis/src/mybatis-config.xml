@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- properties : 다른 엘리먼트에 필요값을 제공하기 위한 상위 엘리먼트 -->
+	<!-- resource 속성 : Properties 파일의 경로를 속성값으로 설정 -->
+	<!-- => 패키지에 파일이 존재할 경우 파일 경로 형식으로 표현 - ex) site/itwill/config/db.properties -->
+	<properties resource="db.properties">
+		<!-- name 속성값을 다른 엘리먼트에서 ${속성값} 형식으로 표현하여 
+		설정된 엘리먼트값 사용 -->
+		<!-- 
+		<property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+		-->
+		<property name="username" value="scott"/>
+		<property name="password" value="tiger"/>
+	</properties>
+
+	<!-- settings : Mybatis 실행 관련 정보를 제공하기 위한 상위 엘리먼트 -->
+	<settings>
+		<!-- setting : Mybatis 실행 관련 정보를 제공하는 엘리먼트 -->
+		<!-- => 실행 관련 정보에 관련된 기본값이 존재하므로 기본값이 아닌 다른값을 사용할 경우에만 설정 -->
+		<setting name="jdbcTypeForNull" value="NULL"/>
+		<setting name="callSettersOnNulls" value="true"/>
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+	</settings>
+	
+	<!-- typeAliases : Java 자료형에 별칭을 제공하는 상위 엘리먼트 -->
+	<typeAliases>
+		<!-- typeAliase : Mapper 파일에 Java 자료형의 별칭을 제공하는 엘리먼트 -->
+		<!-- => Mapper 파일에서 전달값 또는 반환값으로 Java 자료형 대신 사용 -->
+		<!-- => 미리 선언된 Java 자료형의 대한 별칭이 존재 -->
+		<!-- => 개발자가 작성한 JavaBean(DTO) 클래스에 대한 별칭 표현 -->
+		<!-- type 속성 : Java 자료형을 속성값으로 설정 -->
+		<!-- alias 속성 : Java 자료형에 대한 별칭을 속성값으로 설정 -->
+		<!-- 
+		<typeAlias type="site.itwill.dto.StudentDTO" alias="StudentDTO"/>
+		<typeAlias type="site.itwill.dto.MyMemberDTO" alias="MyMemberDTO"/>
+		-->
+		
+		<!-- package : 특정 패키지에 존재하는 모든 클래스에 별칭을 자동 부여하는 엘리먼트 -->
+		<!-- => 패키지를 제외한 클래스명이 별칭으로 자동 설정 -->
+		<!-- name 속성 : 클래스에 별칭을 부여할 패키지를 속성값으로 설정 -->
+		<package name="site.itwill.dto"/>
+	</typeAliases>
+
+	<!-- environments : DBMS 서버의 접속정보들을 설정하기 위한 상위 엘리먼트 -->
+	<!-- default 속성 : 현재 사용하고자 하는 접속정보의 고유값을 속성값으로 설정 -->
+	<environments default="development">
+		<!-- environment : DBMS 서버의 접속정보를 설정하기 위한 엘리먼트 -->
+		<!-- id 속성 : environment 엘리먼트의 고유값을 속성값으로 설정 -->
+		<environment id="development">
+			<!-- transactionManager : 트렌젝션 관리자를 설정하기 위한 엘리먼트  -->
+			<!-- type 속성 : JDBC(자체) 또는 MANAGED(외부) 중 하나을 속성값으로 설정 -->
+			<transactionManager type="JDBC"/>
+			<!-- dataSource : DBMS 접속정보를 설정하기 위한 엘리먼트 -->
+			<!-- type 속성 : UNPOOLED 또는 POOLED 또는 JNDI 중 하나을 속성값으로 설정 -->
+			<dataSource type="POOLED">
+				<!-- property : 필요값을 제공하기 위한 엘리먼트 -->
+				<!-- 
+				<property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
+				<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+				<property name="username" value="scott"/>
+				<property name="password" value="tiger"/>
+				 -->
+				<property name="driver" value="${driver}"/>
+				<property name="url" value="${url}"/>
+				<property name="username" value="${username}"/>
+				<property name="password" value="${password}"/>
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<!-- mappers : Mapper 파일을 설정하기 위한 상위 엘리먼트 -->
+	<mappers>
+		<!-- mapper : SQL 명령이 등록된 Mapper 파일의 경로를 설정하는 엘리먼트 -->
+		<!-- resource 속성 : XML Mapper 파일의 경로를 속성값으로 설정 -->
+		<!-- XML Mapper 장점 : 수동 매핑 기능 및 동적 SQL 기능을 구현하기 편리 -->
+		<!-- XML Mapper 단점 : DAO 클래스에서 SqlSession 인스턴스로 SQL 명령을 얻어와 사용하기 불편(에러 발생 가능) -->
+		<mapper resource="site/itwill/mapper/StudentMapper.xml"/>		
+		<mapper resource="site/itwill/mapper/MyMemberXMLMapper.xml"/>
+		 
+		<!-- class 속성 : Interface Mapper 파일의 인터페이스명을 속성값으로 설정 -->
+		<!-- Interface Mapper 장점 : DAO 클래스에서 SqlSession 인스턴스로 SQL 명령을 얻어와 사용하기 편리 -->
+		<!-- Interface Mapper 단점 : 수동 매핑 기능 및 동적 SQL 기능을 구현하기 불편 -->
+		<!-- <mapper class="site.itwill.mapper.MyMemberInterfaceMapper"/> -->
+
+		<!-- XML Mapper 파일와 Interface Mapper 파일을 같이 설정하여 사용(권장) -->
+		<!-- => SQL 명령은 XML Mapper에 등록하고 DAO 클래스에서는 Interface Mapper을 이용하여 SQL 명령을 제공받아 작성 -->
+		<!-- XML Mapper와 Interface Mapper를 하나의 매퍼로 사용하기 위해 
+		mapper 엘리먼트의 namespace 속성값으로 인터페이스를 작성하고 SQL 명령이 
+		등록된 엘리먼트의 id 속성값을 메소드명으로 반드시 작성 -->
+		<!-- <mapper resource="site/itwill/mapper/MyMemberXMLInterfaceMapper.xml"/> -->
+		
+		<!-- package : 특정 패키지에 존재하는 모든 Interface Mapper 파일이 자동으로 등록되어 사용(ibatis 불가능) -->
+		<!-- name 속성 : Interface Mapper 파일을 선언하기 위한 패키지를 속성값으로 설정 -->
+		<package name="site.itwill.mapper"/>
+	</mappers>
+</configuration>

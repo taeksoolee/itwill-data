@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS</title>
+<style type="text/css">
+#image img {
+	margin: 20px;
+	/* opacity : 박스모델의 투명도 관련 스타일 속성 */
+	/* 속성값 : 0.0(투명) ~ 1.0(불투명) */
+	opacity: 0.5;
+	
+	/* tansition : 트렌지션 관련 스타일 속성값 사용 */
+	transition: all 1s ease;
+}
+
+#image img:hover {
+	transform: scale(1.2,1.2);
+	opacity: 1.0;
+}
+
+#shape div {
+	width: 100px;
+	height: 100px;
+	background: url("images/f1.png") no-repeat center center padding-box;
+	position: relative;
+	left: 0;
+	transition: all 2s ease-in 0.3s;	
+}
+
+#shape div:hover {
+	background: url("images/f2.png") no-repeat center center padding-box;
+	position: relative;
+	left: 600px;
+}
+</style>
+</head>
+<body>
+	<h1>트렌지션 관련 스타일 속성</h1>
+	<hr>
+	<div id="image">
+		<img alt="" src="images/1.jpg">
+		<img alt="" src="images/2.jpg">
+		<img alt="" src="images/3.jpg">
+	</div>
+	<hr>
+	<p>꽃그림 위에 마우스 커서를 올려보세요.</p>
+	<div id="shape">
+		<div></div>
+	</div>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+<body>
+	<h1>선택자(Selector)</h1>
+	<hr>
+	<div id="subject">
+		<p>Java 과정</p>
+		<div>
+			<p>1.Java 기본문법</p>
+			<p>2.객체 지향 프로그래밍(OOP)</p>
+			<p>3.Java API 활용</p>
+		</div>
+		<p>JSP 과정</p>
+		<div>
+			<p>1.스크립트 태그</p>
+			<p>2.디렉티브 태그</p>
+			<p>3.표준 액션 태그</p>
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+	//부모 엘리먼트의 자식 엘리먼트를 표현하기 위한 선택자 : > 기호 사용 
+	//$("#subject > p").css({"font-size":"25px","font-weight":"bold"});
+	
+	//$(selector).children([selector]) : 부모 엘리먼트의 자식 엘리먼트를 
+	//검색하기 위한 메소드 - 전달값(선택자)이 생략된 경우 모든 자식 엘리먼트 검색 
+	$("#subject").children("p").css({"font-size":"25px","font-weight":"bold"});
+	
+	//부모 엘리먼트의 후손 엘리먼트를 표현하기 위한 선택자 : 공백 사용
+	//$("#subject p").css("color","green");
+
+	//$(selector).find(selector) : 부모 엘리먼트의 후손 엘리먼트를 검색하기
+	//위한 메소드 - 전달값(선택자) 생략 불가능 
+	$("#subject").find("p").css("color","green");
+	</script>
+</body>
+</html>
+
+
+
+

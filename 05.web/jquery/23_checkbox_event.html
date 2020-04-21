@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<style type="text/css">
+#terms {
+	width: 400px;
+	margin: 0 auto;
+	padding: 5px 10px;
+	border: 1px solid black;
+}
+
+#h3 { text-align: center; }
+
+#agree {
+	width: 400px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+#agree div { margin: 1px; }
+</style>
+</head>
+<body>
+	<h1>체크박스 이벤트</h1>
+	<hr>
+	<div id="terms">
+		<h3>약관</h3>
+		<p>무슨 내용인지 이해 안되는 어려운 내용</p>
+		<p>무슨 내용인지 이해 안되는 어려운 내용</p>
+		<p>무슨 내용인지 이해 안되는 어려운 내용</p>
+		<p>무슨 내용인지 이해 안되는 어려운 내용</p>
+		<p>무슨 내용인지 이해 안되는 어려운 내용</p>
+		<p>무슨 내용인지 이해 안되는 어려운 내용</p>
+		<p>무슨 내용인지 이해 안되는 어려운 내용</p>
+		<p>무슨 내용인지 이해 안되는 어려운 내용</p>
+		<p>무슨 내용인지 이해 안되는 어려운 내용</p>
+		<p>무슨 내용인지 이해 안되는 어려운 내용</p>
+	</div>
+	<div id="agree">
+	<form action="22_input_validation3.html" method="post" id="form">
+	<!-- 약관 동의 여부를 확인하기 위한 입력태그 -->
+	<!-- => 0 : 약관 미동의, 1: 약관 동의  -->
+	<input type="hidden" name="check" value="0" id="check">
+	<div>
+		<input type="checkbox" name="agreeCheck" id="agreeCheck">
+		약관에 동의 하시겠습니까?
+	</div>
+	<button type="submit">회원정보 입력페이지로 이동합니다.</button>
+	</form>
+	</div>
+	
+	<script type="text/javascript">
+	//$(selector).prop(name, value) : 검색 엘리먼트(입력태그)의 상태를 변경하는 메소드
+	// => checkbox, radio, select 입력 기능의 태그에서 사용 가능한 메소드
+	// => name : checked 또는 selected, value : false 또는 true
+	$("#agreeCheck").prop("checked", false);
+	
+	//$(selector).change(callback) : 검색 엘리먼트(입력태그)의 입력값이
+	//변경될 경우 호출될 이벤트 핸들러 함수를 등록하기 위한 이벤트 메소드
+	$("#agreeCheck").change(function() {
+		//$(selector).is(:status) : 검색 엘리먼트(입력태그)의 상태를 비교
+		//하여 논리값(false 또는 true)를 반환하는 메소드
+		// => checkbox, radio, select 입력 기능의 태그에서 사용 가능한 메소드
+		if($(this).is(":checked")) {//체크박스를 체크한 경우
+			$("#check").val("1");//입력태그의 입력값 변경
+		} else {
+			$("#check").val("0");
+		}
+	});
+	
+	$("#form").submit(function() {
+		if($("#check").val()=="0") {//체크박스를 체크하지 않은 경우
+			alert("약관 내용을 읽고 동의해 주세요.");
+			return false;//submit 제거
+		}
+	});
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

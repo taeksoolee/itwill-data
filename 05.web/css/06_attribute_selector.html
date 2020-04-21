@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS</title>
+<style type="text/css">
+div {
+	font-size: 20px;
+	line-height: 35px;
+}
+
+a {
+	color: red;
+	text-decoration: none;
+}
+
+/* 속성 선택자 : 엘리먼트 속성이나 속성값을 이용하여 엘리먼트 선택 */
+/* 형식) 선택자[속성]  - 속성의 존재유무를 이용하여 엘리먼트 선택 */
+a[href] { color: green; }
+
+/* 형식) 선택자[속성 = "값"]  - 속성의 속성값이 특정값과 같은 엘리먼트 선택 */
+a[href = "#abc"] { color: blue; }
+
+/* 형식) 선택자[속성 ~= "값"]  - 속성의 속성값에 특정값이 단어로 포함된 엘리먼트 선택 */
+/* => 공백으로 단어 구분하여 엘리먼트 선택 */
+div[title ~= "여성"] { color: aqua; }
+
+/* 형식) 선택자[속성 *= "값"]  - 속성의 속성값에 특정값이 문자로 포함된 엘리먼트 선택 */
+div[title *= "여성"] { color: maroon; }
+
+/* 형식) 선택자[속성 ^= "값"]  - 속성의 속성값이 특정값으로 시작되는 엘리먼트 선택 */
+div[title ^= "남성"] { color: lime; }
+
+/* 형식) 선택자[속성 $= "값"]  - 속성의 속성값이 특정값으로 종료되는 엘리먼트 선택 */
+div[title $= "남성"] { color: gray; }
+
+</style>
+</head>
+<body>
+	<h1>속성 선택자</h1>
+	<hr>
+	<div><a>하이퍼링크 기능을 제공하기 위한 태그-1</a></div>
+	<div><a href="#">하이퍼링크 기능을 제공하기 위한 태그-2</a></div>
+	<div><a href="#abc">하이퍼링크 기능을 제공하기 위한 태그-3</a></div>
+	<hr>
+	<div title="여성">화장품-1</div>
+	<div title="화장품">화장품-2</div>
+	<div title="여성화장품">화장품-3</div>
+	<div title="여성 화장품">화장품-4</div>
+	<hr>
+	<div title="남성화장품">화장품-5</div>
+	<div title="화장품남성">화장품-6</div>
+</body>
+</html>
+
+
+

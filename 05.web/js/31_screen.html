@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>BOM(Browser Object Model) - screen 객체</h1>
+	<hr>
+	<p>screen 객체 : 브라우저 출력장치를 객체로 표현하여 값(속성) 또는 기능(메소드)을 제공</p>
+	
+	<script type="text/javascript">
+	//alert(screen);//[object Screen]
+
+	//Screen.width : 출력장치 해상도의 폭을 저장하는 속성
+	var width=screen.width;
+	//alert(width);
+	
+	//Screen.height : 출력장치 해상도의 높이를 저장하는 속성
+	var height=screen.height;
+	//alert(height);
+	
+	var win=open("","","width=400,height=300,top=100,left=400");
+	
+	//Window.moveTo(x, y) : 브라우저를 이동하는 메소드
+	win.moveTo(0, 0);
+	
+	//Window.resizeTo(width, height) : 브라우저의 크기를 변경하는 메소드
+	win.resizeTo(width, height);
+	
+	var intervalId=setInterval(function() {
+		//Window.moveBy(x, y) : 현재 위치를 기준으로 브라우저를 이동하는 메소드
+		win.moveBy(10, 10);
+		//Window.resizeBy(x, y) : 현재 크기를 기준으로 브라우저의 크기를 변경하는 메소드
+		win.resizeBy(-20,-20);
+	}, 500);
+	
+	setTimeout(function() {
+		clearInterval(intervalId);
+	}, 5000);
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+

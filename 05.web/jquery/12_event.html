@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+<body>
+	<h1>jQuery Event</h1>
+	<hr>
+	<button type="button" id="btn">버튼을 눌러보세요.</button>
+	<div id="displayDiv"></div>
+	
+	<script type="text/javascript">
+	//$(selector).click(callback) : 검색 엘리먼트에서 클릭 이벤트가 발생된
+	//경우 이벤트를 처리하기 위한 이벤트 핸들러 함수를 등록하는 메소드 
+	// => 이벤트 메소드를 호출하여 이벤트 핸들러 함수 등록
+	//단축형 : 검색 엘리먼트에 하나의 이벤트에 대한 이벤트 핸들러 함수 등록
+	/*
+	$("#btn").click(function() {
+		$("#displayDiv").text("이벤트 핸들러 함수의 명령 실행");
+	});
+	*/
+	
+	/*
+	//$(selector).on(event,callback) : 검색 엘리먼트에서 특정 이벤트가 발생된
+	//경우 이벤트를 처리하기 위한 이벤트 핸들러 함수를 등록하는 메소드
+	//일반형 : 검색 엘리먼트에 여러 개의 이벤트에 대한 이벤트 핸들러 함수 등록
+	$("#btn").on("click",function() {
+		$("#displayDiv").text("이벤트 핸들러 함수의 명령 실행");
+	});
+	*/
+	
+	//on() 메소드에 이벤트와 이벤트 핸들러 함수를 여러 개 등록할 경우
+	//Object 객체 타입으로 이벤트와 이벤트 핸들러 함수 전달하여 사용 
+	$("#btn").on({
+		"click":function() {
+			$("#displayDiv").text("이벤트 핸들러 함수의 명령 실행");
+		}
+	});
+	</script>
+</body>
+</html>
+
+
+
+

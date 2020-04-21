@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>내부함수(Inner Function)</h1>
+	<hr>
+	<p>내부함수 : 함수 내부에 선언된 함수 
+	- 선언된 함수 내부에서만 함수 호출 가능</p>
+	
+	<script type="text/javascript">
+	/*
+	function print() {
+		alert("print() 함수 호출-1");
+	}
+	
+	//마지막에 선언된 함수 호출
+	print();
+	
+	//동일한 이름의 함수 선언 가능 - 기존 함수 덮어씌우기(OverWrite)
+	// => 자바스크립트 소스파일을 포함하여 사용할 경우 발생
+	function print() {
+		alert("print() 함수 호출-2");
+	}
+	*/
+	
+	function myFunction() {
+		//내부함수 - 다른 함수로 덮어씌우기 선언하지 못하도록 작성
+		function print() {
+			alert("myFunction 함수에 선언된 print() 내부함수 호출");
+		}
+		
+		//내부함수는 선언된 함수에서만 호출 가능
+		print();
+	}
+	
+	myFunction();//함수를 호출하면 내부함수 호출
+	print();
+	
+	function print() {
+		alert("print() 함수 호출");
+	}
+	</script>
+</body>
+</html>
+
+
+
+
+
+

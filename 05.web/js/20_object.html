@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>자바스크립트 객체</h1>
+	<hr>
+	<p>자바스크립트 객체 : 속성(Property)과 메소드(Method)의 모임</p>
+	<p>자바스크립트는 브라우저를 하나의 객체로 표현하여 프로그램 작성
+	: BOM(Browser Object Model) - 객체 관점 프로그래밍</p>
+	<p>자바스크립트는 Object 클래스를 이용하여 객체를 생성하고 객체에
+	요소(속성과 메소드)를 추가,변경,삭제하여 사용</p>
+	<p>Object 클래스 : 요소(속성 또는 메소드)가 없는 클래스</p>
+	
+	<script type="text/javascript">
+	//자바스트립트 객체 생성 방법
+	//형식) var 변수명 = new 클래스함수(값,값,...);
+	
+	/*
+	//Object 클래스로 객체를 생성하여 변수에 저장 - 객체변수
+	//var student=new Object();
+	//{} 기호를 사용하여 Object 객체 생성 - JSON(JavaScript Object Notation : 자바스트립트 객체 표기법) 
+	var student={};
+	
+	//alert(student);//[object Object]
+	//alert(typeof(student));//자료형 : object
+	
+	//객체 요소(속성 또는 메소드)는 . 연산자를 이용하여 접근
+	//객체 요소에 값을 저장할 경우 속성(Property)으로 인식되어 처리
+	//=> 새로운 객체 요소가 사용될 경우 객체 요소(속성 또는 메소드) 추가
+	student.num=1000;
+	student.name="홍길동";
+	student.address="서울시 강남구";
+	
+	//객체 속성값 출력
+	//alert("학번 = "+student.num+", 이름 = "+student.name+", 주소 = "+student.address);
+	
+	//객체에 존재하지 않는 요소를 사용할 경우 undefined 발생
+	//alert("전화번호 = "+student.phone);
+	
+	//객체 요소에 함수를 저장할 경우 메소드(Method)로 인식되어 처리
+	student.display=function() {
+		//객체 요소를 메소드에서 사용할 경우 반드시 this 이용
+		// => this가 생략될 경우 지역변수로 처리되어 사용
+		alert("학번 = "+this.num+", 이름 = "+this.name+", 주소 = "+this.address);
+	}
+	
+	student.display();
+	*/
+	
+	/*
+	//JSON를 이용할 경우 객체 생성시 요소(속성 또는 메소드) 추가 가능
+	//형식) {"요소명":값,"요소명":함수,...}
+	var student={"num":1000,"name":"홍길동","address":"서울시 강남구"
+		,"display": function() {
+			alert("학번 = "+this.num+", 이름 = "+this.name+", 주소 = "+this.address);
+		}
+	};
+	
+	//alert("학번 = "+student.num+", 이름 = "+student.name+", 주소 = "+student.address);
+	//객체 속성은 [] 연산자를 이용하여 접근 가능
+	//형식)객체명["속성명"]
+	//alert("학번 = "+student["num"]+", 이름 = "+student["name"]+", 주소 = "+student["address"]);
+	//student.display();
+	
+	//delete(객체명.요소명) : 객체에 등록된 요소를 제거하는 함수
+	delete(student.address)
+	alert("학번 = "+student.num+", 이름 = "+student.name+", 주소 = "+student.address);
+	*/
+	
+	var student={"num":1000,"name":"홍길동","address":"서울시 강남구"};
+	
+	//in 연산자 : 객체의 등록된 요소를 확인하는 연산자
+	//형식) "요소명" in 객체명 
+	// => 객체에 존재하는 요소가 아닌 경우 false 반환, 요소인 경우 true 반환
+	//alert("num" in student);
+	//alert("phone" in student);
+	
+	/*
+	//for 구문을 이용하여 객체 요소에 대한 반복처리 가능
+	//형식) for(변수명 in 객체명) - 객체 요소명을 반복적으로 제공받아 변수에 저장
+	for(property in student) {
+		alert(property+" = "+student[property]);
+	}
+	*/
+	
+	//with(object) : 객체 요소를 변수처럼 사용할 수 있는 기능을 제공하는 함수
+	with(student) {
+		alert("학번 = "+num+", 이름 = "+name+", 주소 = "+address);
+	}
+	</script>	
+</body>
+</html>
+
+
+
+
+
+
+

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>자바스크립트 형변환</h1>
+	<hr>
+	<p>자동 형변환 - 연산자에 의해 자료형이 자동으로 변환</p>
+	<p>강제 형변환 - 자료형 관련 클래스 함수를 이용하여 강제로 변환</p>
+	
+	<script type="text/javascript">
+	//+ 연산자는 두 피연산자가 숫자값(논리값)인 경우 산술 연산
+	//alert(20+10);
+	
+	//+ 연산자는 두 피연산자 중 하나라도 문자값인 경우 문자 결합
+	//alert("20"+10);
+	//alert(20+"10");
+	//alert("20"+"10");
+	
+	//+ 연산자를 제외한 산술 연산자는 피연산자를 무조건 숫자값으로 자동 형변환하여 연산 처리
+	//alert(20-10);
+	//alert("20"-10);
+	//alert(20-"10");
+	//alert("20"-"10");
+	
+	//NaN(Not a Number) : 숫자값으로 형변환 될 수 없는 경우 표현되는 값 
+	//alert("abc"-10);
+	
+	//Number(string) : 문자값을 숫자값으로 변환하여 반환하는 함수 - NaN 발생
+	alert(Number("20")+10);
+	</script>
+</body>
+</html>
+
+
+
+
+
+

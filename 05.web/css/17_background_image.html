@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS</title>
+<style type="text/css">
+body {
+	/* background-image : 배경 이미지 관련 스타일 속성 */
+	/* 속성값 : url 함수를 이용하여 이미지 파일의 URL 주소 설정 */
+	/* 이미지가 박스모델의  폭 또는 높이보다 작을 경우 가로(X)와 세로(Y) 방향으로 반복 출력 */
+	background-image: url("images/bg-img1.png");
+	
+	/* background-repeat : 배경 이미지의 반복 방향에 대한 스타일 속성 */
+	/* 속성값 : repeat(기본 - 가로와 세로 반복), repeat-x(가로 반복), repeat-y(세로 반복), no-repeat(미반복) */
+	/* background-repeat: no-repeat; */
+}
+
+div {
+	margin: 0 auto;
+	width: 80%;
+	height: 400px;
+	border: 1px solid red;
+	/* 이미지가 박스모델의 폭 또는 높이보다 큰 경우 영역을 벗어난 이미지 미출력 */
+	background-image: url("images/bg-img2.png");
+}
+</style>
+</head>
+<body>
+	<h1>배경 관련 스타일 속성</h1>
+	<hr>
+	<div></div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+<style type="text/css">
+div {
+	border: 1px solid black;
+	padding: 30px;
+	text-align: center;
+}	
+</style>
+</head>
+<body>
+	<h1>이벤트(Event) - 이벤트 전달(Event Propagation)</h1>
+	<hr>
+	<p>엘리먼트에서 발생된 이벤트가 다른 엘리먼트로 전달 
+	- 버블링(Bubbling) 또는 캡쳐링(Capturing)</p>
+	<p>버블링 : 부모 엘리먼트에서 발생된 이벤트가 자식 엘리먼트에게 전달</p>  
+	<p>캡쳐링 : 자식 엘리먼트에서 발생된 이벤트가 부모 엘리먼트에게 전달</p>
+	<hr>
+	<div id="one">
+		<div id="two">
+			<div id="three"></div>
+		</div>	
+	</div>
+	
+	<script type="text/javascript">
+	document.getElementById("one").onclick=function() {
+		location.href="https://www.daum.net";
+		//event.stopPropagation() : 이벤트 전달을 중지하는 메소드
+		event.stopPropagation();
+	}
+	
+	document.getElementById("two").onclick=function() {
+		location.href="https://www.naver.com";
+		event.stopPropagation();
+	}
+	
+	document.getElementById("three").onclick=function() {
+		location.href="https://www.google.com";
+		event.stopPropagation();
+	}
+	</script>
+</body>
+</html>
+
+
+
+
+

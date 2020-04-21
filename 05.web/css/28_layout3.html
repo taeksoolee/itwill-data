@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS</title>
+<style type="text/css">
+#container {
+	width: 90%;
+	/* auot 속성값 : 블럭 레벨의 박스모델을 라인의 가운데 배치 
+	  - width 속성과 같이 사용  */
+	margin: 0 auto;
+	border: 1px solid black;
+}
+
+article {
+	/* float : 박스모델의 배치 관련 스타일 속성 - width 속성과 같이 같이 */
+	/* 속성값 : none(기본), left(박스모델을 왼쪽에서 오른쪽 방향으로 배치)
+	, right(박스모델을 오른쪽에서 왼쪽방향으로 배치) */
+	/* => 배치될 박스모델의 크기(폭)가 더이상 배치되지 못할 경우 자동 줄바꿈 */
+	float: left;
+	width: 70%;
+	background: #772;
+}
+
+aside {
+	float: right;
+	width: 23%;
+	background: #def;
+	height: auto;
+}
+
+img {
+	display: block;
+	margin: 5px;
+	padding-left: 25px;
+}
+ 
+footer {
+	/* clear : float 스타일 속성에 대한 초기화 설정에 대한 스타일 속성 */
+	/* 속성값 : none(기본), left, right, both */
+	clear: both;
+	padding: 30px 10px;
+	background: #030;
+	color: #fff;
+	text-align: center;
+} 
+
+</style>
+</head>
+<body>
+<div id="container">
+	<header>
+		<h1>박스모델 배치 관련 스타일 속성</h1>
+		<hr>
+	</header>
+	<section>
+		<article>
+			<h3>예약방법 및 요금</h3>
+			<p>예약은 알아서 하시고 요금은 많이 주세요.</p>			
+			<p>예약은 알아서 하시고 요금은 많이 주세요.</p>			
+			<p>예약은 알아서 하시고 요금은 많이 주세요.</p>			
+			<p>예약은 알아서 하시고 요금은 많이 주세요.</p>			
+			<p>예약은 알아서 하시고 요금은 많이 주세요.</p>			
+			<p>예약은 알아서 하시고 요금은 많이 주세요.</p>			
+			<p>예약은 알아서 하시고 요금은 많이 주세요.</p>			
+			<p>예약은 알아서 하시고 요금은 많이 주세요.</p>			
+			<p>예약은 알아서 하시고 요금은 많이 주세요.</p>			
+			<p>예약은 알아서 하시고 요금은 많이 주세요.</p>			
+		</article>
+		<aside>
+			<img alt="" src="images/1.jpg">
+			<img alt="" src="images/2.jpg">
+			<img alt="" src="images/3.jpg">
+		</aside>
+	</section>
+	<footer>
+		<address>홍길동(abc123@itwill.site)</address>
+	</footer>
+</div>	
+</body>
+</html>
+
+

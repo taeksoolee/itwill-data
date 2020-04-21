@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+<style type="text/css">
+#itemList div { margin: 5px; }
+</style>
+</head>
+<body>
+	<h1>이벤트에 의한 엘리먼트 조작</h1>
+	<hr>
+	<p>DHTML(Dynamic HTML) : 태그에서 이벤트가 발생된 경우 DOM 관련 객체를
+	조작하여 동적인 페이지 제공</p>
+	<hr>
+	<button type="button" id="addBtn">아이템 추가</button>
+	<div id="itemList"></div>
+	
+	<script type="text/javascript">
+	var count=0;
+	
+	document.getElementById("addBtn").onclick=function() {
+		//엘리먼트 객체 생성
+		var newItem=document.createElement("div");//<div><div>
+		
+		//엘리먼트 객체의 id 속성값 변경
+		count++;
+		newItem.setAttribute("id", "item_"+count);//<div id="item_X"></div>
+		
+		var html="아이템["+count+"] ";
+		html+="<button type='button' onclick='removeItem("+count+")'>제거</button>";
+		newItem.innerHTML=html;
+		
+		document.getElementById("itemList").appendChild(newItem);
+	}
+	
+	function removeItem(cnt) {
+		//alert("cnt = "+cnt);
+		
+		var oldItem=document.getElementById("item_"+cnt);
+		
+		document.getElementById("itemList").removeChild(oldItem);
+	}
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

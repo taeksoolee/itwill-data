@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+<body>
+	<h1>선택자(Selector)</h1>
+	<hr>
+	<h3>jQuery 연습-1</h3>
+	<h3 class="normal">jQuery 연습-2</h3>
+	<h3 class="normal">jQuery 연습-3</h3>
+	<h3>jQuery 연습-4</h3>
+	<h3>jQuery 연습-5</h3>
+	<h4 class="normal">jQuery 연습-6</h4>
+	<h4>jQuery 연습-7</h4>
+	<hr>
+	<ul>
+		<li>jQuery 연습-1</li>
+		<li>jQuery 연습-2</li>
+		<li>jQuery 연습-3</li>
+		<li>jQuery 연습-4</li>
+		<li>jQuery 연습-5</li>
+	</ul>
+	
+	<script type="text/javascript">
+	$("h3").css("background","green");
+	
+	//검색된 엘리먼트 중 특정 엘리먼트를 표현하기 위한 선택자
+	// => 특정 엘리먼트를 표현하기 위해 클래스 선택자만 사용 가능
+	//$("h3.normal").css("background","yellow");
+	
+	//$(selector).filter(selector) : 검색 엘리먼트 중 특정 엘리먼트를 검색
+	//하기 위한 메소드 - 전달값(선택자) 생략 불가능 
+	// => 특정 엘리먼트를 검색하기 위해 모든 선택자 사용 가능
+	//$("h3").filter(".normal").css("background","yellow");
+	$(".normal").filter("h3").css("background","yellow");
+	
+	//$(selector).not(selector) : 검색 엘리먼트 중 특정 엘리먼트를 제외하여
+	//검색하기 위한 메소드 - 전달값(선택자) 생략 불가능 
+	// => 특정 엘리먼트를 제외하기 위해 모든 선택자 사용 가능
+	$("h4").filter(".normal").css("background","orange");
+	$("h4").not(".normal").css("background","olive");
+	
+	//검색된 엘리먼트 중 상태(위치)를 이용하여 엘리먼트를 표현하기 위한 선택자
+	//:nth-child(X) : X번째 위치의 엘리먼트를 표현하기 위한 가상 선택자
+	//$("ul li:nth-child(2)").css("color","red");
+	//$("ul li").filter(":nth-child(2)").css("color","red");
+	//$("ul").find("li").filter(":nth-child(2)").css("color","red");
+	//$(selector).eq(index) : 검색 엘리먼트 중 index 위치의 엘리먼트를 검색하기 위한 메소드
+	$("ul").find("li").eq(1).css("color","red");
+	
+	//$("ul li:nth-child(1)").css("color","aqua");
+	//$("ul li:first").css("color","aqua");
+	//$("ul li").filter(":first").css("color","aqua");
+	//$("ul li").eq(0).css("color","aqua");
+	//$(selector).first() : 검색 엘리먼트 중 첫번째 위치의 엘리먼트를 검색하기 위한 메소드
+	$("ul li").first().css("color","aqua");
+	
+	//$("ul li:nth-child(5)").css("color","green");
+	//$("ul li:last").css("color","green");
+	//$("ul li").filter(":last").css("color","green");
+	//eq() 메소드의 전달값(index)을 -1로 설정할 경우 마지막 엘리먼트 검색
+	//$("ul li").eq(-1).css("color","green");
+	//$(selector).last() : 검색 엘리먼트 중 마지막 위치의 엘리먼트를 검색하기 위한 메소드
+	$("ul li").last().css("color","green");
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+

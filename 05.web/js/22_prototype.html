@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>프로토타입 메소드</h1>
+	<hr>
+	<p>클래스 함수로 객체를 생성할 경우 클래스 함수 안에 추가된 요소는 
+	객체마다 따로 생성</p>
+	<p>속성은 객체마다 따로 생성되는 것이 효율적이지만 메소드는 객체마다 
+	따로 생성되는 것은 비효율적</p>
+	<p>메소드는 생성된 객체 갯수에 상관없이 하나만 생성되어 모든 객체가
+	공유하여 사용하는 것을 권장 - 프로토타입 메소드</p>
+	
+	<script type="text/javascript">
+	//클래스 함수에서는 속성만 추가
+	function Student(num, name, address) {
+		this.num=num;
+		this.name=name;
+		this.address=address;
+
+		/*
+		//클래스 함수에서 메소드가 추가될 경우 객체마다 따로 존재
+		this.display=function() {
+			alert("학번 = "+this.num+", 이름 = "+this.name+", 주소 = "+this.address);
+		}
+		*/
+	}
+	
+	//클래스 함수에 프로토타입 메소드 추가 - 객체 생성과 상관없이 하나만 제공
+	/*
+	Student.prototype.display=function() {
+		alert("학번 = "+this.num+", 이름 = "+this.name+", 주소 = "+this.address);
+	}
+	
+	Student.prototype.setValue=function(num, name, address) {
+		this.num=num;
+		this.name=name;
+		this.address=address;
+	}
+	*/
+	
+	//프로토타입 메소드를 객체로 생성하여 추가
+	Student.prototype={
+		"display":function() {
+			alert("학번 = "+this.num+", 이름 = "+this.name+", 주소 = "+this.address);
+		},
+		"setValue":function(num, name, address) {
+			this.num=num;
+			this.name=name;
+			this.address=address;
+		}
+	};
+	
+	/*
+	var student1=new Student(1000, "홍길동", "서울시 강남구");
+	var student2=new Student(2000, "임꺽정", "수원시 팔달구");
+	var student3=new Student(3000, "전우치", "인천시 월미구");
+	
+	student1.display();	
+	student2.display();	
+	student3.display();
+	*/
+	
+	var student=new Student(1000, "홍길동", "서울시 강남구");
+	student.display();	
+	
+	student.setValue(2000, "임꺽정", "서울시 종로구");
+	student.display();	
+	</script> 
+</body>
+</html>

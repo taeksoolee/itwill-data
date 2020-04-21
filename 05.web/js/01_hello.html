@@ -1,0 +1,48 @@
+<!-- CSL(Client Script Language) : 브라우저 엔진에 의해 해석되어 실행되는
+언어 : HTML, CSS, JavaScript -->
+<!-- HTML Reading >> HTML Parsing(DOM Parser >> DOM Tree) >>
+JavaScript 명령 실행 >> CSS 스타일 적용 >> HTML Rendering(출력) >>
+이벤트 발생 : 이벤트 핸들러(JavaScript) 동작(DHTML) -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+<!-- script 태그의 src 속성값으로 JavaScript Source 파일을 불러와 포함 -->
+<script type="text/javascript" src="01_hello.js"></script>
+
+<!-- script 태그 : 스트립트 언어를 사용하여 프로그램을 작성하는 영역을 제공 -->
+<!-- type 속성 : 사용할 스트립트 언어를 속성값으로 설정 -->
+<script type="text/javascript">
+//자바스트립트 주석문은 Java와 동일
+//자바스트립트는 한 줄에 작성된 코드를 하나의 명령으로 인식하여 처리 
+// => 명령 마지막에 ; 기호 생략 가능 
+
+//자바스트립트는 객체의 속성(Property)과 메소드(Method) 사용하여 프로그램 작성
+//브라우저는 window 객체로 속성(Property)과 메소드(Method) 사용 가능
+// => window.alert("메세지") : 메세지창을 생성하여 메세지를 출력하는 메소드
+// => window 객체 생략 가능
+//window.alert("Hello. JavaScript!!!");
+alert("head 태그에 선언된 JavaScript 명령 실행");
+</script>
+</head>
+<body>
+	<script type="text/javascript">
+		alert("body 시작태그 뒤에 선언된 JavaScript 명령 실행");
+	</script>
+	<h1>자바스트립트 작성</h1>
+	<hr>
+	<!-- 태그의 onXXX 속성(이벤트 속성)에 속성값으로 이벤트 핸들러(JavaScript) 
+	등록하여 이벤트가 발생된 경우 이벤트 핸들러의 명령 실행 -->
+	<!-- => javascript 접두사 뒤에 명령 작성하여 실행 - javascript 접두사 생략 가능 -->
+	<button type="button" onclick="javascript:alert('이벤트 핸들러 명령');">메세지 버튼</button>
+	
+	<!-- 웹문서를 변경 하고자 할 경우 body 태그 종료 전에 선언하는 것을 권장 -->
+	<script type="text/javascript">
+		alert("body 종료태그 전에 선언된 JavaScript 명령 실행");
+	</script>
+</body>
+</html>
+
+
+

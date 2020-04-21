@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<style type="text/css">
+fieldset {
+	width: 800px;
+	margin: 10px auto;
+}
+
+legend {
+	font-size: 1.2em;
+}
+
+#join label {
+	width: 100px;
+	text-align: right;
+	float: left;
+	margin-right: 10px;
+}
+
+#join ul li {
+	list-style-type: none;
+	margin: 15px 0;
+}
+
+#fs {
+	text-align: center;
+}
+
+.error {
+	color: red;
+	margin-left: 10px;
+}
+</style>
+</head>
+<body>
+	<h1>입력값 검증</h1>
+	<hr>
+	<form id="join">
+	<fieldset>
+		<legend>회원가입정보</legend>
+		<ul>
+			<li>
+				<label for="id">아이디</label>
+				<input type="text" name="id" id="id">
+				<span id="idMsg" class="error"></span>
+			</li>
+			<li>
+				<label for="passwd">비밀번호</label>
+				<input type="password" name="passwd" id="passwd">
+				<span id="passwdMsg" class="error"></span>
+			</li>
+			<li>
+				<label for="name">이름</label>
+				<input type="text" name="name" id="name">
+				<span id="nameMsg" class="error"></span>
+			</li>
+			<li>
+				<label for="email">이메일</label>
+				<input type="text" name="email" id="email">
+				<span id="emailMsg" class="error"></span>
+			</li>
+		</ul>
+	</fieldset>	
+	<fieldset id="fs">
+		<button type="button" id="submitBtn">회원가입</button>	
+		<button type="button" id="resetBtn">다시입력</button>	
+	</fieldset>
+	</form>
+	
+	<script type="text/javascript">
+	$("#id").focus();
+	
+	//$(selector).blur(callback) : 검색 엘리먼트(입력태그)에서 입력촛점이
+	//이동한 경우에 실행될 이벤트 핸들러 함수를 등록하는 이벤트 메소드
+	// => focusout() 이벤트 메소드도 같은 기능 제공
+	$("#id").blur(function() {
+		if($(this).val()=="") {
+			$("#idMsg").text("아이디를 반드시 입력해 주세요.");
+			return;
+		}
+		$("#idMsg").text("");
+	});
+	
+	$("#submitBtn").click(function() {
+		//에러 메세지가 출력되는 엘리먼트의 내용 초기화
+		$(".error").text("");		
+		
+		//검증에 대한 결과값을 저장하기 위한 변수
+		// => 변수에 false 값이 저장된 경우 검증 실패 - 미전송
+		var result=true;
+		
+		if($("#id").val()=="") {
+			//alert("아이디를 반드시 입력해 주세요.");
+			$("#idMsg").text("아이디를 반드시 입력해 주세요.");
+			$("#id").focus();
+			//return;
+			result=false;
+		}
+		
+		if($("#passwd").val()=="") {
+			$("#passwdMsg").text("비밀번호를 반드시 입력해 주세요.");
+			$("#passwd").focus();
+			result=false;
+		}
+		
+		if($("#name").val()=="") {
+			$("#nameMsg").text("이름을 반드시 입력해 주세요.");
+			$("#name").focus();
+			result=false;
+		}
+		
+		if($("#email").val()=="") {
+			$("#emailMsg").text("이메일을 반드시 입력해 주세요.");
+			$("#email").focus();
+			result=false;
+		}
+		
+		//입력값에 검증 실패에 따른 이벤트 핸들러 함수 종료 
+		if(!result) return;
+		
+		//form 태그의 속성 변경
+		$("#join").attr("action","");
+		$("#join").attr("method","post");
+		//form 태그를 이용한 웹문서 요청 및 입력값 전달
+		$("#join").submit();
+	});
+	
+	$("#resetBtn").click(function() {
+		//검색 엘리먼트을 자바스트립트 객체로 표현하여 reset() 메소드 호출
+		$("#join")[0].reset();
+		$(".error").text("");
+		$("#id").focus();
+	});
+	</script>
+</body>
+</html>

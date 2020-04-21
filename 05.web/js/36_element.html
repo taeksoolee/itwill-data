@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>DOM(Document Object Model) - Element 객체</h1>
+	<hr>
+	<p>엘리먼트(Element) 객체 : 태그 - 노드 또는 텍스트노드(TextNode)로 구분</p>
+	<p>노드(Node) : 태그명(NodeName)을 저장하는 엘리먼트</p>
+	<p>텍스트노드(TextNode) : 태그내용(NodeValue)을 저장하는 엘리먼트</p>
+	<hr>
+	<h2 id="h2">h2 태그의 내용</h2>
+	<ul>
+		<li>li 태그의 내용-1</li>
+		<li>li 태그의 내용-2</li>
+		<li>li 태그의 내용-3</li>
+	</ul>
+	<p class="p">p 태그의 내용</p>
+	
+	<script type="text/javascript">
+	//document.getElementById(id) : 태그를 id 속성값으로 검색하여 태그의
+	//엘리먼트 객체를 반환하는 메소드
+	var h2E=document.getElementById("h2");
+	//alert(h2E);//[object HTMLHeadingElement]
+	
+	//Element.nodeName : 엘리먼트 객체의 노드명(태그명)을 저장하는 속성
+	//alert(h2E.nodeName);//H2
+	
+	//Element.nodeValue : 엘리먼트 객체의 노드값(태그내용)을 저장하는 속성
+	//alert(h2E.nodeValue);//null
+	
+	//Element.firstChild : 엘리먼트 객체의 첫번째 자식 엘리먼트 객체를 저장하는 속성
+	//alert(h2E.firstChild);//[object Text]
+	
+	//alert(h2E.firstChild.nodeName);//#text
+	//alert(h2E.firstChild.nodeValue);//h2 태그의 내용
+	
+	//태그내용 변경 : DOM 객체 조작 - 응답문서 변경
+	//h2E.firstChild.nodeValue="h2 태그의 내용 변경";
+	
+	/*
+	//document.getElementsByTagName(tagName) : 태그명으로 검색하여 태그의
+	//엘리먼트 객체 목록(HTMLCollection 객체)을 반환하는 메소드
+	var liList=document.getElementsByTagName("li");
+	//alert(liList);//[object HTMLCollection]
+	
+	//alert(liList.length);
+	
+	for(i=0;i<liList.length;i++) {
+		//HTMLCollection.item(index) : index 위치의 엘리먼트 객체를 반환하는 메소드
+		var liE=liList.item(i);
+		//alert(liE);//[object HTMLLIElement]
+		
+		alert(liE.firstChild.nodeValue);
+	}
+	*/
+	
+	//document.querySelectorAll(selectors) : CSS 선택자로 검색하여 태그의
+	//엘리먼트 객체 목록(NodeList 객체)을 반환하는 메소드
+	var pList=document.querySelectorAll(".p");
+	//alert(pList);//[object NodeList]
+	//alert(pList.length);
+	alert(pList.item(0).firstChild.nodeValue);
+	</script>	
+</body>
+</html>

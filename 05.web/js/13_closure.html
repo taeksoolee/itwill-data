@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>클로저 함수(Closure Function)</h1>
+	<hr>
+	<p>내부함수를 반환받아 호출하는 함수</p>
+	
+	<script type="text/javascript">
+	function myFunction() {
+		function print() {
+			alert("myFunction() 함수 내부에 선언된 print() 함수 호출");
+		}
+		
+		//print();
+		return print;//함수 반환
+	}
+	
+	//함수를 호출하여 내부함수를 반환받아 저장
+	//var fun=myFunction();
+	//함수변수를 이용하여 함수 호출
+	//fun();
+	
+	//내부함수를 반환받아 직접 호출
+	//myFunction()();//Closure Function
+	
+	function closure(name) {
+		return function() {
+			alert(name+"님, 안녕하세요.");
+		};
+	}
+	
+	//closure("홍길동")();
+	closure("임꺽정")();
+	</script>
+</body>
+</html>
+
+
+

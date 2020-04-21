@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+<style type="text/css">
+#displayDiv {
+	width: 600px;
+	margin: 0 auto;
+	padding: 30px 0;
+	font-size: 2em;
+	font-weight: bold;
+	text-align: center;
+	border: 2px solid black;
+}
+</style>
+</head>
+<body>
+	<h1>DOM(Document Object Model) - 시계</h1>
+	<hr>
+	<div id="displayDiv">2019년 12월 26일 15시 51분 40초</div>
+	
+	<script type="text/javascript">
+	var displayClock=function() {
+		var now=new Date();
+		
+		var printDate=now.getFullYear()+"년 "+(now.getMonth()+1)+"월 "
+			+now.getDate()+"일 "+now.getHours()+"시 "
+			+now.getMinutes()+"분 "+now.getSeconds()+"초";
+		
+		var displayDiv=document.getElementById("displayDiv");
+		displayDiv.innerHTML=printDate;
+	}
+	
+	displayClock();//날짜와 시간 출력
+	
+	//1초마다 함수를 호출하여 날짜와 시간 출력
+	setInterval(displayClock, 1000);
+	</script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>animate</title>
+<style type="text/css">
+/* 슬라이더 영역 */
+#slider {
+	position: absolute;
+	width: 1000px;
+	height: 350px;
+	top: 100px;
+	left: 150px;
+	background-color: #ececec;
+}
+
+/* 슬라이더의 이미지 출력 영역  */
+#sliderContainer {
+	position: relative;
+	width: 980px;
+	height: 327px;
+	margin: 10px;
+	overflow: hidden;
+}
+
+/* 이미지 영역 - 중첩 */
+#sliderContainer img {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+/* 화살표 이미지 영역 */
+#arrowContainer img {
+	position: absolute;
+	top: 200px;
+	opacity:0.0;
+}
+
+#arrowContainer img:HOVER {
+	opacity:1.0;
+}
+
+/* 왼쪽 화살표 */
+#leftImg {
+	z-index:100;
+	left: 170px;
+}
+ 
+/* 오른쪽 화살표 */
+#rightImg {
+	z-index:100;
+	left: 1050px;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	var $images=$("#sliderContainer").find("img");
+	
+	//이미지를 저장하기 위한 배열 객체 선언
+	var imageArray=new Array();//Empty Array
+
+	//엘리먼트(이미지)를 배열 요소로 추가하여 저장
+	$images.each(function() {
+		imageArray.push($(this));
+	});
+	
+	//모든 슬라이더 이미지의 출력 좌표값 변경 
+	// => 슬라이더 영역 왼쪽에 배치하여 보이지 않도록 설정
+	$images.css("left",-980);
+	
+	//첫번째 이미지의 출력 좌표값 변경
+	// => 슬라이더 영역에 배치하여 보여지도록 설정
+	$images.first().css("left",0);
+	
+	//3초마다 이미지를 이동하여 교체하는 기능의 함수 선언
+	// => setInterval() 함수를 종료하기 위해 함수 고유값(intervalId) 반환
+	function sliding() {
+		return setInterval(function() {
+			//슬라이더 영역에 출력된 현재 이미지 저장
+			var $currentImage=imageArray[0];
+			
+			//슬라이더 영역에 출력될 다음 이미지 저장
+			var $nextImage=imageArray[1];
+			
+			//현재 이미지를 슬라이더 영역의 오른쪽 방향으로 이동
+			$currentImage.stop().animate({"left":980}, 1000);
+			
+			//다음 이미지를 슬라이더 영역의 왼쪽 방향에 위치
+			$nextImage.css("left",-980);
+			
+			//다음 이미지를 슬라이더 영역의 오른쪽 방향으로 이동
+			$nextImage.stop().animate({"left":0}, 1000);
+			
+			//배열 객체의 첫번째 요소를 제거하고 반환받아 저장
+			var $removeImage=imageArray.shift();
+			
+			//제거한 이미지를 배열 객체의 마지막 요소로 추가
+			imageArray.push($removeImage);
+		}, 3000);
+	}
+
+	//슬라이더 기능의 함수 호출
+	var intervalId=sliding();
+	
+	//슬라이더 영역에 마우스 커서가 위치한 경우 슬라이더 기능 중지
+	$("#slider").mouseover(function() {
+		clearInterval(intervalId);
+	});
+	
+	//슬라이더 영역에 마우스 커서가 벗어난 경우 슬라이더 기능 실행
+	$("#slider").mouseout(function() {
+		intervalId=sliding();
+	});
+	
+	//화살표 영역에 마우스 커서가 위치한 경우 슬라이더 기능 중지
+	$("#arrowContainer img").mouseover(function() {
+		clearInterval(intervalId);
+	});
+	
+	//왼쪽 방향 화살표를 클릭한 경우 이미지를 왼쪽 방향으로 이동
+	$("#leftImg").click(function() {
+		var $currentImage=imageArray[0];
+		var $previousImage=imageArray[imageArray.length-1];
+		$currentImage.stop().animate({"left":-980}, 1000);
+		$previousImage.css("left",980);
+		$previousImage.stop().animate({"left":0}, 1000);
+		var $removeImage=imageArray.pop();
+		imageArray.unshift($removeImage);
+	});
+	
+	//오른쪽 방향 화살표를 클릭한 경우 이미지를 오른쪽 방향으로 이동
+	$("#rightImg").click(function() {
+		var $currentImage=imageArray[0];
+		var $nextImage=imageArray[1];
+		$currentImage.stop().animate({"left":980}, 1000);
+		$nextImage.css("left",-980);
+		$nextImage.stop().animate({"left":0}, 1000);
+		var $removeImage=imageArray.shift();
+		imageArray.push($removeImage);
+	});
+	
+	
+});	
+</script>
+</head>
+<body>
+	<h1>슬라이더</h1>
+	<hr>
+	<div id="slider">
+		<div id="sliderContainer">
+			<img src="img1.jpg"> 
+			<img src="img2.jpg"> 
+			<img src="img3.jpg">
+			<img src="img4.jpg">
+		</div>
+	</div>
+	<div id="arrowContainer">
+		<img src="left.png" id="leftImg">
+		<img src="right.png" id="rightImg">
+	</div>
+</body>
+</html>

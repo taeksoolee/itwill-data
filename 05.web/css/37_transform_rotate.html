@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS</title>
+<style type="text/css">
+img { border: 1px solid black; }
+
+.image {
+	float: left;
+	margin: 20px;
+	background: rgba(0,0,255,.3);
+	perspective: 200px;
+	transform-style: preserve-3d;
+}
+
+/* rotate(deg) : 박스모델을 가로와 세로 방향으로 회전 - 단위 : deg  */
+#rotatexy img {
+	transform: rotate(45deg);
+}
+
+/* rotatex(deg) : 박스모델을 가로 방향으로 회전 - 단위 : deg  */
+#rotatex img {
+	transform: rotatex(45deg);
+}
+
+/* rotatey(deg) : 박스모델을 세로 방향으로 회전 - 단위 : deg  */
+#rotatey img {
+	transform: rotatey(45deg);
+}
+
+/* rotatez(deg) : 박스모델을 원근 방향으로 회전 - 단위 : deg  */
+#rotatez img {
+	transform: rotatez(45deg);
+}
+
+/* rotate3d(x,y,z,deg) : 박스모델을 입체적으로 회전 - 단위 : deg  */
+#rotatexyz img {
+	transform: rotate3d(1,1,1,45deg);
+}
+</style>
+</head>
+<body>
+	<h1>변형 관련 스타일 속성</h1>
+	<hr>
+	<div id="original">
+		<h3>원본이미지</h3>
+		<img alt="" src="images/1.jpg">
+	</div>
+	<hr>
+	<div id="rotatexy" class="image"> 
+		<img alt="" src="images/1.jpg">
+	</div>
+	<div id="rotatex" class="image">
+		<img alt="" src="images/1.jpg">
+	</div>
+	<div id="rotatey" class="image">
+		<img alt="" src="images/1.jpg">
+	</div>
+	<div id="rotatez" class="image">
+		<img alt="" src="images/1.jpg">
+	</div>
+	<div id="rotatexyz" class="image">
+		<img alt="" src="images/1.jpg">
+	</div>
+</body>
+</html>

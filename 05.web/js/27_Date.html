@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>내장클래스 - Date</h1>
+	<hr>
+	<p>Date 클래스 : 날짜와 시간을 저장하는 객체를 생성하기 위한 클래스</p>
+	
+	<script type="text/javascript">
+	//현재 클라이언트 플렛폼(OS)의 날짜와 시간을 저장하는 Date 객체 생성
+	var now=new Date();
+	
+	//Date.toString() : Date 객체에 저장된 날짜와 시간을 문자값으로 변환하여 반환하는 메소드
+	//alert(now.toString());
+	//alert(now);
+	
+	/*
+	var day=["일","월","화","수","목","금","토"];
+	//Date.getXXX() : Date 객체에서 원하는 요소값을 반환하는 메소드
+	var today=now.getFullYear()+"년 "+(now.getMonth()+1)+"월 "
+		+now.getDate()+"일 "+day[now.getDay()]+"요일";
+	alert(today);
+	*/
+	
+	/*
+	//Date.setXXX(value) : Date 객체에서 원하는 요소값을 변경하는 메소드
+	now.setDate(now.getDate()+7);
+	alert(now.toLocaleString());
+	*/
+	
+	//원하는 날짜와 시간을 전달하여 Date 객체 생성
+	var birthday=new Date(1999,11,25);//월 : 0~11
+	//alert(birthday);
+	
+	//Date.getTime() : Date 객체의 날짜와 시간에 대한 TimeStamp(ms)로 변환하여 반환하는 메소드
+	var interval=(now.getTime()-birthday.getTime())/(1000*60*60*24);
+	alert("당신은 오늘까지 "+Math.ceil(interval)+"일 살았습니다.");
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

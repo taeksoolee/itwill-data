@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS</title>
+<style type="text/css">
+img { border: 1px solid black; }
+
+.image {
+	float: left;
+	margin: 20px;
+	background: rgba(0,0,255,.3);
+}
+
+.image img {
+	/* 박스모델의 변형 기준점 : 박스모델 중앙 */
+	transform: rotate(10deg);
+}
+
+/* transform-origin : 박스모델 변형 기존점에 대한 스타일 속성 */
+/* 속성값 : center(기본), left, right, top, bottom */
+#lt img { transform-origin: left top; }
+#rt img { transform-origin: right top; }
+#lb img { transform-origin: left bottom; }
+#rb img { transform-origin: right bottom; }
+</style>
+</head>
+<body>
+	<h1>변형 관련 스타일 속성</h1>
+	<hr>
+	<div id="original">
+		<h3>원본이미지</h3>
+		<img alt="" src="images/1.jpg">
+	</div>
+	<hr>
+	<div class="image"> 
+		<img alt="" src="images/1.jpg">
+	</div>
+	<div id="lt" class="image">
+		<img alt="" src="images/1.jpg">
+	</div>
+	<div id="rt" class="image">
+		<img alt="" src="images/1.jpg">
+	</div>
+	<div id="lb" class="image">
+		<img alt="" src="images/1.jpg">
+	</div>
+	<div id="rb" class="image"> 
+		<img alt="" src="images/1.jpg">
+	</div>
+</body>
+</html>

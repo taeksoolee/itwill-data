@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS</title>
+<style type="text/css">
+img { border: 1px solid black; }
+
+.image {
+	float: left;
+	margin: 20px;
+	background: rgba(0,0,255,.3);
+}
+
+/* skew(deg,deg) : 박스모델을 가로와 세로 방향으로 비틀기 - 단위 : deg  */
+#skewxy img {
+	transform: skew(-25deg,-25deg);
+}
+
+/* skewx(deg) : 박스모델을 가로 방향으로 비틀기 - 단위 : deg  */
+#skewx img {
+	transform: skewx(30deg);
+}
+
+/* skewy(deg) : 박스모델을 세로 방향으로 비틀기 - 단위 : deg  */
+#skewy img {
+	transform: skewy(30deg);
+}
+</style>
+</head>
+<body>
+	<h1>변형 관련 스타일 속성</h1>
+	<hr>
+	<div id="original">
+		<h3>원본이미지</h3>
+		<img alt="" src="images/1.jpg">
+	</div>
+	<hr>
+	<div id="skewxy" class="image"> 
+		<img alt="" src="images/1.jpg">
+	</div>
+	<div id="skewx" class="image">
+		<img alt="" src="images/1.jpg">
+	</div>
+	<div id="skewy" class="image">
+		<img alt="" src="images/1.jpg">
+	</div>
+</body>
+</html>

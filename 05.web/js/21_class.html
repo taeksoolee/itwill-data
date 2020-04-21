@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>클래스(Class)</h1>
+	<hr>
+	<p>동일한 형태의 객체를 쉽게 생성하기 위해 클래스 선언 
+	- 생산성 향상 및 유지보수의 효율성 증가</p>
+	<p>클래스 함수를 이용하여 클래스 선언 
+	- 클래스 함수를 new 연산자로 호출하여 객체 생성</p>
+	
+	<script type="text/javascript">
+	//클래스 함수 선언 >> 요소 추가 - 생성자
+	// => 매개변수에 값을 전달받아 속성(Property)의 초기값으로 저장
+	function Student(num, name, address) {
+		//클래스 요소(속성 또는 메소드)로 표현하기 위해 반드시 this 사용
+		
+		//값을 저장하는 요소 추가 : 속성(Property) 
+		this.num=num;
+		this.name=name;
+		this.address=address;
+		
+		//함수를 저장하는 요소 추가 : 메소드(Method) 
+		this.display=function() {
+			alert("학번 = "+this.num+", 이름 = "+this.name+", 주소 = "+this.address);
+		}
+	}
+	
+	//클래스 함수를 이용하여 객체 생성
+	var student1=new Student(1000, "홍길동", "서울시 강남구");
+	var student2=new Student(2000, "임꺽정", "수원시 팔달구");
+	var student3=new Student(3000, "전우치", "인천시 월미구");
+	
+	student1.display();	
+	student2.display();	
+	student3.display();	
+	</script> 
+</body>
+</html>
+
+
+
+
+
+
+
+

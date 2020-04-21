@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.itwill.mapper.MyUserMapper">
+	<insert id="insertUser" parameterType="MyUser">
+		insert into myuser values(#{userId}, #{userName})
+	</insert>
+	
+	<!-- 검색행의 컬럼명과 클래스의 필드명이 모두 달라 검색행의 컬럼값이 
+	하나도 필드에 저장되지 않아 인스턴스를 생성하지 않고 NULL 제공 -->
+	<!--  
+	<select id="selectAllUser" resultType="MyUser">
+		select * from myuser order by user_id
+	</select>
+	-->
+	
+	<!-- 해결방법-1 : 검색행의 검색대상(컬럼명)을 필드명과 동일한 이름의 
+	별명(ColumnAlias)을 부여하여 검색 -->
+	<!-- 
+	<select id="selectAllUser" resultType="MyUser">
+		select user_id userid, user_name username from myuser order by user_id
+	</select>
+	-->
+
+	<!-- sql : 일부분의 SQL 명령을 등록하기 위한 엘리먼트 -->
+	<!-- 
+	<sql id="selectColumns">
+		user_id userid, user_name username
+	</sql>
+	-->
+	
+	<!-- include : sql 엘리먼트에 등록된 SQL 명령을 포함 시키는 엘리먼트 -->
+	<!-- refid 속성 : 포함 시키고자 하는 sql 엘리먼트의 고유값을 속성값으로 설정 -->
+	<!-- 
+	<select id="selectAllUser" resultType="MyUser">
+		select <include refid="selectColumns"/> from myuser order by user_id
+	</select>
+	-->
+
+	<!-- 해결방법-2 : Mybatis 환경설정 파일의 setting 엘리먼트를 이용하여
+	mapUnderscoreToCamelCase 옵션값을 true 변경 -->
+	<!-- mapUnderscoreToCamelCase 옵션 : 언더바 표기법의 식별자를 카멜 
+	표기법으로 자동으로 변환하는 기능을 제공하는 옵션 - 기본값 : false(비활성) -->
+	<!--  	
+	<select id="selectAllUser" resultType="MyUser">
+		select * from myuser order by user_id
+	</select>
+	-->
+	
+	<!-- 해결방법-3 : 매핑정보를 제공하는 resultMap 엘리먼트 이용 - 수동매핑 -->
+	<!-- resultMap : 검색행의 컬럼값을 클래스 필드에 매핑되도록 설정하는 상위 엘리먼트 -->
+	<!-- type 속성 : 검색행의 컬럼값을 저장하기 위한 클래스를 속성값으로 설정 -->
+	<resultMap type="MyUser" id="myUserResultMap">
+		<!-- id: 컬럼값을 필드값으로 매핑하기 위한 정보를 설정하는 엘리먼트 -->
+		<!-- => PK 제약조건이 부여된 컬럼값을 매핑 처리 -->
+		<!-- column 속성 : 검색행의 컬럼명을 속성값으로 설정 -->
+		<!-- property 속성 : 클래스의 필드명을 속성값으로 설정 -->
+		<id column="user_id" property="userId" />
+		<!-- result: 컬럼값을 필드값으로 매핑하기 위한 정보를 설정하는 엘리먼트 -->
+		<result column="user_name" property="userName" />
+	</resultMap>
+	
+	<!-- resultMap 속성 : 매핑정보가 등록된 resultMap 엘리먼트의 고유값을 속성값으로 설정  -->
+	<select id="selectAllUser" resultMap="myUserResultMap" >
+		select * from myuser order by user_id
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

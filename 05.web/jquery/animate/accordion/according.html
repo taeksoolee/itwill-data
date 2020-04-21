@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>animate</title>
+<style type="text/css">
+/* 전체 어코디언 메뉴가 출력되는 영역 */
+#accodingMenu {
+	position: absolute;
+	left: 50px;
+	top: 100px;
+	width: 300px;
+	padding: 20px;
+	background-color: #eeeeee;
+}
+
+/* 어코디언 메뉴 하나가 출력되는 영역 */
+/* => 텍스트 메뉴만 출력되도록 높이 설정 - 그림 메뉴는 숨겨지도록 설정 */
+.menuItem {
+	position: relative;
+	height: 20px;
+	overflow: hidden;
+}
+
+/* 어코디언 메뉴의 이미지 출력 영역 - 이미지 출력 좌표 설정 */
+.menuItemContent {
+	position: absolute;
+}
+
+/* 이미지를 블럭 레벨로 변경 - 텍스트 메뉴 아래에 그림 메뉴 배치 */
+.menuItemContent img {
+	display: block;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript">
+//마우스 커서가 위치한 영역의 텍스트 메뉴 대신 그림 메뉴가 보여지도록 설정 	
+$(document).ready(function() {
+	//마우스 커서가 위치한 영역의 엘리먼트를 저장하기 위한 변수 선언
+	var $overMenuItem=null;
+	
+	$(".menuItem").mouseover(function() {
+		//이벤트가 발생된 엘리먼트를 변수에 저장
+		$overMenuItem=$(this);
+		
+		//이벤트가 발생된 엘리먼트의 출력 영역의 위치를 변경
+		// => 텍스트 메뉴를 숨기고 그림 메뉴가 보여지도록 설정
+		$overMenuItem.find(".menuItemContent").stop().animate({"top":-20}, 500);
+		//이벤트가 발생된 엘리먼트의 이미지 출력 영역의 높이를 변경
+		$overMenuItem.stop().animate({"height":113}, 500);
+	});
+	
+	$(".menuItem").mouseout(function() {
+		//이벤트가 발생된 엘리먼트의 출력 영역의 위치를 변경
+		// => 그림 메뉴를 숨기고 텍스트 메뉴가 보여지도록 설정
+		$overMenuItem.find(".menuItemContent").stop().animate({"top":0}, 500);
+		//이벤트가 발생된 엘리먼트의 이미지 출력 영역의 높이를 변경
+		$overMenuItem.stop().animate({"height":20}, 500);
+	});
+});	
+</script>
+</head>
+<body>
+	<h1>어코디언</h1>
+	<hr>
+	<div id="accodingMenu">
+		<div class="menuItem">
+			<div class="menuItemContent">
+				<img src="menu_1.png">
+				<img src="menu_1_over.png">
+			</div>
+		</div>
+		<div class="menuItem">
+			<div class="menuItemContent">
+				<img src="menu_2.png">
+				<img src="menu_2_over.png">
+			</div>
+		</div>
+		<div class="menuItem">
+			<div class="menuItemContent">
+				<img src="menu_3.png">
+				<img src="menu_3_over.png">
+			</div>
+		</div>
+		<div class="menuItem">
+			<div class="menuItemContent">
+				<img src="menu_4.png">
+				<img src="menu_4_over.png">
+			</div>
+		</div>
+		<div class="menuItem">
+			<div class="menuItemContent">
+				<img src="menu_5.png">
+				<img src="menu_5_over.png">
+			</div>
+		</div>
+		<div class="menuItem">
+			<div class="menuItemContent">
+				<img src="menu_6.png">
+				<img src="menu_6_over.png">
+			</div>
+		</div>
+		<div class="menuItem">
+			<div class="menuItemContent">
+				<img src="menu_7.png">
+				<img src="menu_7_over.png">
+			</div>
+		</div>
+		<div class="menuItem">
+			<div class="menuItemContent">
+				<img src="menu_8.png">
+				<img src="menu_8_over.png">
+			</div>
+		</div>
+		<div class="menuItem">
+			<div class="menuItemContent">
+				<img src="menu_9.png">
+				<img src="menu_9_over.png">
+			</div>
+		</div>
+		<div class="menuItem">
+			<div class="menuItemContent">
+				<img src="menu_10.png">
+				<img src="menu_10_over.png">
+			</div>
+		</div>		
+	</div>
+</body>
+</html>

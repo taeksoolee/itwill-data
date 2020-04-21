@@ -1,0 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+	<!-- footer 영역 : 저작권, 약관, 개인정보 보호정책 등 -->
+	<div id="footer">
+		<p>Copyright ⓒ itwill Corp. All rights reserved</p>
+	</div>
+</body>
+</html>

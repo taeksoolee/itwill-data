@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>DOM(Document Object Model) - Element 객체의 제거</h1>
+	<hr>
+	<h2>엘리먼트-1</h2>
+	<h2 id="h2">엘리먼트-2</h2>
+	<h2>엘리먼트-3</h2>
+	
+	<script type="text/javascript">
+	var h2E=document.getElementById("h2");
+	
+	//Element.removeChild(oldElement) : 엘리먼트 객체의 자식 엘리먼트 객체를 제거하는 메소드
+	//document.body.removeChild(h2E);
+	
+	//Element.parentElement : 엘리먼트 객체의 부모 엘리먼트 객체를 저장하는 속성
+	h2E.parentElement.removeChild(h3E);
+	</script>
+</body>
+</html>
+
+
+
+
+

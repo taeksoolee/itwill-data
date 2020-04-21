@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>예외(Exception) 처리</h1>
+	<hr>
+	<p>예외 : 자바스크립트 실행시 발생되는 실행 오류 - 예외 처리</p>
+	
+	<script type="text/javascript">
+	try {
+		//예외가 발생 가능한 명령을 작성하는 영역
+		//var array=new Array(10);
+	
+		//예외 발생 - 예외 객체 생성
+		var array=new Array(1000000000000000000000);
+		
+		alert("Array 객체를 생성 하였습니다.");
+	} catch (e) { //발생된 모든 예외 객체를 변수에 저장하여 예외처리시 사용
+		//예외가 발생될 경우 명령을 작성하는 영역 - 예외처리
+		//alert("Array 객체를 생성하지 못했습니다.");
+		alert("예외 발생 = "+e);
+	} finally {
+		//예외에 상관없이 실행될 명령을 작성하는 영역
+		alert("무조선 실행되는 명령입니다.");
+	}
+	</script>
+</body>
+</html>

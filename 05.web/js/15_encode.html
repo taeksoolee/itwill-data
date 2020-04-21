@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>내장함수 - encode 함수</h1>
+	<hr>
+	<!-- URL 주소로 값을 전달할 경우(QueryString) URL 주소로 표현할 수 없는
+	 문자를 URL 주소로 표현할 수 문자로 변환할 때 사용하는 함수 -->
+	<p>encodeURI(string)과 encodeURIComponent(string) : 문자값을 
+	전달받아 부호화 변환하여 반환하는 함수</p>
+	
+	<p>decodeURI(string)과 decodeURIComponent(string) : 부호화된 문자값을
+	전달받아 복호화 변환하여 반환하는 함수</p>
+	
+	<script type="text/javascript">
+	var name="홍길동";
+	//alert("name = "+name);
+
+	//URL 주소로 인식할 수 없는 문자를 전달받아 변환하여 반환
+	var encodeName=encodeURIComponent(name);
+	//alert("encodeName = "+encodeName);
+	
+	var decodeName=decodeURIComponent(encodeName);
+	alert("decodeName = "+decodeName);
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+

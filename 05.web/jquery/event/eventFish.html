@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>event</title>
+<style type="text/css">
+#panel {
+	width: 600px;
+	height: 300px;
+	border: 1px solid #999;
+	position: relative;
+	left: 100px;
+	right: 100px;
+	background: url("bg.png") no-repeat;
+}
+
+#bar {
+	width: 500px;
+	height: 20px;
+	position: absolute;
+	left: 50px;
+	top: 190px;
+	background: #f00;
+}
+
+#fish {
+	position: absolute;
+	left: 50px;
+	top: 120px;
+}
+
+#navi {
+	text-align: center;
+	width: 600px;
+	position: relative;
+	left: 100px;
+	top:250px;
+}
+
+#btn {
+	font-size: 1em;
+	font-weight: bold;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#btn").focus();
+		
+	//물고기가 출력된 left 좌표값을 반환받아 저장
+	// => parseInt() 함수를 이용하여 단위(px)를 제거하고 숫자값만 저장
+	var x=parseInt($("#fish").css("left"));
+	//alert("x = "+x);
+	
+	//버튼을 누른 경우 이동을 위해 변경되는 left 좌표값의 증감값 저장
+	var move=50;
+	
+	$("#btn").click(function() {
+		//물고기 출력 좌표값 변경
+		x+=move;
+		
+		//물고기 출력 위치 변경
+		$("#fish").css("left",x);
+		
+		if(x>=450) {
+			move=-50;
+			$("#fishImg").attr("src","fish2.png");
+		}
+		
+		if(x<=50) {
+			move=50;
+			$("#fishImg").attr("src","fish1.png");
+		}
+	});	
+});
+</script>
+</head>
+<body>
+	<h1>움직이는 물고기</h1>
+	<hr>
+	<div id="panel">
+		<div id="bar"></div>
+		<div id="fish">
+			<img src="fish1.png" id="fishImg">
+		</div>
+		<div id="navi">
+			<button type="button" id="btn">
+				버튼을 누르면 물고기가 움직입니다.
+			</button>
+		</div>
+	</div>
+</body>
+</html>
+
+
+
+
+
+

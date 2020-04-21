@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.itwill10.mapper.StudentMapper">
+	<!-- parameterType 속성 생략 가능 -->
+	<insert id="insertStudent">
+		insert into student values(#{no},#{name},#{phone},#{address},#{birthday})
+	</insert>
+	
+	<select id="selectStudentList" resultType="Student">
+		select * from student order by no
+	</select>
+</mapper>

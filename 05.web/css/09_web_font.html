@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS</title>
+<!-- 구글에서 제공하는 웹폰트 - https://fonts.google.com/ 검색 -->
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
+<style type="text/css">
+/* 웹폰트(Web Font) : 글꼴파일을 제공하여 클라이언트가 다운로드 받아 사용 */
+
+/*
+웹폰트로 제공되는 글꼴 파일
+1.ttf 파일 : 플렛폼에서 사용되는 글꼴파일 - 비권장
+2.woff 파일 : 웹에서 사용되는 글꼴파일 - IE9 이상, 크롬, 파이어폭스, 사파리 등
+3.eof 파일 : 웹에서 사용되는 글꼴파일 - IE8 이하, 크롬, 파이어폭스, 사파리 등
+*/
+
+/* @font-face : 글꼴파일을 제공하기 위한 시스템 속성 */
+/* => font-family : 글꼴파일의 글꼴이름(고유값)을 속성값으로 설정 */
+/* => src : url 함수를 이용하여 글꼴파일의 URL 주소를 속성값으로 설정 */
+@font-face {
+	font-family:"NanumGothic";
+	src: url("/web/css/fonts/NanumGothic.woff") format("woff"); 
+}
+
+@font-face {
+	font-family:"NanumBarunGothic";
+	src: url("fonts/NanumBarunGothic.woff") format("woff"); 
+}
+
+body {
+	/* font-family: "NanumGothic"; */
+	/* font-family: "NanumBarunGothic"; */
+	font-family: "Nanum Gothic";
+}
+</style>
+</head>
+<body>
+	<h1>글꼴 관련 스타일 속성</h1>
+	<hr>
+	<p>브라우저에 출력될 아주 중요한 내용입니다.</p>
+	<p>브라우저에 출력될 아주 중요한 내용입니다.</p>
+	<p>브라우저에 출력될 아주 중요한 내용입니다.</p>
+	<p>브라우저에 출력될 아주 중요한 내용입니다.</p>
+	<p>브라우저에 출력될 아주 중요한 내용입니다.</p>
+</body>
+</html>

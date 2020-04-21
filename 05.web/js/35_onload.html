@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+<script type="text/javascript">
+function load() {
+	alert("DOM 관련 객체 조작 가능");
+}
+
+/*
+//객체에 이벤트 속성에 이벤트 핸들러(이벤트 처리 함수)를 등록하여 이벤트 처리 
+window.onload=function() {
+	alert("DOM 관련 객체 조작 가능");
+}
+*/
+</script>
+</head>
+<!-- onload 이벤트 속성 : 태그가 DOM Tree에 로드될 경우 발생되는 이벤트 -->
+<!-- 이벤트 속성값으로 자바스크립트의 이벤트 처리 명령 - 함수 호출 -->
+<!-- <body onload="load()"> -->
+<body>
+	<h1>DOM(Document Object Model) - onload 이벤트 속성</h1>
+	<hr>
+	<p>이벤트(Event) : 태그(Element 객체)에 관련된 사건</p>
+	<p>태그에서 이벤트가 발생될 경우 이벤트 속성을 이용하여
+	자바스크립트로 이벤트 처리</p>
+	<p>DOM 관련 객체를 사용하기 위해서는 DOM Tree 생성 후 사용 가능</p>
+
+	<!-- body 태그의 마지막 자식으로 script 태그 선언 -->	
+	<!-- => onload 이벤트 관련 함수를 선언하지 않아도 DOM 조작 가능 -->	
+	<script type="text/javascript">
+	alert("DOM 관련 객체 조작 가능");
+	</script>
+</body>
+</html>
+
+
+

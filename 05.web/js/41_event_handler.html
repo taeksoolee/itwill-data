@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>이벤트(Event) - Event Handler</h1>
+	<hr>
+	<p>태그(엘리먼트 객체)에서 발생되는 이벤트는 자바스크립트를 이용하여
+	이벤트 처리 - 이벤트 핸들러</p>
+	<p>이벤트 처리 방법-1 : 태그의 이벤트 속성의 속성값으로 이벤트를 
+	처리하기 위한 함수 호출</p>
+	<p>이벤트 처리 방법-2 : 엘리먼트 객체의 이벤트 속성에 이벤트 핸들러 
+	함수를 등록하여 이벤트 처리</p>
+	<hr>
+	<button type="button" onclick="eventHandler()">버튼1을 눌러보세요.</button>
+	<button type="button" id="btn">버튼2을 눌러보세요.</button>
+	
+	<script type="text/javascript">
+	function eventHandler() {
+		alert("버튼1을 눌렀습니다.");
+	}
+	
+	document.getElementById("btn").onclick=function() {
+		alert("버튼2을 눌렀습니다.");
+	}
+	</script>
+</body>
+</html>
+
+
+
+
+
+

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Fundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	<!-- definition : 템플릿 페이지를 설정하기 위한 상위 엘리먼트 -->
+	<!-- name 속성 : definition 엘리먼트의 고유값을 속성값으로 설정 -->
+	<!-- => 요청처리 메소드의 반환값(ViewName)으로 사용 -->
+	<!-- template 속성 : 템플릿 페이지를 구현하기 위한 JSP 문서 경로를 속성값으로 설정 -->
+	<definition name="main" template="/WEB-INF/views/layout/template.jsp">
+		<!-- put-attribute : 템플릿 페이지를 구성하는 뷰페이지(JSP)를 설정하는 엘리먼트 -->
+		<!-- name 속성 : put-attribute 엘리먼트의 고유값을 속성값으로 설정 -->
+		<!-- value 속성 : 뷰페이지에 대한 JSP 문서 경로를 속성값으로 설정 -->
+		<put-attribute name="header" value="/WEB-INF/views/layout/header.jsp"/>
+		<put-attribute name="content" value="/WEB-INF/views/layout/main.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/views/layout/footer.jsp"/>
+	</definition>
+
+	<!-- 템플릿 페이지는 여러 개 설정 가능 -->
+	<definition name="admin" template="/WEB-INF/views/admin/template.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/admin/header.jsp"/>
+		<put-attribute name="content" value="/WEB-INF/views/admin/main.jsp"/>
+	</definition>
+	
+	<!-- 템플릿 페이지를 상속받는 경우 선언 순서대로 응답 처리 -->
+	<definition name="admin/*" extends="admin">
+		<put-attribute name="content" value="/WEB-INF/views/admin/{1}.jsp"/>
+	</definition>
+	
+	<!-- name 속성값을 "*"로 설정한 경우 요청처리 메소드의 반환값이 
+	"문자열"인 경우 템플릿 페이지로 응답되도록 설정 -->
+	<!-- extends 속성 : 다른 definition 엘리먼트의 고유값을 속성값으로 설정 -->
+	<!-- => 탬플릿 페이지 정보를 상속받아 사용 -->
+	<definition name="*" extends="main">
+		<!-- 상속받은 템플릿 페이지에 새로운 뷰페이지 정보를 설정 -->
+		<!-- => name 속성값이 중복될 경우 기존 뷰페이지 정보 변경 -->
+		<!-- value 속성에는 definition 엘리먼트의 name 속성값에 * 기호를 
+		{정수값} 형식으로 반환하는 ViewName 표현 -->
+		<put-attribute name="content" value="/WEB-INF/views/{1}.jsp"/>
+	</definition>
+	
+	<!-- name 속성값을 "*/*"로 설정한 경우 요청처리 메소드의 반환값이 
+	"문자열/문자열"인 경우 템플릿 페이지로 응답되도록 설정 -->
+	<definition name="*/*" extends="main">
+		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp"/>
+	</definition>
+	
+	<!-- name 속성값을 "*/*/*"로 설정한 경우 요청처리 메소드의 반환값이 
+	"문자열/문자열/문자열"인 경우 템플릿 페이지로 응답되도록 설정 -->
+	<definition name="*/*/*" extends="main">
+		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}/{3}.jsp"/>
+	</definition>
+</tiles-definitions>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<!-- 버튼을 누르면 오늘 날짜의 공지사항이 출력되는 팝업창을 실행하는 웹문서 -->
+<!-- => 팝업창에 출력되는 공지사항은 서블릿 이용 -->
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Servlet</title>
+</head>
+<body>
+	<h1>공지사항</h1>
+	<hr>
+	<button type="button" id="btn">오늘의 공지사항 보기</button>
+	
+	<script type="text/javascript">
+	document.getElementById("btn").onclick=function() {
+		window.open("notice.itwill","공지사항"
+				,"width=350,height=400,top=100,left=500");
+	}
+	</script>
+</body>
+</html>
+
+
+
+

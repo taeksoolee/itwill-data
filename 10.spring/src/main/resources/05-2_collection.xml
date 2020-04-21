@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- Controller 인터페이스를 상속받은 자식클래스를 Spring Bean으로 등록 -->
+	<bean class="site.itwill05.di.LoginController" id="loginController"/>
+	<bean class="site.itwill05.di.LogoutController" id="logoutController"/>
+	<bean class="site.itwill05.di.ListController" id="listController"/>
+
+	<bean class="site.itwill05.di.CollectionBean" id="collectionBean">
+		<property name="nameList">
+			<!-- list : 필드에 List 인스턴스(배열)를 생성하여 전달하는 엘리먼트 -->
+			<list>
+				<!-- value : 요소값을 제공하기 위한 엘리먼트 -->
+				<value>홍길동</value>
+				<value>임꺽정</value>
+				<value>전우치</value>
+				<value>홍길동</value>
+			</list>			
+		</property>
+		
+		<property name="nameSet">
+			<!-- set : 필드에 Set 인스턴스를 생성하여 전달하는 엘리먼트 -->
+			<set>
+				<value>홍길동</value>
+				<value>임꺽정</value>
+				<value>전우치</value>
+				<value>홍길동</value>
+			</set>		
+		</property>
+		
+		<property name="controllerList">
+			<list>
+				<!-- ref : 요소값으로 저장될 Spring Bean을 설정하기 위한 엘리먼트 -->
+				<!-- bean 속성 : Spring Bean의 고유값을 속성값으로 설정 -->
+				<ref bean="loginController"/>
+				<ref bean="logoutController"/>
+				<ref bean="listController"/>
+			</list>
+		</property>
+		
+		<property name="controllerSet">
+			<set>
+				<ref bean="loginController"/>
+				<ref bean="logoutController"/>
+				<ref bean="listController"/>
+			</set>
+		</property>
+		
+		<property name="controllerMap">
+			<!-- map : 필드에 Map 인스턴스를 생성하여 전달하는 엘리먼트 -->
+			<map>
+				<!-- entry : 엔트리를 생성하여 Map 인스턴스에 저장하는 엘리먼트 -->
+				<entry>
+					<!-- key : Map 인스턴스에 저장될 엔트리의 키를 설정하는 엘리먼트 -->
+					<key>
+						<value>login</value>
+					</key>
+					<ref bean="loginController"/>
+				</entry>
+				<entry>
+					<key>
+						<value>logout</value>
+					</key>
+					<ref bean="logoutController"/>
+				</entry>
+				<entry>
+					<key>
+						<value>list</value>
+					</key>
+					<ref bean="listController"/>
+				</entry>
+			</map>
+		</property>
+	
+		<property name="properties">
+			<!-- props : 필드에 Properties 인스턴스를 생성하여 전달하는 엘리먼트  -->
+			<!-- => props 엘리먼트 대신 map 엘리먼스 사용 가능 -->
+			<props>
+				<!-- prop : Properties 인스턴스에 엔트리를 저장하는 엘리먼트 -->
+				<!-- key 속성 : 엔트리을 키를 속성값으로 설정 -->
+				<!-- => 엘리먼트 내용으로 값(String 인스턴스)을 설정 -->
+				<prop key="login">site.itwill05.di.Logincontroller</prop>
+				<prop key="logout">site.itwill05.di.Logoutcontroller</prop>
+				<prop key="list">site.itwill05.di.Listcontroller</prop>
+			</props>
+		</property>
+	</bean>
+</beans>

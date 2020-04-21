@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+.on {
+	color: red;
+	border: 4px solid black;
+	font-size: 20px;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		//미션1 : #btn를 클릭한 경우 버튼 내용을 "스타일 적용" 또는 "스타일 취소"으로 변경
+		//미션2 : #btn를 클릭할 경우 버튼 내용이 "스타일 적용"을 경우 .on 적용하고 
+		//        "스타일 취소"인 경우 .on 취소 
+		$("#btn").click(function() {
+			if($(this).text()=="스타일 적용") {
+				$(this).text("스타일 취소");
+				//$("#displayDiv").addClass("on");
+			} else {
+				$(this).text("스타일 적용");
+				//$("#displayDiv").removeClass("on");
+			}
+			$("#displayDiv").toggleClass("on");
+		});
+	});
+</script>
+</head>
+<body>
+	<h1>이벤트 연습-3</h1>
+	<hr />
+	<div id="displayDiv">아주 중요한 내용입니다.</div>
+	<p>
+		<button id="btn">스타일 적용</button>
+	</p>
+</body>
+</html>

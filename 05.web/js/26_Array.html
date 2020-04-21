@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>내장클래스 - Array</h1>
+	<hr>
+	<p>Array 클래스 : 값을 여러개 저장하는 객체를 생성하기 위한 클래스</p>
+	
+	<script type="text/javascript">
+	/*
+	//요소가 없는 배열객체 생성 - Empty Array
+	var array=new Array();
+	
+	//Array.length : 배열객체의 요소 갯수를 저장한 속성
+	//alert(array.length);
+	
+	//Array.toString() : 배열객체의 요소값들을 하나의 문자값으로 변환하여
+	//반환하는 메소드 - 객체 출력시 생략 가능
+	//alert(array.toString());
+	alert(array);
+	*/
+	
+	/*
+	//Array(count) : 원하는 갯수의 요소가 있는 배열객체를 생성하기 위한 클래스 함수
+	// => 요소값 미저장 
+	var array=new Array(5);
+	//alert(array.length);
+	alert(array);
+	*/
+	
+	/*
+	//Array(value,value,...) : 값을 전달하여 요소에 저장한 배열객체를 생성하기 위한 클래스 함수
+	// => 전달된 값의 갯수만큼의 요소가 있는 배열객체 생성
+	var array=new Array(10,20,30,40,50);
+	//alert(array.length);
+	alert(array);
+	*/
+	
+	var array=new Array(10,20,30,40,50);
+
+	/*
+	//배열객체의 요소는 첨자를 [] 연산자 안에 표현하여 접근
+	alert("array[0] = "+array[0]);
+	alert("array[1] = "+array[1]);
+	alert("array[2] = "+array[2]);
+	alert("array[3] = "+array[3]);
+	alert("array[4] = "+array[4]);
+	*/
+	
+	/*
+	//일반적인 for 구문을 이용하여 배열객체의 요소에 대한 일괄 처리
+	for(i=0;i<array.length;i++) {
+		alert("array["+i+"] = "+array[i]);
+	}
+	*/
+	
+	/*
+	//배열객체의 요소에 대한 첨자를 반환받아 일괄 처리하는 for 구문
+	for(i in array) {
+		alert("array["+i+"] = "+array[i]);
+	}
+	*/
+	
+	/*
+	//Array.forEach(callback(element[,index])) : 배열객체의 요소를 일괄 처리하기 위한 기능을 제공하는 메소드
+	// => 콜백함수의 매개변수에는 요소값과 첨자가 자동 전달되어 저장
+ 	array.forEach(function(element, i) {
+		alert("array["+i+"] = "+element);
+ 	});
+	*/
+	
+	/*
+	//Array 객체는 [] 기호를 사요하여 생성 가능 - JSON
+	var array=[10,20,30,40,50];
+	alert(array);
+	*/
+	
+	//요소가 없는 배열객체 생성 - Empty Array
+	var array=new Array();//var array=[];
+	//alert("요소 갯수 = "+array.length);
+	
+	//Array.push(value) : 값을 전달받아 배열객체에 마지막 위치에 요소를 
+	//추가하여 저장하는 메소드  
+	array.push(10);
+	array.push(20);
+	array.push(30);
+	array.push(40);
+	array.push(50);
+	
+	//alert("요소 갯수 = "+array.length);
+	//alert(array);
+	
+	//Array.pop() : 배열객체의 마지막 요소를 제거하고 요소값을 반환하는 메소드
+	var num=array.pop();
+
+	//alert("num = "+num);
+	//alert("요소 갯수 = "+array.length);
+	//alert(array);
+	
+	//Array.unshift(value) : 값을 전달받아 배열객체에 첫번째 위치에 요소를 
+	//삽입하여 저장하는 메소드 
+	array.unshift(num);
+	
+	//alert("요소 갯수 = "+array.length);
+	//alert(array);
+
+	//Array.shift() : 배열객체의 첫번째 요소를 제거하고 요소값을 반환하는 메소드
+	var num=array.shift();
+
+	//alert("num = "+num);
+	//alert("요소 갯수 = "+array.length);
+	alert(array);
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

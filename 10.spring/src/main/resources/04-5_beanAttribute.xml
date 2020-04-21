@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- init-method 속성 : Spring Bean 생성 후 한번만 자동 호출되어 초기화
+	작업을 실행하기 위한 메소드명을 속성값으로 설정 -->
+	<!-- destroy-method 속성 : Spring Bean 소멸 전 한번만 자동 호출되어 
+	마무리 작업을 실행하기 위한 메소드명을 속성값으로 설정 -->
+	<bean class="site.itwill04.bean.InitDestroyMethodBean" id="initDestroyMethodBean"
+		init-method="init" destroy-method="destroy"/>
+	
+	<!-- lazy-init : false 또는 true를 속성값으로 설정 -->
+	<!-- => false(기본) : Spring Bean 생성, true : Spring Bean 미생성 -->
+	<!-- => lazy-init 속성값이 true로 설정된 경우 Spring Bean을 사용할 경우 생성 -->	
+	<bean class="site.itwill04.bean.LazyInitBean" id="lazyInitBean" lazy-init="true"/>
+
+	<!-- 싱글톤 클래스는 인스턴스를 하나만 제공하기 위해 작성된 클래스  -->
+	<!-- => 생성자가 은닉화 선언되어 있어도 Spring Container는 생성자를 호출하여 Spring Bean 생성 가능 -->
+	<!-- => static 영역의 명령과 Spring Container에 의해 인스턴스가 2개 생성 -->
+	<!-- factory-method 속성 : 싱글톤 클래스에서 인스턴스를 반환하는 메소드명을 속성값으로 설정 -->
+	<!-- => Spring Container가 Spring Bean을 생성하지 않고 싱글톤 클래스에서 생성된 인스턴스를 Spring Bean으로 사용 -->
+	<bean class="site.itwill04.bean.FactoryMethodBean" factory-method="getFactoryMethodBean"/>
+	
+	<!-- scope 속성 : Spring Bean 생성 갯수(singleton:기본 OR prototype) 또는 사용 범위(request OR session) 중 하나를 속성값을 설정 -->
+	<!-- => singleton 속성값을 설정한 경우 Spring Bean을 하나만 생성하여 제공 -->
+	<!-- => prototype 속성값을 설정한 경우 Spring Bean을 여러 개 생성하여 제공 - lazy-init 속성값을 반드시 "true"로 설정해야만 사용 가능 -->
+	<bean class="site.itwill04.bean.ScopeBean" id="singletonBean" lazy-init="true" scope="singleton"/>			
+	<bean class="site.itwill04.bean.ScopeBean" id="prototypeBean" lazy-init="true" scope="prototype"/>
+	
+	<!-- Spring Container는 bean 엘리먼트 선언 순서대로 Spring Bean 생성하여 등록 -->
+	<!--  
+	<bean class="site.itwill04.bean.DependsOnServiceBean"/>
+	<bean class="site.itwill04.bean.DependsOnDaoBean"/>
+	-->			
+	
+	<!-- depends-on 속성 : Spring Bean 생성 전 먼저 생성하고자 하는 Spring Bean의 고유값을 속성값으로 설정 -->
+	<bean class="site.itwill04.bean.DependsOnServiceBean" depends-on="dependsOnDaoBean"/>
+	<bean class="site.itwill04.bean.DependsOnDaoBean" id="dependsOnDaoBean"/>
+</beans>
+
+
+
+
+
+
+
+
+
+
+

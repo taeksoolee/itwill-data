@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- Spring Container는 패키지가 포함된 클래스 이름을 제공받아 인스턴스 생성 - Spring Bean -->
+	<!-- => Spring Container는 리플렉션 기능을 이용하여 인스턴스 생성 -->
+	<bean class="site.itwill03.container.HelloMessageObject" id="helloMessageObject"/>
+	<bean class="site.itwill03.container.HiMessageObject" id="hiMessageObject"/>
+	<bean class="site.itwill03.container.ByeMessageObject" id="byeMessageObject"/>
+
+	<!-- 인스턴스를 생성할 때 기존 인스턴스와 의존관계 설정 -->	
+	<bean class="site.itwill03.container.MessagePrint" id="messagePrint">
+		<!-- <property name="object" ref="helloMessageObject"/> -->
+		<!-- <property name="object" ref="hiMessageObject"/> -->
+		<property name="object" ref="byeMessageObject"/>
+	</bean>
+</beans>

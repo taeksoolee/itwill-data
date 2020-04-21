@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Spring Framework에서 제공하는 InternalResourceViewResolver 클래스를 Spring Bean으로 등록 -->
+	<!-- InternalResourceViewResolver : 뷰정보를 전달받아 뷰페이지(JSP)로 변환하여 제공하는 클래스 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<!-- prefix 필드에 뷰정보 앞부분에 추가될 값을 전달하여 인젝션 처리 - 뷰페이지 경로 -->
+		<property name="prefix" value="/WEB-INF/mvc/"/>
+		<!-- suffix 필드에 뷰정보 뒷부분에 추가될 값을 전달하여 인젝션 처리 - 확장자 -->
+		<property name="suffix" value=".jsp"/>
+	</bean>
+</beans>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- StudentDAO 인터페이스를 상속받은 자식클래스를 Spring Bean 등록 -->
+	<!-- <bean class="site.itwill05.di.StudentJdbcDAO" id="studentDAO"/> -->
+	<bean class="site.itwill05.di.StudentJdbcDAO" id="studentJdbcDAO"/>
+	<bean class="site.itwill05.di.StudentMybatisDAO" id="studentMybatisDAO"/>
+	
+	<!-- StudentService 인터페이스를 상속받은 자식클래스를 Spring Bean 등록 -->
+	<!-- => 자식클래스의 필드에 StudentDAO 인터페이스를 상속받은 자식 인스턴스를 전달하여 저장 -->
+	<!-- StudentDAO 인터페이스를 상속받은 자식클래스의 Spring Bean을 전달하여 인젝션 처리 - Setter Injection -->
+	<!-- => property 엘리먼트의 속성을 이용하여 인젝션 설정 - 수동 -->
+	<!-- 
+	<bean class="site.itwill05.di.StudentServiceImpl" id="studentService">
+		<property name="studentDAO" ref="studentDAO"/>
+	</bean>
+	-->
+	
+	<!-- autowire 속성 : Spring Container에 의해 의존관계를 자동으로 구현하기 위한 속성값을 설정 -->
+	<!-- no 속성값 : 자동 의존관계의 미구현 - 기본 => 생략 가능 -->
+	<!-- <bean class="site.itwill05.di.StudentServiceImpl" id="studentService" autowire="no"/> -->
+
+	<!-- byName 속성값 : 필드명과 동일한 beanName의 Spring Bean를 이용하여 자동으로 의존관계 구현 - Setter Injection -->
+	<!-- => 필드명과 같은 이름의 beanName이 존재하지 않을 경우 자동 의존성 주입 실패 - NullPointerException 발생 -->
+	<!-- <bean class="site.itwill05.di.StudentServiceImpl" id="studentService" autowire="byName"/> -->
+	
+	<!-- byType 속성값 : 필드 자료형과 동일한 자료형의 Spring Bean를 이용하여 자동으로 의존관계 구현 - Setter Injection -->
+	<!-- => 필드 자료형이 인터페이스인 경우 자식클래스의 Spring Bean으로 의존성 주입 가능 -->
+	<!-- => 필드 자료형이 인터페이스인 경우 자식클래스의 Spring Bean이 여러개 선언되면 의존성 주입에 대한 예외 발생  -->
+	<!-- <bean class="site.itwill05.di.StudentServiceImpl" id="studentService" autowire="byType"/> -->	
+
+	<!-- constructor 속성값 : 필드 자료형과 동일한 자료형의 Spring Bean를 이용하여 자동으로 의존관계 구현 - Constructor Injection -->
+	<!-- => 의존성 주입을 위한 생성자를 반드시 선언 -->
+	<!-- => 필드 자료형이 인터페이스인 경우 자식클래스의 Spring Bean으로 의존성 주입 가능 -->
+	<!-- => 필드 자료형이 인터페이스인 경우 자식클래스의 Spring Bean이 여러개 선언되면 의존성 주입 실패 - NullPointerException 발생 -->
+	<bean class="site.itwill05.di.StudentServiceImpl" id="studentService" autowire="constructor"/>	
+</beans>
+
+
+
+
+
+
+
+

@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	//1초마다 #image 아이디선택자의 src 속성값을 0.jpg~9.jpg로 반복 변경되도록 설정
+	var imageNo=0;
+	setInterval(function() {
+		imageNo++;
+		$("#image").attr("src","../images/"+imageNo+".jpg");
+		if(imageNo>=9) imageNo=-1;
+	}, 1000);
+});
+</script>
+</head>
+<body>
+<h1>이미지 지속 변경</h1>
+<hr/>
+<div>
+	<img src="../images/0.jpg" id="image"> 
+</div>
+</body>
+</html>

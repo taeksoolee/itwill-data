@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>쿠키(Cookie)</h1>
+	<hr>
+	<p>서버와 클라이언트의 연결 지속성을 제공하기 위해 클라이언트에
+	저장되는 문자값 - 도메인을 이용하여 저장하며 요청 웹문서에 쿠키 전달</p>
+	<hr>
+	<form name="cookieForm">
+		아이디 : <input type="text" name="id">&nbsp;&nbsp;
+		<button type="button" id="saveIdBtn">아이디 저장</button>
+		<button type="button" id="useIdBtn">아이디 사용</button>
+		<button type="button" id="eraseIdBtn">아이디 제거</button>
+	</form>
+	
+	<script type="text/javascript">
+	//클라이언트에 쿠키를 저장하거나 저장된 쿠키를 변경하는 함수
+	// => 쿠키명과 쿠키값은 클라이언트의 필수 저장 요소
+	// => 적용범위(기본 : 현재 요청 문서의 디렉토리), 도메인(기본 : 현재
+	//    요청 문서의 도메인), 지속시간(기본 : 0)등은 클라이언트의 선택 저장 요소
+	function setCookie(name, value, path, expires) {
+		//쿠키 지속시간을 변경하지 않으면 쿠키는 브라우저 메모리에 저장
+		//되며 브라우저 종료시 소멸 - 지속시간 : 0
+		//쿠키 지속시간을 변경하면 쿠키는 클라이언트의 파일에 저장되며
+		//지속시간이 종료된 후 소멸 
+
+		//쿠키 지속시간(클라이언트의 쿠키 저장시간) 변경을 위한 작업
+		//클라이언트 플렛폼의 현재 날짜와 시간정보를 저장한 Date 객체 생성하여 저장
+		var date=new Date();
+		//Date 객체의 날짜 또는 시간 변경
+		date.setDate(date.getDate()+expires);//일 변경
+		
+		//쿠키 관련 정보들을 저장하기 위한 변수 - 쿠키변수
+		var sc="";
+		
+		//쿠키변수에 쿠키명과 쿠키값 저장 - 필수
+		// => 쿠키값은 영문자와 숫자를 제외한 문자 저장 불가 
+		// => 쿠키값은 부호화 처리하여 저장하는 것을 권장
+		//쿠키변수에 저장하는 정보들은 ;를 구분
+		sc+=name+"="+encodeURIComponent(value)+";";
+		
+		//쿠키변수에 적용범위 저장 - 선택
+		sc+="path="+path+";";
+
+		//쿠키변수에 지속시간 저장 - 선택
+		sc+="expires="+date.toUTCString()+";";
+		
+		//document.cookie : 클라이언트에 쿠키정보를 저장하는 속성
+		document.cookie=sc;//쿠키 변경(저장)
+	}
+	
+	//클라이언트에 저장된 쿠키를 읽어 쿠키값을 반환하는 함수
+	// => 쿠키명을 전달받아 쿠키값을 검색하여 반환
+	function getCookie(name) {
+		//클라이언트에 저장된 모든 쿠키를 제공받아 ;으로 구분하여 배열변수에 저장
+		var gc=document.cookie.split(";");
+		
+		for(i=0;i<gc.length;i++) {
+			//쿠키정보의 변수명을 전달받은 쿠키명과 비교하여 같은 경우 
+			if(gc[i].split("=")[0]==name) {
+				return gc[i].split("=")[1];//쿠키정보의 변수값 반환 - 쿠키값
+			}
+		}
+		//전달받은 쿠키명이 존재하지 않는 경우 null 반환
+		return null;
+	}
+	
+	//[아이디 저장] 버튼를 누른 경우 실행되는 이벤트 핸들러 함수 등록
+	// => 입력태그의 입력값(아이디)을 얻어와 클라이언트에 쿠키로 저장
+	document.getElementById("saveIdBtn").onclick=function() {
+		var id=cookieForm.id.value;
+		if(id=="") {
+			alert("저장하고자 하는 아이디를 입력해 주세요.");
+			return;
+		}
+		
+		//입력값(아이디)을 클라이언트의 쿠키로 하루동안 저장
+		setCookie("id", id, "/web", 1);
+	}
+	
+	//[아이디 사용] 버튼를 누른 경우 실행되는 이벤트 핸들러 함수 등록
+	// => 클라이언트에 저장된 쿠키값을 얻어와 입력태그에 출력
+	document.getElementById("useIdBtn").onclick=function() {
+		var id=getCookie("id");
+		if(id==null) return;
+		cookieForm.id.value=id;
+	}
+
+	//[아이디 제거] 버튼를 누른 경우 실행되는 이벤트 핸들러 함수 등록
+	// => 클라이언트에 저장된 쿠키를 삭제
+	document.getElementById("eraseIdBtn").onclick=function() {
+		//쿠키 지속시간을 음수(과거)로 변경하면 쿠키 삭제
+		setCookie("id", "", "/web", -1);
+	}
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+

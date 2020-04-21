@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>HTML</title>
+</head>
+<body>
+	<h1>datalist 태그</h1>
+	<hr>
+	<!-- datalist : input 태그에 입력값을 제공 - 하위태그 : option -->
+	<form action="" method="post">
+		<label for="subject">좋아하는 과목 : </label>
+		<!-- list 속성 : datalist 태그의 고유값(id)을 속성값으로 설정 -->
+		<input type="text" name="subject" id="subject" list="subject_list">
+		<datalist id="subject_list">
+			<!-- value 속성 생략 가능 - 태그내용을 입력값으로 전달 -->
+			<option>JAVA</option>
+			<option>JSP</option>
+			<option>SPRING</option>
+		</datalist>
+		<button type="submit">입력완료</button>
+	</form>
+</body>
+</html>

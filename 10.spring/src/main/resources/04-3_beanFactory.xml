@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean class="site.itwill04.bean.FactoryPostProcessorBeanOne" id="factoryPostProcessorBeanOne">
+		<!-- Spring Bean의 Setter 메소드를 호출하여 초기화 작업 -->
+		<!-- <property name="name" value="홍길동"/> -->
+		<property name="name" value="박보검"/>
+	</bean>
+	<bean class="site.itwill04.bean.FactoryPostProcessorBeanTwo" id="factoryPostProcessorBeanTwo"/>
+</beans>

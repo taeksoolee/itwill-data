@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- web.xml : WAS 실행시 필요한 정보를 제공하는 환경설정파일 -->
+<!-- => 프로젝트를 컨텍스트로 변환할 때 필요한 정보를 제공 -->
+<!-- => XML 스키마 파일(XSD)에 의해 약속된 엘리먼트만 사용 가능 : Valid XML -->
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>servlet</display-name>
+
+  <!-- context-param : 컨텍스트에 존재하는 모든 웹어플리케이션에게 필요한 
+  정보를 제공하기 위한 상위 엘리먼트 -->
+  <context-param>
+  	<!-- param-name : 제공될 값이 저장된 이름을 설정하는 엘리먼트 -->
+  	<param-name>name</param-name>
+  	<!-- param-value : 제공될 값을 설정하는 엘리먼트 -->
+  	<param-value>홍길동</param-value>
+  </context-param>	
+  
+  <!-- servlet : 서블릿 클래스를 서블릿으로 등록하기 위한 상위 엘리먼트 -->
+  <servlet>
+  	<!-- servlet-name : 서블릿 이름(고유값)을 설정하기 위한 엘리먼트 -->
+  	<servlet-name>hello</servlet-name>
+  	<!-- servlet-class : 패키지가 포함된 서블릿 클래스를 설정하기 위한 엘리먼트 -->
+  	<servlet-class>site.itwill.servlet.HelloServlet</servlet-class>
+  </servlet>
+  
+  <!-- servlet-mapping : 서블릿에 대한 요청 URL 주소를 등록하기 위한 상위 엘리먼트 -->
+  <servlet-mapping>
+  	<!-- servlet-name : 요청에 대한 실행 서블릿 이름을 설정하기 위한 엘리먼트 -->
+  	<servlet-name>hello</servlet-name>
+  	<!-- url-pattern : 요청 URL 주소(패턴)를 설정하기 위한 엘리먼트 -->
+  	<url-pattern>/hello.itwill</url-pattern>
+  </servlet-mapping>
+  
+  <!-- welcome-file-list : welcome-file 엘리먼트를 등록하기 위한 상위 엘리먼트 -->
+  <welcome-file-list>
+  	<!-- welcome-file : 클라이언트가 웹문서를 요청하지 않은 경우 기본적으로
+  	응답하기 위한 웹문서를 설정하기 위한 엘리먼트 -->
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>

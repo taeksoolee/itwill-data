@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>BOM(Browser Object Model) - window 객체</h1>
+	<hr>
+	<p>window 객체 : 브라우저를 객체로 표현하여 값(속성) 또는 기능(메소드)을 제공</p>
+	
+	<script type="text/javascript">
+	//alert(winow);//[object Window]
+	
+	//window.alert(messgae) : 메세지창을 제공하여 메세지를 출력하는 메소드
+	// => window 객체에 대한 표현 생략 가능
+	//window.alert("메세지창에 메세지를 출력하는 메소드");
+	
+	/*
+	//window.propmt(message[,value]) : 입력창을 제공하여 값을 입력받아 
+	//문자값으로 반환하는 메소드
+	var input=prompt("숫자를 입력해 주세요.",10);
+	alert("입력값 = "+input);
+	*/
+	
+	/*
+	//window.confirm(message) : 확인창을 제공하여 선택값(취소: false 또는
+	//확인 : true)을 반환하는 메소드 
+	if(confirm("정말로 게시글을 삭제 하겠습니까?")) {
+		alert("게시글을 삭제 하였습니다.");
+	} else {
+		alert("게시글 삭제를 취소 하였습니다.");
+	}
+	*/
+	
+	//window.open(url[,name][,option]) : 새로운 브라우저를 생성하여
+	//요청 페이지에 대한 응답 결과를 출력하는 메소드
+	//option : width, height, top, left, location, menubar, status, toolbar, resizable 등
+	//open("https://www.daum.net","다음","width=1000,height=640,top=100,left=200");
+	
+	//window.close() : 브라우저를 종료하는 메소드
+	if(confirm("브라우저를 종료 하시겠습니까?")) {
+		close();
+	}
+	</script>
+</body>
+</html>

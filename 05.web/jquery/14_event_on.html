@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<style type="text/css">
+div {
+	width: 350px;
+	margin: 0 auto;
+	padding: 50px;
+	font-size: 1.2em;
+	text-align: center;
+	border: 1px solid black;
+}
+</style>
+</head>
+<body>
+	<h1>이벤트 핸들러 함수 등록</h1>
+	<hr>
+	<div>마우스를 클릭하거나 이동해 보세요.</div>
+	
+	<script type="text/javascript">
+	/*
+	$("div").click(function() {
+		$(this).css("background","yellow");
+	});
+	
+	//$(selector).mouseover(callback) : 검색 엘리먼트에 마우스 커서가 진입한
+	//경우에 대한 이벤트 핸들러 함수를 등록하기 위한 이벤트 메소드
+	$("div").mouseover(function() {
+		$(this).css("color","red");
+	});
+	
+	//$(selector).mouseout(callback) : 검색 엘리먼트에 마우스 커서가 벗어날
+	//경우에 대한 이벤트 핸들러 함수를 등록하기 위한 이벤트 메소드
+	$("div").mouseout(function() {
+		$(this).css({"background":"white","color":"black"});
+	});
+	*/
+	
+	//$(selector).on({event:callback,event:callback,...}) : 검색 엘리먼트에
+	//다수의 이벤트와 이벤트 핸들러 함수를 등록하기 위한 메소드
+	$("div").on({
+		"click":function() {
+			$(this).css("background","yellow");
+		}, "mouseover":function() {
+			$(this).css("color","red");
+		}, "mouseout":function() {
+			$(this).css({"background":"white","color":"black"});
+		}
+	});
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+

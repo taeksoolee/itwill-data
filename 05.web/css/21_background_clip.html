@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS</title>
+<style type="text/css">
+div {
+	width: 400px;
+	margin: 10px;
+	padding: 20px;
+	/* background-color: skyblue; */
+	/* transparent 속성값 : 투명 */
+	/* border: 10px solid transparent; */
+	
+	background: url("images/bg.png") no-repeat right bottom;
+	border: 10px solid yellow;	
+}
+
+/* background-clip : 배경의 적용범위 관련 스타일 속성 */
+/* 속성값 : border-box(기본), padding-box, content-box */
+.clip1 { background-clip: border-box; }
+.clip2 { background-clip: padding-box; }
+.clip3 { background-clip: content-box; }
+</style>
+</head>
+<body>
+	<h1>배경 관련 스타일 속성</h1>
+	<hr>
+	<div class="clip1">
+		<p>border box</p>
+		<p>border box</p>
+		<p>border box</p>
+		<p>border box</p>
+		<p>border box</p>
+	</div>
+	<div class="clip2">
+		<p>padding box</p>	
+		<p>padding box</p>	
+		<p>padding box</p>	
+		<p>padding box</p>	
+		<p>padding box</p>	
+	</div>	
+	<div class="clip3">
+		<p>content box</p>
+		<p>content box</p>
+		<p>content box</p>
+		<p>content box</p>
+		<p>content box</p>
+	</div>	
+</body>
+</html>
+
+
+
+

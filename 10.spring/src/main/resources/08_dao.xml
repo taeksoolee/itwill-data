@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- XML 내부에서 사용하기 위한 요소를 생성하는 클래스를 Spring Bean으로 등록 -->
+	<!-- => ${Key} 형식으로 저장된 값을 표현 -->
+	<!--  
+	<bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+		<property name="properties">
+			<props>
+				<prop key="driver">oracle.jdbc.driver.OracleDriver</prop>
+				<prop key="url">jdbc:oracle:thin:@localhost:1521:xe</prop>
+				<prop key="user">scott</prop>
+				<prop key="passwd">tiger</prop>
+			</props>
+		</property>
+	</bean>
+	-->
+	
+	<!-- 리소스 파일(Properties)을 제공받아 요소 생성 -->
+	<bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+		<!-- 프로젝트에 빌드되어 있는 패키지의 리소스 파일인 경우 -->
+		<!-- <property name="locations" value="site/itwill08/dao/db.properties"/> -->
+		<!-- 프로젝트에 빌드되어 있는 않은 패키지의 리소스 파일인 경우 -->
+		<property name="locations" value="classpath:site/itwill08/dao/db.properties"/>
+	</bean>
+
+	<!-- Apache에서 제공하는 DataSource 클래스를 Spring Bean으로 등록 -->
+	<bean class="org.apache.commons.dbcp2.BasicDataSource" id="apacheDataSource">
+		<!--  
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+		<property name="username" value="scott"/>
+		<property name="password" value="tiger"/>
+		-->
+		<property name="driverClassName" value="${driver}"/>
+		<property name="url" value="${url}"/>
+		<property name="username" value="${user}"/>
+		<property name="password" value="${passwd}"/>
+	</bean>
+	
+	<!-- Spring에서 제공하는 DataSource 클래스를 Spring Bean으로 등록 -->
+	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="springDataSource">
+		<!--  
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+		<property name="username" value="scott"/>
+		<property name="password" value="tiger"/>
+		-->
+		<property name="driverClassName" value="${driver}"/>
+		<property name="url" value="${url}"/>
+		<property name="username" value="${user}"/>
+		<property name="password" value="${passwd}"/>
+	</bean>
+	
+	<bean class="site.itwill08.dao.StudentJdbcDAO" id="studentJdbcDAO">
+		<property name="dataSource" ref="apacheDataSource"/>
+	</bean>
+	
+	<bean class="site.itwill08.dao.StudentServiceImpl" id="studentService">
+		<!-- <property name="studentDAO" ref="studentJdbcDAO"/> -->
+		<!-- <property name="studentDAO" ref="studentSpringDAO"/> -->
+		<property name="studentDAO" ref="studentSpringSupportDAO"/>
+	</bean>
+	
+	<!-- JdbcTemplate 클래스를 Spring Bean으로 등록 -->
+	<!-- => DAO 클래스 작성에 필요한 기능을 템플릿 메소드로 제공하는 클래스 -->
+	<!-- => DataSource 관련 Spring Bean을 인젝션 처리 -->
+	<bean class="org.springframework.jdbc.core.JdbcTemplate" id="jdbcTemplate">
+		<property name="dataSource" ref="springDataSource"/>
+	</bean>
+	
+	<bean class="site.itwill08.dao.StudentSpringDAO" id="studentSpringDAO">
+		<property name="jdbcTemplate" ref="jdbcTemplate"/>
+	</bean>
+	
+	<!-- JdbcDaoSupport 클래스를 상속받은 자식 클래스를 Spring Bean으로 등록 -->
+	<!-- => JdbcDaoSupport 클래스의 jdbcTemplate 필드에 JdbcTemplate 관련 Spring Bean을 인젝션 처리 -->
+	<bean class="site.itwill08.dao.StudentSpringSupportDAO" id="studentSpringSupportDAO">
+		<property name="jdbcTemplate" ref="jdbcTemplate"/>
+	</bean>
+</beans>
+
+
+
+
+
+

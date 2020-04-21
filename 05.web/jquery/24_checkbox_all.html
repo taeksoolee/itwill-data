@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+<body>
+	<h1>체크박스 이벤트</h1>
+	<hr>
+	<h3>좋아하는 계절을 선택해 주세요.(다중 선택 가능)</h3>
+	<hr>
+	<input type="checkbox" id="allCheck">전체 선택(취소)
+	<div id="checkList">
+		<input type="checkbox" name="session" value="봄">봄&nbsp;&nbsp;
+		<input type="checkbox" name="session" value="여름">여름&nbsp;&nbsp;
+		<input type="checkbox" name="session" value="가을">가을&nbsp;&nbsp;
+		<input type="checkbox" name="session" value="겨울">겨울&nbsp;&nbsp;
+	</div>	
+	<button type="button" id="btn">선택완료</button>
+	<hr>
+	<div id="displayDiv"></div>
+	
+	<script type="text/javascript">
+	$("#btn").click(function() {
+		var $check=$("#checkList").children(":checked");
+		//alert($check.size());
+		
+		if($check.size()==0) {
+			$("#displayDiv").text("당신은 좋아하는 계절이 없습니다.");
+			return;
+		}
+		
+		var output="당신이 좋아하는 계절은 [";
+		$check.each(function(i) {
+			output+=$(this).val();
+			if($check.size()-1!=i) {
+				output+=",";
+			}
+		});
+		output+="]입니다."
+		$("#displayDiv").text(output);
+	});
+	
+	$("#allCheck").change(function() {
+		if($(this).is(":checked")) {
+			$("#checkList").children().prop("checked", true);
+		} else {
+			$("#checkList").children().prop("checked", false);
+		}
+	});
+	</script>
+</body>
+</html>
+
+
+
+
+
+

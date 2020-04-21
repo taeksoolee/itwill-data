@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+	
+	<!-- 핵심관심모듈을 Spring Bean으로 등록 -->
+	<bean class="site.itwill07.aop.StudentDAOImpl" id="studentDAO"/>
+	<bean class="site.itwill07.aop.StudentServiceImpl" id="studentService">
+		<property name="studentDAO" ref="studentDAO"/>
+	</bean>
+
+	<!-- 횡단관심모듈(Advice 클래스)을 Spring Bean으로 등록 -->
+	<bean class="site.itwill07.aop.StudentAdvice" id="studentAdvice"/>
+	
+	<!-- config : Spring AOP(AspectJ) 기능을 구현하기 위한 상위 엘리먼트 -->
+	<aop:config>
+		<!-- pointcut : PointCut를 설정하기 위한 엘리먼트 -->
+		<!-- => PointCut 설정을 재사용하여 유지보수의 효율성 증가 -->
+		<!-- expression 속성 : 핵심관심코드가 선언된 메소드(타겟 메소드)에 대한 정보를 속성값으로 설정 -->
+		<aop:pointcut expression="execution(* *(..))" id="studentPointCut"/>
+	
+		<!-- aspect : 핵심관심모듈(PointCut)에 횡단관심모듈(Advice)을 원하는 
+		위치(JoinPoint)에 삽입하여 실행되도록 설정하는 엘리먼트 -->
+		<!-- => AspectJ Weaver를 이용하여 ApectJ 기능의 모듈(Proxy)을 생성하여 실행 -->
+		<!-- ref 속성 : 횡단관심모듈의 beanName을 속성값으로 설정 -->
+		<aop:aspect ref="studentAdvice">
+			<!-- before : 핵심관심코드 전에 횡단관심코드를 삽입하기 위한 엘리먼트 - JoinPoint -->
+			<!-- method 속성 : 횡단관심코드가 선언된 메소드명을 속성값으로 설정 -->
+			<!-- pointcut 속성 : 핵심관심코드가 선언된 메소드(타겟 메소드)에 대한 정보를 속성값으로 설정 -->
+			<!-- => execution 속성값 : Spring Bean으로 등록된 클래스의 메소드를 PointCut 표현식을 이용하여 설정 -->
+			<!-- => within 속성값 : Spring Bean으로 등록된 클래스를 이용하여 설정 -->
+			<!-- execution 속성값을 이용하여 메소드를 설정하는 방법 - PointCut 표현식 사용 -->
+			<!-- 형식)execution([접근지정자] 반환형 [패키지.클래스명.]메소드명(자료형,...)) -->
+			<!-- => PointCut 표현식에서는 인터페이스을 이용하여 자식클래스의 메소드 설정 가능 -->
+			<!-- => PointCut 표현식의 패턴기호 : ..(0개이상), *(1개이상), +(0개 또는 1개) -->
+			<!-- => PointCut 표현식의 연산자 : !(NOT), &&(AND), ||(OR) -->
+			<!-- <aop:before method="beforeLog" pointcut="execution(* *(..))"/> -->
+			
+			<!-- pointcut-ref 속성 : pointcut 엘리먼트의 고유값을 속성값으로 설정 -->
+			<aop:before method="beforeLog" pointcut-ref="studentPointCut"/>
+			
+
+			<!-- after : 핵심관심코드 뒤에 횡단관심코드를 무조건 삽입하기 위한 엘리먼트 - JoinPoint -->
+			<!-- within 속성값을 이용하여 메소드를 설정하는 방법 -->
+			<!-- => 클래스 표현하여 클래스의 모든 메소드를 타겟 메소드로 설정 --> 
+			<!-- => 클래스를 표현할 때 패턴기호 사용 가능 -->
+			<!-- => 인터페이스를 이용하여 타겟 메소드 설정 불가능 -->
+			<aop:after method="afterLog" pointcut="within(site.itwill07.aop.StudentServiceImpl)"/>
+			
+			<!-- after-returning : 핵심관심코드 실행시 예외가 없는 경우 핵심관심코드 뒤에 횡단관심코드를 삽입하기 위한 엘리먼트 - JoinPoint -->
+			<aop:after-returning method="afterReturningLog" pointcut="execution(* site.itwill07.aop.StudentService.*(int))"/>
+			
+			<!-- after-throwing : 핵심관심코드 실행시 예외가 있는 경우 핵심관심코드의 예외 뒤에 횡단관심코드를 삽입하기 위한 엘리먼트 - JoinPoint -->
+			<aop:after-throwing method="afterThrowingLog" pointcut="execution(void *(site.itwill07.aop.Student))"/>
+			
+			<!-- around : 핵심관심코드 실행 전 또는 후에 횡단관심코드를 삽입하기 위한 엘리먼트 - JoinPoint -->
+			<aop:around method="aroundLog" pointcut="execution(* getStudentList())"/>
+		</aop:aspect>
+	</aop:config>
+</beans>
+
+
+
+

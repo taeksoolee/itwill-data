@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style>
+body {
+	font-size: 24pt;
+	font-family: "굴림";
+}
+
+div, p {
+	border: 1px #eeeeee solid;
+	margin: 10px;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+	//미션1 : li의 홀수 인덱스만 지워주세요.
+	//$("ul li:odd").remove();
+	//$("ul li").filter(":odd").remove();
+	//$("ul li").remove(":odd");
+	
+	/*
+	//filter() 메소드에 콜백함수 사용 가능
+	// => 콜백함수는 반드시 정수값(index) 반환 
+	$("ul li").filter(function(i) {
+		if(i%2!=0) return i;
+	}).remove();
+	*/
+	
+	$("ul li").each(function(i) {
+		if(i%2!=0) $(this).remove();
+	});
+});
+</script>
+</head>
+<body>
+	<ul>
+		<li class="menu_1">menu01</li>
+		<li class="menu_2">menu02</li>
+		<li class="menu_3">menu03</li>
+		<li class="menu_4">menu04</li>
+		<li class="menu_5">menu05</li>
+		<li class="menu_6">menu06</li>
+		<li class="menu_7">menu07</li>
+	</ul>
+
+</body>
+
+</html>

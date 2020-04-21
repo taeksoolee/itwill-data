@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.itwill.mapper.MyHewonMapper">
+	<insert id="insertHewon" parameterType="MyHewon">
+		insert into myhewon values(#{id},#{name},#{phone},#{email},#{state})
+	</insert>
+	
+	<resultMap type="MyHewon" id="myHewonResultMap">
+		<id column="hewon_id" property="id"/>
+		<result column="hewon_name" property="name"/>
+		<result column="hewon_phone" property="phone"/>
+		<result column="hewon_email" property="email"/>
+		<result column="hewon_state" property="state"/>
+	</resultMap>
+	
+	<select id="selectHewonList" resultMap="myHewonResultMap">
+		select * from myhewon order by hewon_id
+	</select>
+
+	<resultMap type="MyHewon" id="myHewonDiscriminatorResultMap">
+		<!-- discriminator : 검색행의 컬럼값을 비교하여 다른 매핑정보를 제공하기 위한 엘리먼트 -->
+		<!-- javaType 속성 : 비교 컬럼에 대한 Java 자료형을 속성값으로 설정  -->
+		<!-- column 속성 : 비교 컬럼명을 속성값으로 설정  -->
+		<!-- case : 검색 컬럼값을 비교하여 같은 경우 매핑정보를 제공하기 위한 엘리먼트 -->
+		<!-- value 속성 : 비교값을 속성값으로 설정 -->
+		<!--  
+		<discriminator javaType="int" column="hewon_state">
+			<case value="1">
+				<id column="hewon_id" property="id"/>
+				<result column="hewon_state" property="state"/>
+			</case>
+			<case value="2">
+				<id column="hewon_id" property="id"/>
+				<result column="hewon_name" property="name"/>
+				<result column="hewon_state" property="state"/>
+			</case>
+			<case value="3">
+				<id column="hewon_id" property="id"/>
+				<result column="hewon_name" property="name"/>
+				<result column="hewon_phone" property="phone"/>
+				<result column="hewon_state" property="state"/>
+			</case>
+			<case value="4">
+				<id column="hewon_id" property="id"/>
+				<result column="hewon_name" property="name"/>
+				<result column="hewon_phone" property="phone"/>
+				<result column="hewon_email" property="email"/>
+				<result column="hewon_state" property="state"/>
+			</case>
+		</discriminator>
+		-->
+
+		<!-- 공통된 매핑정보는 discriminator 엘리먼트 외부에서 설정 -->
+		<!--  		
+		<id column="hewon_id" property="id"/>
+		<result column="hewon_state" property="state"/>
+		<discriminator javaType="int" column="hewon_state">
+			<case value="2">
+				<result column="hewon_name" property="name"/>
+			</case>
+			<case value="3">
+				<result column="hewon_name" property="name"/>
+				<result column="hewon_phone" property="phone"/>
+			</case>
+			<case value="4">
+				<result column="hewon_name" property="name"/>
+				<result column="hewon_phone" property="phone"/>
+				<result column="hewon_email" property="email"/>
+			</case>
+		</discriminator>
+		-->
+		
+		<discriminator javaType="int" column="hewon_state">
+			<!-- resultMap 속성을 이용하여 다른 resultMap 엘리먼트의 매핑정보 활용 가능 -->
+			<case value="1" resultMap="myHewonOneResultMap"/>
+			<case value="2" resultMap="myHewonTwoResultMap"/>
+			<case value="3" resultMap="myHewonThreeResultMap"/>
+			<case value="4" resultMap="myHewonFourResultMap"/>
+		</discriminator>
+	</resultMap>
+	
+	<resultMap type="MyHewon" id="myHewonOneResultMap">
+		<id column="hewon_id" property="id"/>
+		<result column="hewon_state" property="state"/>
+	</resultMap>
+	
+	<!-- extends 속성 : 다른 resultMap 엘리먼트의 고유값을 속성값으로 설정-->
+	<!-- => 다른 resultMap 엘리먼트의 매핑정보를 상속받아 사용 -->
+	<resultMap type="MyHewon" id="myHewonTwoResultMap" extends="myHewonOneResultMap">
+		<result column="hewon_name" property="name"/>
+	</resultMap>
+	
+	<resultMap type="MyHewon" id="myHewonThreeResultMap" extends="myHewonTwoResultMap">
+		<result column="hewon_phone" property="phone"/>
+	</resultMap>
+	
+	<resultMap type="MyHewon" id="myHewonFourResultMap" extends="myHewonThreeResultMap">
+		<result column="hewon_email" property="email"/>
+	</resultMap>
+	
+	<select id="selectDiscriminatorHewonList" resultMap="myHewonDiscriminatorResultMap">
+		select * from myhewon order by hewon_id
+	</select>
+	
+	<!-- SQL 명령에 필요한 값을 전달받는 방법 -->
+	<!-- => 전달받은 값은 SQL 명령에서 #{변수명|필드명|맵키} 형식으로 표현 -->
+	<!-- 1.parameterType 속성을 이용하여 패키지가 포함된 클래스명 또는 별칭을 속성값으로 설정 -->
+	<!--  => Wrapper(Integer 클래스, Double 클래스 등) 또는 String 클래스를 속성값으로 설정 : 단일값 -->
+	<!--  => JavaBean(DTO) 클래스를 속성값으로 설정 : 다수값 -->
+	<!--  => Map 인터페이스 또는 HashMap 클래스를 속성값으로 설정 : 다수값 -->
+	<!-- 2.인터페이스 맵퍼의 추상메소드 매개변수에 @Param 어노테이션으로 값을 전달받아 사용 -->
+	<!--  => XML 맵퍼의 엘리먼트에서 parameterType 속성 생략 -->
+	
+	<!-- #{변수명} 형식으로 전달값을 표현하며 변수명은 형식에 알맞게 작성하여 사용 -->
+	<!-- 
+	<select id="selectStateHewonList" parameterType="int" resultMap="myHewonResultMap">
+		select * from myhewon where hewon_state=#{state} order by hewon_id
+	</select>
+ 	-->
+	
+	<!-- parameterType 속성은 생략 가능 -->
+	<select id="selectStateHewonList" resultMap="myHewonResultMap">
+		select * from myhewon where hewon_state=#{state} order by hewon_id
+	</select>
+	
+	<!-- 이름과 전화번호를 전달받아 MYHEWON 테이블에 저장된 해당 회원의 
+	아이디를 검색하여 반환하는 엘리먼트 -->
+	<!-- 전달값이 여러 개인 경우 JavaBean(DTO) 클래스를 속성값으로 설정하고
+	SQL 명령에서 #{필드명}으로 표현하여 Getter 메소드가 호출되어 필드값 사용 -->
+	<select id="selectBeanHewonId" parameterType="MyHewon" resultType="string">
+		select hewon_id from myhewon where hewon_name=#{name} and hewon_phone=#{phone}
+	</select>
+	
+	<!-- 전달값이 여러 개인 경우 Map 인터페이스(HashMap 클래스)를 속성값으로 
+	설정하고 SQL 명령에서 #{맵키}으로 표현하여 맵값 사용 -->
+	<!-- JavaBean 클래스가 없거나 JavaBean 클래스를 사용할 경우 발생되는
+	자원의 낭비를 최소화 하기 위해 사용 -->
+	<select id="selectMapHewonId" parameterType="map" resultType="string">
+		select hewon_id from myhewon where hewon_name=#{name} and hewon_phone=#{phone}
+	</select>
+	
+	<!-- @Param 어노테이션의 value 속성값을 #{속성값} 형식으로 표현하여 전달값 사용 -->
+	<select id="selectParamHewonId" resultType="string">
+		select hewon_id from myhewon where hewon_name=#{name} and hewon_phone=#{phone}
+	</select>
+	
+	<insert id="insertHewonMap" parameterType="map">
+		insert into myhewon values(#{id},#{name},#{phone},#{email},#{state})
+	</insert>
+	
+	<!-- 검색컬럼명과 검색단어를 전달받아 MYHEWON 테이블에 저장된 회원정보를 검색하여 반환하는 엘리먼트 -->
+	<!-- #{변수명|필드명|맵키} : '전달값' - 등록된 SQL 명령에서 문자형 상수로 표현 -->
+	<!-- ${변수명|필드명|맵키} : 전달값 - 등록된 SQL 명령에서 키워드 또는 식별자로 표현 -->
+	<!-- => ibatis에서는 $변수명|필드명|맵키$ 형식으로 표현 -->
+	<!-- => $ 표현식은 InSQL 공격에 취약하므로 사용하는 것을 비권장 -->
+	<!--  
+	<select id="selectSearchHewonList" parameterType="map" resultMap="myHewonResultMap">
+		select * from myhewon where ${searchColumn}=#{searchKeyword} order by hewon_id
+	</select>
+	-->
+	
+	<!-- 검색단어가 포함된 컬럼값으로 검색 - like 연산자와 검색 패턴기호 사용 -->
+	<!--  
+	<select id="selectSearchHewonList" parameterType="map" resultMap="myHewonResultMap">
+		select * from myhewon where ${searchColumn} like '%'||#{searchKeyword}||'%' order by hewon_id
+	</select>
+	-->
+	
+	<select id="selectSearchHewonList" parameterType="map" resultMap="myHewonResultMap">
+		<!-- bind : SQL 명령에서 사용할 수 있는 변수와 저장값을 설정하기 위한 엘리먼트 -->
+		<!-- name 속성 : SQL 명령에서 값을 표현하기 위한 이름을 속성값으로 설정 -->
+		<!-- value 속성 : 변수에 저장되는 초기값을 속성값으로 설정 -->
+		<!-- => 전달값을 이용할 수 있으며 다른 문자형 상수와 결합 가능(+ 연산자 이용) -->
+		<bind name="keyword" value="'%'+searchKeyword+'%'"/>
+		select * from myhewon where ${searchColumn} like #{keyword} order by hewon_id
+	</select>
+	
+	<!-- 이름을 전달받아 MYHEWON 테이블에 저장된 회원정보를 검색하여 반환하는 엘리먼트 -->
+	<select id="selectNameHewonList" parameterType="string" resultMap="myHewonResultMap">
+		select * from myhewon where hewon_name=#{name} order by hewon_id
+	</select>
+	
+	<!-- 동적 SQL : 엘리먼트에 등록된 SQL 명령을 다르게 제공되도록 설정하는 기능 -->
+	<!-- => OGNL(Object-Graph Navigation Language) 표현식을 이용하여 구현  -->
+	
+	<!-- 이름이 전달되지 않을 경우 MYHEWON 테이블에 저장된 모든 회원정보를
+	검색하여 반환하고 이름이 전달될 경우 MYHEWON 테이블에 저장된 해당 이름의 
+	회원정보를 검색하여 반환하는 엘리먼트 -->
+	<!-- => 동적 SQL 관련 엘리먼트을 이용하여 SQL 명령이 다르게 제공되도록 설정 -->
+	<!-- 주의점)동적 SQL 기능을 이용할 경우 parameterType 속성값으로 
+	Wrapper 또는 String 클래스 사용 불가능 - JavaBean 또는 Map 설정 -->
+	<select id="selectNameDynamicHewonList" parameterType="map" resultMap="myHewonResultMap">
+		select * from myhewon
+		<!-- if : test 속성값이 true인 경우 엘리먼트 내용을 SQL 명령에 포함하는 엘리먼트 -->
+		<!-- test 속성 : 전달값(필드명 또는 맵키)을 이용한 조건식을 속성값으로 설정 -->
+		<if test="name!=null and name!=''"> 
+			where hewon_name=#{name}
+		</if>	 
+		order by hewon_id
+	</select>
+	
+	<!-- 아이디 또는 이름이 전달되지 않은 경우 MYHEWON 테이블에 저장된 모든 
+	회원정보를 검색하여 반환하고 아이디 또는 이름이 전달될 경우 MYHEWON  
+	테이블에 저장된 해당 이름의 회원정보를 검색하여 반환하는 엘리먼트 -->
+	<!-- 문제점)아이디와 이름이 모두 입력되어 전달된 경우 에러 발생 -->
+	<!-- => 모든 if 엘리먼트의 test 속성값이 true이므로 where 구분이 2번 포함 -->
+	<!--  
+	<select id="selectDynamicHewonList" parameterType="map" resultMap="myHewonResultMap">
+		select * from myhewon
+		<if test="id!=null and id!=''">
+			where hewon_id=#{id}
+		</if>
+		<if test="name!=null and name!=''">
+			where hewon_name=#{name}
+		</if>
+		order by hewon_id
+	</select>
+	-->
+	
+	<!-- 해결법-1)아이디와 이름이 모두 입력되어 전달될 경우 하나의 where 구문만 포함되도록 설정 -->
+	<!-- => 첫번째 조건식이 true 엘리먼트에 대한 where 구문만 포함 -->
+	<!-- choose : 조건식에 의한 하나의 엘리먼트 내용만 포함되도록 설정하는 상위 엘리먼트 -->
+	<!-- when : test 속성값이 true인 경우 엘리먼트 내용을 SQL 명령에 포함하는 엘리먼트 : 1개 이상 -->
+	<!-- otherwise : 모든 when 엘리먼트의 test 속성값이 false인 경우 엘리먼트 내용을 SQL 명령에 포함하는 엘리먼트 : 0개 또는 1개 -->
+	<!--  
+	<select id="selectDynamicHewonList" parameterType="map" resultMap="myHewonResultMap">
+		select * from myhewon
+		<choose>
+			<when test="id!=null and id!=''">		
+				where hewon_id=#{id}
+			</when>
+			<when test="name!=null and name!=''">
+				where hewon_name=#{name}
+			</when>
+		</choose>	
+		order by hewon_id
+	</select>
+	-->
+	
+	<!-- trim : SQL 명령을 추가하거나 제거하는 기능을 제공하는 엘리먼트 -->
+	<!-- => if 엘리먼트를 하위 엘리먼트로 사용 -->
+	<!-- prefix 속성 : 엘리먼트에 SQL 명령이 존재할 경우 앞부분에 추가될 명령을 속성값으로 설정 -->
+	<!-- prefixOverrides 속성 : 엘리먼트에 SQL 명령이 존재할 경우 포함될 SQL 명령 앞부분에 제거될 명령을 속성값으로 설정 -->
+	<!-- suffix 속성 : 엘리먼트에 SQL 명령이 존재할 경우 뒷부분에 추가될 명령을 속성값으로 설정 -->
+	<!-- suffixOverrides 속성 : 엘리먼트에 SQL 명령이 존재할 경우 포함될 SQL 명령 뒷부분에 제거될 명령을 속성값으로 설정 -->
+	<!--  
+	<select id="selectDynamicHewonList" parameterType="map" resultMap="myHewonResultMap">
+		select * from myhewon
+		<trim prefix="where" prefixOverrides="and|or">
+			<if test="id!=null and id!=''">
+				hewon_id=#{id}
+			</if>
+			<if test="name!=null and name!=''">
+				${choice} hewon_name=#{name}
+			</if>
+		</trim>
+		order by hewon_id
+	</select>
+	-->
+	
+	<!-- where : 엘리먼트에 SQL 명령이 존재할 경우 앞부분에 where 명령을 추가하는 엘리먼트 -->
+	<!-- => 포함될 SQL 명령에 조건식이 아닌 명령이 있는 경우 제거 후 포함 -->
+	<!-- => if 엘리먼트를 하위 엘리먼트로 사용 -->
+	<select id="selectDynamicHewonList" parameterType="map" resultMap="myHewonResultMap">
+		select * from myhewon
+		<where>
+			<if test="id!=null and id!=''">
+				hewon_id=#{id}
+			</if>
+			<if test="name!=null and name!=''">
+				${choice} hewon_name=#{name}
+			</if>
+		</where>
+		order by hewon_id
+	</select>
+	
+	<!-- 회원정보를 전달받아 MYHEWON 테이블에 저장된 해당 회원정보를 변경하는 명령이 등록된 엘리먼트 -->
+	<!-- => 아이디를 비교하여 아이디를 제외한 모든 컬럼값 변경 -->
+	<update id="updateHewon" parameterType="MyHewon">
+		update myhewon set hewon_name=#{name},hewon_phone=#{phone}
+			,hewon_email=#{email}, hewon_state=#{state} where hewon_id=#{id}
+	</update>
+	
+	<!--  
+	<update id="updateDynamicHewon" parameterType="MyHewon">
+		update myhewon
+		<trim prefix="set" suffixOverrides=",">
+			<if test="name!=null and name!='미공개'">
+				hewon_name=#{name},
+			</if>
+			<if test="phone!=null and phone!='미공개'">
+				hewon_phone=#{phone},
+			</if>
+			<if test="email!=null and email!='미공개'">
+				hewon_email=#{email},
+			</if>
+			<if test="state!=null and state!=0">
+				hewon_state=#{state}
+			</if>
+		</trim>
+		where hewon_id=#{id}
+	</update>
+	-->
+	
+	<!-- set : 엘리먼트에 SQL 명령이 존재할 경우 앞부분에 set 명령을 추가하는 엘리먼트 -->
+	<!-- => 포함될 SQL 명령에 변경식이 아닌 명령이 있는 경우 제거 후 포함 -->
+	<!-- => if 엘리먼트를 하위 엘리먼트로 사용 -->
+	<update id="updateDynamicHewon" parameterType="MyHewon">
+		update myhewon
+		<set>
+			<if test="name!=null and name!='미공개'">
+				hewon_name=#{name},
+			</if>
+			<if test="phone!=null and phone!='미공개'">
+				hewon_phone=#{phone},
+			</if>
+			<if test="email!=null and email!='미공개'">
+				hewon_email=#{email},
+			</if>
+			<if test="state!=null and state!=0">
+				hewon_state=#{state}
+			</if>
+		</set>
+		where hewon_id=#{id}
+	</update>
+	
+	<!-- 아이디 목록(List 인스턴스)을 전달받아 MYHEWON 테이블에 저장된 회원정보를 검색하여 반환하는 메소드 -->
+	<!-- => 아이디 목록 대신 NULL를 전달받은 경우 모든 회원정보를 검색하여 반환 -->
+	<select id="selectDynamicMultiHewonList" parameterType="list" resultMap="myHewonResultMap">
+		select * from myhewon
+		<!-- List 인스턴스를 전달받은 경우 접근 객체명을 [list]로 표현 -->	 
+		<if test="list!=null">	
+			where hewon_id in 
+			<!-- foreach : List 인스턴스를 전달받은 경우 반복처리 하기 위한 엘리먼트 -->
+			<!-- collection 속성 : 반복 처리 하고자 하는 List 인스턴스의 이름을 속성값으로 설정 -->
+			<!-- item 속성 : List 인스턴스의 요소값을 저장하기 위한 이름을 속성값으로 설정 -->
+			<!-- open 속성 : 엘리먼트 내용 앞부분에 추가될 명령을 속성값으로 설정 -->
+			<!-- close 속성 : 엘리먼트 내용 뒷부분에 추가될 명령을 속성값으로 설정 -->
+			<!-- separator 속성 : 요소값을 구분하기 위한 구분자를 속성값으로 설정 -->
+			<foreach collection="list" item="id" open="(" close=")" separator=",">
+				#{id}
+			</foreach> 
+		</if>
+		order by hewon_id
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+

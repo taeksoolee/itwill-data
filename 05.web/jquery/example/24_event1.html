@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+ul li {
+	font-size: 20px;
+	border: 1px solid;
+	width: 100px;
+	text-align: center;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	//미션1. <li>태그의 메뉴를 선택한 경우 메뉴를 제거하도록 만들어 주세요.
+	$("ul li").click(function() {
+		$(this).remove();
+	});
+});
+</script>
+</head>
+<body>
+	<h1>이벤트 연습-1</h1>
+	<hr />
+	<ul>
+		<li>메뉴-1</li>
+		<li>메뉴-2</li>
+		<li>메뉴-3</li>
+		<li>메뉴-4</li>
+		<li>메뉴-5</li>
+		<li>메뉴-6</li>
+		<li>메뉴-7</li>
+	</ul>
+</body>
+</html>

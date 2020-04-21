@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<style type="text/css">
+#displayDiv {
+	color: red;
+	border: 1px solid blue;
+	margin: 20px;
+	padding: 10px;
+	font-size: 1.5em;
+	text-align: center;
+}
+</style>
+</head>
+<body>
+	<h1>css() 메소드</h1>
+	<hr>
+	<div id="displayDiv">CSS 스타일 속성 관련 메소드</div>
+	
+	<script type="text/javascript">
+	//$(selector).css(name) : 엘리먼트의 CSS 스타일 속성값을 반환하는 메소드
+	//alert($("#displayDiv").css("color"));//색상 : rgb() 함수 형태로 반환
+	//alert($("#displayDiv").css("border"));//크기 : px 단위로 반환
+	//alert($("#displayDiv").css("margin"));
+	//alert($("#displayDiv").css("padding"));
+	//alert($("#displayDiv").css("font-size"));
+	//alert($("#displayDiv").css("fontSize"));//자바스크립트의 카멜표기법으로 표현 가능
+	//alert($("#displayDiv").css("text-align"));
+	//alert($("#displayDiv").css("textAlign"));
+	
+	
+	/*
+	//$(selector).css(name, value) : 엘리먼트의 CSS 스타일 속성값을 변경하는 메소드
+	$("#displayDiv").css("width","50%");
+	$("#displayDiv").css("position","absolute");
+	$("#displayDiv").css("top","200px");
+	$("#displayDiv").css("left","100px");
+	$("#displayDiv").css("color","green");
+	*/
+	
+	//엘리먼트의 CSS 스타일 속성값을 여러 개 변경하고자 할 경우 매개변수에
+	//Object 객체({})로 전달하여 변경 가능 - 객체 속성과 속성값 이용
+	$("#displayDiv").css({"width":"50%","position":"absolute"
+		,"top":"200px","left":"100px","color":"green"});
+	</script>
+</body>
+</html>
+
+
+
+
+

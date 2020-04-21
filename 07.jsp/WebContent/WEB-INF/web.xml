@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>jsp</display-name>
+  
+  <!-- jsp-config : JSP 문서를 처리할 때 필요한 정보를 제공하는 상위 엘리먼트 -->
+  <jsp-config>
+  	<!-- jsp-property-group : JSP 문서의 그룹을 지정하여 정보를 제공하는 엘리먼트 -->
+  	<jsp-property-group>
+  		<!-- url-pattern : JSP 문서를 그룹화 하기 위한 정보를 설정하는 엘리먼트 -->
+		<url-pattern>/directive/include_site/*</url-pattern>
+		<!-- include-prelude : JSP 문서 앞부분에 포함될 파일을 설정하는 엘리먼트 -->
+		<include-prelude>/directive/include_site/header.jspf</include-prelude>
+		<!-- include-coda : JSP 문서 뒷부분에 포함될 파일을 설정하는 엘리먼트 -->
+		<include-coda>/directive/include_site/footer.jspf</include-coda>		  		
+  	</jsp-property-group>
+  </jsp-config>
+  
+  
+  <!-- error-page : JSP 문서에 에러 메세지를 제공하기 위한 상위 엘리먼트 -->
+  <error-page>
+  	<!-- exception-type : 에러 메세지를 제공하기 위한 예외 클래스를 설정하는 엘리먼트 -->
+  	<exception-type>java.lang.NullPointerException</exception-type>
+  	<!-- location : 에러 메세지를 제공하는 웹문서를 설정하는 엘리먼트 -->
+  	<location>/error/error_null.jsp</location>
+  </error-page>
+  
+  <error-page>
+  	<!-- error-code : 에러 메세지를 제공하기 위한 에러 코드를 설정하는 엘리먼트 -->
+  	<error-code>500</error-code>
+  	<location>/error/error_500.jsp</location>
+  </error-page>
+  
+  <error-page>
+  	<error-code>400</error-code>
+  	<location>/error/error_400.jsp</location>
+  </error-page>
+  
+  <error-page>
+  	<error-code>404</error-code>
+  	<location>/error/error_404.jsp</location>
+  </error-page>
+  
+  <error-page>
+  	<error-code>405</error-code>
+  	<location>/error/error_405.jsp</location>
+  </error-page>
+  
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS</title>
+<style type="text/css">
+table {
+	border: 1px solid black;
+	/* border-collapse : 외곽선 중첩 관련 스타일 속성 */
+	/* 속성값 : separate(기본 - 구분), collapse(병합) */ 
+	border-collapse: collapse;
+}
+
+th, td {
+	border: 1px solid black;
+	/* 셀의 높이 변경 - 테이블 높이 변경 */
+	/* => 출력대상에 의해 높이는 자동 변경 */
+	height: 30px;
+	padding: 5px;
+	
+	/* 셀의 폭 변경 - 모든 셀의 폭을 동일하게 변경 */
+	/* => 출력대상이 텍스트인 경우 자동 줄 바꿈 발생 */
+	/* => 출력대상이 이미지인 경우 폭 자동 변경 발생 */
+	/* width: 100px; */
+	
+	text-align: center;
+}
+
+/* 셀마다 다르게 폭 변경 - 하나의 셀의 폭을 변경하면 다른 행의 셀도 동일하게 적용 */
+.num { width: 50px; }
+.name { width: 100px; }
+.address { 
+	width: 250px;
+	text-align: left;
+}
+</style>
+</head>
+<body>
+	<h1>테이블 관련 스타일 속성</h1>
+	<hr>
+	<table>
+		<tr>
+			<th>번호</th><th>이름</th><th>주소</th>
+		</tr>
+		<tr>
+			<td class="num">1000</td>
+			<td class="name">홍길동</td>
+			<td class="address">서울시 강남구 역삼동</td>
+		</tr>
+		<tr>
+			<td class="num">2000</td>
+			<td class="name">임꺽정</td>
+			<td class="address">서울시 종로구 종로1가</td>
+		</tr>
+		<tr>
+			<td class="num">3000</td>
+			<td class="name">전우치</td>
+			<td class="address">서울시 동작구 사당동</td>
+		</tr>
+	</table>
+</body>
+</html>
+
+
+

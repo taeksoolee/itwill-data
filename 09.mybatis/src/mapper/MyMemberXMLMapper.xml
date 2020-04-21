@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.itwill.mapper.MyMemberXMLMapper">
+	<!-- insert : INSERT 명령을 등록하기 위한 엘리먼트 -->
+	<!-- id 속성 : SQL 명령이 등록된 엘리먼트를 구분하기 위한 고유값을 속성값으로 설정 -->
+	<!-- parameterType 속성 : SQL 명령 작성에 필요한 값을 저장한 Java 자료형을 속성값으로 설정 -->
+	<!-- => SQL 명령 작성에 필요한 값이 없는 경우 속성 생략 가능 -->
+	<!-- DML 명령(INSERT, UPDATE, DELETE) 관련 엘리먼트는 SQL 명령 실행 후
+	무조건 처리행의 갯수(int)를 반환하므로 resultType 속성 불필요 -->
+	<insert id="insertMember" parameterType="MyMemberDTO">
+		<!-- parameterType 속성으로 전달된 값은 SQL 명령에서 #{변수명|필드명|맵키} 형식으로 표현 -->
+		<!-- => ibatis에서는 #변수명|필드명|맵키# 형식으로 표현 -->
+		insert into mymember values(#{id},#{name},#{phone},#{email})
+	</insert>
+	
+	<!-- update : UPDATE 명령을 등록하기 위한 엘리먼트 -->
+	<update id="updateMember" parameterType="MyMemberDTO">
+		update mymember set name=#{name}, phone=#{phone}, email=#{email}
+			where id=#{id}
+	</update>
+	
+	<!-- delete : DELETE 명령을 등록하기 위한 엘리먼트 -->
+	<delete id="deleteMember" parameterType="string">
+		delete from mymember where id=#{id}
+	</delete>
+	
+	<!-- select : SELECT 명령을 등록하기 위한 엘리먼트 -->
+	<!-- resultType 속성 : 검색된 결과(행)를 제공받기 위한 Java 자료형을 속성값 설정 -->
+	<!-- => resultType 속성값이 JavaBean(DTO) 클래스인 경우 컬럼명과 동일한 필드에 컬럼값이 자동 매핑되어 저장 -->
+	<select id="selectMember" parameterType="string" resultType="MyMemberDTO">
+		select * from mymember where id=#{id}
+	</select>
+	
+	<select id="selectAllMember" resultType="MyMemberDTO">
+		select * from mymember order by id
+	</select>
+</mapper>
+
+
+
+
+
+
+

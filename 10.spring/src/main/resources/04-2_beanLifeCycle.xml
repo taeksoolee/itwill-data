@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean class="site.itwill04.bean.LifeCycleBean" id="lifeCycleBean" 
+		init-method="initMethod" destroy-method="destroyMethod"/>
+
+	<!-- BeanPostProcessor 인터페이스를 상속받은 클래스는 가장 먼저 Spring Bean으로 등록 -->
+	<bean class="site.itwill04.bean.PostProcessorBean"/>
+</beans>

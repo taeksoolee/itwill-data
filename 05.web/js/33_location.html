@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>BOM(Browser Object Model) - location 객체</h1>
+	<hr>
+	<p>location 객체 : 브라우저 주소영역을 객체로 표현하여 값(속성) 또는 기능(메소드)을 제공</p>
+	
+	<script type="text/javascript">
+	//Location.toString() : 주소영역의 URL 주소를 문자값으로 반환하는 메소드
+	//alert(location);
+	
+	/*
+	setTimeout(function() {
+		//Location.href : 주소영역의 URL 주소를 저장하는 속성
+		// => 속성값 변경 : URL 주소를 변경하여 요청 - 페이지 이동
+		location.href="https://www.daum.net";
+	}, 3000);
+	*/
+	
+	setInterval(function() {
+		//Location.reload() : 주소영역의 URL 주소로 재요청하는 메소드
+		// => 페이지 새로 고침 : 브라우저의 F5 단축키와 동일한 역활
+		location.reload();		
+	}, 1000);
+	</script>
+</body>
+</html>
+
+
+
+
+

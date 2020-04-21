@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>HTML</title>
+</head>
+<body>
+	<h1>audio 태그</h1>
+	<hr>
+	<!-- audio 태그 : 음악파일(mp3 파일, ogg 파일 등) 재생 -->
+	<!-- src 속성 : 음악파일의 URL를 속성값으로 설정 -->
+	<!-- autoplay 속성 : 자동 재생 - 속성값 생략 가능 -->
+	<!-- controls 속성 : 제어판 출력 - 속성값 생략 가능 -->
+	<!-- loop 속성 : 반복 재생 - 속성값 생략 가능 -->
+	<!-- preload 속성 : 음악파일 다운로드 관련 속성값 설정 - none, metadate, auto(자동) -->
+	<!-- <audio src="audio/old_melody.mp3" autoplay controls></audio> -->
+	<!-- <audio src="audio/old_melody.ogg" autoplay controls></audio>  -->
+	
+	<!-- source 태그 : 다양한 포멧의 음악파일을 제공 -->
+	<audio autoplay controls>
+		<source src="audio/old_melody.ogg">
+		<source src="audio/old_melody.mp3">
+	</audio>
+</body>
+</html>

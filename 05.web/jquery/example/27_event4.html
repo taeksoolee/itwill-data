@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+div {
+	font-size: 20px;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		//미션1 : #btn를 클릭할 경우 평일과 휴일이 반복 변경되도록 만들어 주세요.
+		$("#btn").click(function() {
+			/*
+			if($("#view1").css("display")=="block") {
+				//$("#view1").css("display","none");
+				$("#view1").hide();
+			} else if($("#view1").css("display")=="none") {
+				//$("#view1").css("display","block");
+				$("#view1").show();
+			}
+			*/
+			$("#view1").toggle();
+			
+			/*
+			if($("#view2").css("display")=="block") {
+				//$("#view2").css("display","none");
+				$("#view2").hide();
+			} else if($("#view2").css("display")=="none") {
+				//$("#view2").css("display","block");
+				$("#view2").show();
+			}
+			*/
+			$("#view2").toggle();
+		});
+		
+	});
+</script>
+</head>
+<body>
+	<h1>이벤트 연습-4</h1>
+	<hr />
+	<div id="view1" style="display: block;">오늘은 평일입니다.</div>
+	<div id="view2" style="display: none;">오늘은 휴일입니다.</div>
+	<button id="btn">내용 변경</button>
+</body>
+</html>

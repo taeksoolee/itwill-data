@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>내장클래스 - Object</h1>
+	<hr>
+	<p>Object 클래스 : 요소가 존재하지 않는 클래스 - 객체 생성이 목적인 클래스</p>
+	<p>필요한 요소를 추가하여 사용하기 위한 클래스</p>
+	
+	<script type="text/javascript">
+	/*
+	var student=new Object();
+	//alert(student);
+
+	//객체 속성 추가
+	student.num=1000;
+	student.name="홍길동";
+	student.address="서울시 강남구";
+	
+	//alert("학번 = "+student.num+", 이름 = "+student.name+", 주소 = "+student.address);
+	
+	//객체 메소드 추가
+	student.display=function() {
+		alert("학번 = "+this.num+", 이름 = "+this.name+", 주소 = "+this.address);
+	}
+	
+	student.display();
+	*/
+	
+	/*
+	//JSON 기호를 이용하여 Object 객체 생성
+	// => Object 객체시 요소 추가 가능
+	var student={"num":1000,"name":"홍길동","address":"서울시 강남구"
+		, "display": function() {
+			alert("학번 = "+this.num+", 이름 = "+this.name+", 주소 = "+this.address);
+		}
+	};
+
+	//alert("학번 = "+student.num+", 이름 = "+student.name+", 주소 = "+student.address);
+	student.display();
+	*/
+	
+	//Object 클래스로 객체를 생성하여 패키지 역활 수행
+	var site=new Object();//var site={};
+	site.itwill=new Object();
+	site.itwill.Student=function(num,name,address) {
+		this.num=num;
+		this.name=name;
+		this.address=address;
+	}
+	
+	site.itwill.Student.prototype.display=function() {
+		alert("학번 = "+this.num+", 이름 = "+this.name+", 주소 = "+this.address);
+	}
+	
+	var student=new site.itwill.Student(1000,"홍길동","서울시 강남구");
+	student.display();
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
+	<!-- context-param : 컨텍스트에 존재하는 모든 서블릿에게 필요한 정보를 제공하기 위한 엘리먼트 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/spring/root-context.xml</param-value>
+	</context-param>
+	
+	<!-- Creates the Spring Container shared by all Servlets and Filters -->
+	<!-- listener : WAS 실행시 리스너 클래스를 인스턴스로 생성하기 위한 엘리먼트 -->
+	<!-- => 컨텍스트의 모든 자원에게 인스턴스를 제공하기 위한 엘리먼트 -->
+	<listener>
+		<!-- listener-class : Listener 클래스를 설정하기 위한 엘리먼트 -->
+
+		<!-- Listener 클래스 : ServletContextListener 인터페이스를 상속받아 작성된 클래스   -->
+		<!-- => contextInitialized() 메소드 : Listener 인스턴스 생성 후 호출되는 메소드(초기화 작업) -->
+		<!-- => contextDestroyed() 메소드 : Listener 인스턴스 소멸 전 호출되는 메소드(마무리 작업) -->
+
+		<!-- ContextLoaderListener 클래스 : WebApplicationContext 인스턴스
+		(Spring Container) 생성하여 만들어진 Spring Bean를 컨텍스트의 모든 
+		자원에서 사용할 수 있도록 제공하는 클래스 -->
+		<!-- => context-param 엘리먼트에서 설정한 Bean Configuration File를 읽어 Spring Bean 등록 -->
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	<!-- Filter 클래스를 등록하여 클라이언트 요청에 대해 동작되도록 설정 -->
+	<!-- Filter 클래스 : 요청 전 또는 응답 후 처리될 명령을 설정하는 클래스 -->
+	<!-- CharacterEncodingFilter : 요청처리 전 HttpServletRequest 인스턴스의 캐릭터셋을 변경하는 클래스 -->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<servlet>
+		<servlet-name>mvcServlet</servlet-name>
+		<servlet-class>site.itwill09.mvc.DispatcherServlet</servlet-class>
+		<load-on-startup>0</load-on-startup>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>mvcServlet</servlet-name>
+		<url-pattern>*.itwill</url-pattern>
+	</servlet-mapping>
+
+	<!-- Spring Framework에서 제공하는 Front Controller 클래스(DispatcherServlet)로 서블릿 등록 -->
+	<!-- Front Controller 역활의 서블릿을 여러 개 등록 가능 -->
+	<!-- => Front Controller 요청에 대한 URL 패턴을 다르게 설정 -->
+	<servlet>
+		<servlet-name>springMvcServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<!-- init-param : 서블릿 클래스에 필요한 정보를 제공하기 위한 엘리먼트 -->	
+		<!-- DispatcherServlet 클래스에게 Bean Configuration File 제공 -->
+		<!-- => 서블릿 관련 클래스에서만 사용 가능한 Spring Bean 등록 -->
+		<!-- Bean Configuration File을 여러 개 설정 가능 -->
+		<!-- => 파일을 엔터 또는 , 또는 ;으로 구분하여 설정 -->
+		<!-- => Annotation 기반의 Bean Configuration File은 하나만 설정 가능 -->
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>
+				/WEB-INF/spring/springMvcServlet/spring-context1.xml
+				/WEB-INF/spring/springMvcServlet/spring-context2.xml
+			</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>springMvcServlet</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+
+	<!-- Processes application requests -->
+	<servlet>
+		<servlet-name>appServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<!-- servlet-context.xml : Annotation 기반의 Bean Configuration File -->
+			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
+		</init-param>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+		
+	<servlet-mapping>
+		<servlet-name>appServlet</servlet-name>
+		<!-- 모든 요청에 대한 서블릿 처리 -->
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+</web-app>

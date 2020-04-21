@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS</title>
+<style type="text/css">
+div {
+	margin: 5px;
+	width: 150px;
+	border: 1px solid red;
+}
+
+/* white-space : 공백 처리에 대한 스타일 속성 - 박스모델의 폭을 벗어난 텍스트 처리 */
+/* 속성값 : normal(기본), pre-line(normal 속성값과 동일), pre, nowrap, pre-wrap */
+
+/* pre-line : 다수의 공백을 하나의 공백으로 처리하여 출력 - 자동 줄 바꿈 출력 */
+.space1 { white-space: pre-line; }
+
+/* pre : 다수의 공백을 그대로 공백으로 처리하여 출력 - 폭을 벗어나 출력 */
+.space2 { white-space: pre; }
+
+/* nowrap : 다수의 공백을 하나의 공백으로 처리하여 출력 - 폭을 벗어나 출력 */
+.space3 { white-space: nowrap; }
+
+/* pre-wrap : 다수의 공백을 그대로 공백으로 처리하여 출력 - 자동 줄 바꿈 출력 */
+.space4 { white-space: pre-wrap; }
+</style>
+</head>
+<body>
+	<h1>공백(Space) 관련 스타일 속성</h1>
+	<hr>
+	<div class="space1">웹표준을     이용한     웹사이트     만들기</div>
+	<div class="space2">웹표준을     이용한     웹사이트     만들기</div>
+	<div class="space3">웹표준을     이용한     웹사이트     만들기</div>
+	<div class="space4">웹표준을     이용한     웹사이트     만들기</div>
+</body>
+</html>

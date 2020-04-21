@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+<body>
+	<h1>선택자(Selector)</h1>
+	<hr>
+	<h2 class="item">jQuery Selector-1</h2>
+	<h2 id="h2">jQuery Selector-2</h2>
+	<h2 class="item">jQuery Selector-3</h2>
+	
+	<script type="text/javascript">
+	//태그 선택자로 엘리먼트를 검색하여 jQuery 객체 생성 후 메소드 호출
+	// => 다수의 엘리먼트가 검색될 경우 묵시적 반복에 의한 메소드 호출
+	$("h2").css("background","yellow");
+	
+	//클래스 선택자로 엘리먼트를 검색하여 jQuery 객체 생성 후 메소드 호출
+	$(".item").css("background","red");
+	
+	//아이디 선택자로 엘리먼트를 검색하여 jQuery 객체 생성 후 메소드 호출
+	$("#h2").css("background","orange");
+	
+	//선택자로 엘리먼트를 검색하여 jQuery 객체 생성 후 메소드 호출
+	/*
+	$("#h2").css("color","green");
+	$("#h2").css("font-family","궁서");
+	*/
+	
+	//메소드 체인 : jQuery 객체로 메소드를 연속적으로 호출할 수 있는 기능
+	//$("#h2").css("color","green").css("font-family","궁서");
+	
+	//jQuery 객체의 메소드 호출시 값들은 Object 객체 형태로 전달 가능
+	$("#h2").css({"color":"green","font-family":"궁서"});
+	</script>
+</body>
+</html>
+
+
+
+
+

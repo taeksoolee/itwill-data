@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+<body>
+	<h1>엘리먼트 추가와 제거</h1>
+	<hr>
+	<div id="imageList1"></div>
+	<hr>
+	<div id="imageList2"></div>
+	<hr>
+	<div id="imageList3">
+		<img src='images/1.jpg' width='100' height='100' id="image1">
+		<img src='images/2.jpg' width='100' height='100' id="image2">
+		<img src='images/3.jpg' width='100' height='100' id="image3">
+	</div>
+	
+	<script type="text/javascript">
+	//$(html) : HTML 태그를 이용하여 jQuery 객체 생성 - Element 객체
+	//$변수명 : jQuery 객체를 저장하기 위한 변수
+	var $image=$("<img src='images/1.jpg' width='100' height='100'>");
+	
+	//$(childSelector).appendTo(parentSelector) : 자식 엘리먼트를 검색하여
+	//부모 엘리먼트의 마지막 자식 엘리먼트로 추가(이동)하는 메소드
+	// => 자식 엘리먼트가 검색될 경우 엘리먼트가 이동되며 검색되지 않은 경우 생성되어 추가
+	$image.appendTo("#imageList1");
+	$("<img src='images/2.jpg' width='100' height='100'>").appendTo("#imageList1");
+	
+	//$(childSelector).prependTo(parentSelector) : 자식 엘리먼트를 검색하여
+	//부모 엘리먼트의 첫번째 자식 엘리먼트로 추가(이동)하는 메소드
+	// => 자식 엘리먼트가 검색될 경우 엘리먼트가 이동되며 검색되지 않은 경우 생성되어 추가
+	$("<img src='images/3.jpg' width='100' height='100'>").prependTo("#imageList1");
+	$("<img src='images/4.jpg' width='100' height='100'>").prependTo("#imageList1");
+	
+	//$(selector).insertBefore(targetSelector) : 엘리먼트를 검색하여 타켓
+	//엘리먼트 전에 삽입하는 메소드
+	// => 엘리먼트가 검색될 경우 엘리먼트가 이동되며 검색되지 않은 경우 생성되어 삽입
+	$("<img src='images/5.jpg' width='100' height='100'>")
+		.insertBefore("#imageList1 img[src='images/1.jpg']");
+	
+	//$(selector).insertAfter(targetSelector) : 엘리먼트를 검색하여 타켓
+	//엘리먼트 앞에 삽입하는 메소드
+	// => 엘리먼트가 검색될 경우 엘리먼트가 이동되며 검색되지 않은 경우 생성되어 삽입
+	$("<img src='images/6.jpg' width='100' height='100'>")
+		.insertAfter("#imageList1 img[src='images/1.jpg']");
+	
+	//$(parentSelector).append(HTML) : 부모 엘리먼트의 마지막 자식 엘리먼트로 추가하는 메소드
+	$("#imageList2").append("<img src='images/1.jpg' width='100' height='100'>");
+	$("#imageList2").append("<img src='images/2.jpg' width='100' height='100'>");
+	
+	//$(parentSelector).prepend(HTML) : 부모 엘리먼트의 첫번째 자식 엘리먼트로 추가하는 메소드
+	$("#imageList2").prepend("<img src='images/3.jpg' width='100' height='100'>");
+	$("#imageList2").prepend("<img src='images/4.jpg' width='100' height='100'>");
+	
+	//$(targetSelector).before(HTML) : 타겟 엘리먼트 앞에 엘리먼트를 삽입하는 메소드
+	$("#imageList2 img[src='images/1.jpg']")
+		.before("<img src='images/5.jpg' width='100' height='100'>");
+	
+	//$(targetSelector).after(HTML) : 타겟 엘리먼트 뒤에 엘리먼트를 삽입하는 메소드
+	$("#imageList2 img[src='images/1.jpg']")
+		.after("<img src='images/6.jpg' width='100' height='100'>");
+	
+	//$(selector).remove() : 검색될 엘리먼트를 제거하는 메소드
+	// => 부모 엘리먼트가 제거되면 모든 자식 엘리먼트도 제거
+	//$("#imageList3").remove();
+	
+	//원하는 자식 엘리먼트만 삭제 가능
+	//$("#imageList3").children().eq(0).remove();
+	//$("#imageList3").children().eq(1).remove();
+	//$("#imageList3").children().eq(2).remove();
+	
+	//$("#image1").remove();
+	//$("#image2").remove();
+	$("#image3").remove();
+	</script>
+</body>
+</html>

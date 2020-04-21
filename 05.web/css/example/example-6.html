@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>table</title>
+<style type="text/css">
+/* 
+1.테이블 크기 400px로 설정하고 셀의 크기를 동일하도록 설정
+2.주소 셀의 내용에 대한 자동 줄바꿈이 발생하지 않도록 설정
+  => 주소 셀의 내용이 넘칠 경우 넘는 내용을 보여지지 않도록 설정
+  => 넘치는 내용 대신 ...으로 표시
+*/
+table {
+	width: 400px;
+	table-layout: fixed;
+}
+
+table,th,td {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+th,td {
+	text-align: center;
+	height: 20px;
+	padding: 5px;
+}
+
+.tab_addr {
+	text-align: left;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+</style>
+</head>
+<body>
+	<h1>테이블 스타일</h1>
+	<hr>
+	<table>
+		<tr>
+			<th>번호</th><th>이름</th><th>주소</th>
+		</tr>
+		<tr>
+			<td>100</td><td>홍길동</td><td class="tab_addr">서울시 금천구 가산동</td>
+		</tr>
+		<tr>
+			<td>200</td><td>전우치</td><td class="tab_addr">인천시 연수구 송도동</td>
+		</tr>
+		<tr>
+			<td>300</td><td>일지매</td><td class="tab_addr">수원시 팔달구 고등동</td>
+		</tr>
+	</table>
+</body>
+</html>

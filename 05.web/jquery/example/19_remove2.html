@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style>
+body {
+	font-size: 24pt;
+	font-family: "굴림";
+}
+
+div, p {
+	border: 1px #eeeeee solid;
+	margin: 10px;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+	//미션1 : .menu_4부터 .menu_7까지 지워 주세요.
+	/*
+	$(".menu_4").remove();
+	$(".menu_5").remove();
+	$(".menu_6").remove();
+	$(".menu_7").remove();
+	*/
+	
+	/*
+	$("ul li").each(function(i) {
+		if(i>=3 && i<=6) {
+			$(this).remove();
+		}
+	});
+	*/
+	
+	//$(selector).nextAll() : 검색 엘리먼트의 다음 엘리먼트부터 마지막 
+	//엘리먼트끼지 모든 엘리먼트를 검색하기 위한 메소드
+	$(".menu_3").nextAll().remove();
+});
+</script>
+</head>
+<body>
+	<ul>
+		<li class="menu_1">menu01</li>
+		<li class="menu_2">menu02</li>
+		<li class="menu_3">menu03</li>
+		<li class="menu_4">menu04</li>
+		<li class="menu_5">menu05</li>
+		<li class="menu_6">menu06</li>
+		<li class="menu_7">menu07</li>
+	</ul>
+
+</body>
+
+</html>

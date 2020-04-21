@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<!-- 핵심관심모듈을 Spring Bean으로 등록 -->
+	<bean class="site.itwill07.aop.JoinPointBean" id="joinPointBean"/>
+	
+	<!-- 횡단관심모듈을 Spring Bean으로 등록 -->
+	<bean class="site.itwill07.aop.JoinPointAdvice" id="joinPointAdvice"/>
+	
+	<aop:config>
+		<aop:aspect ref="joinPointAdvice">
+			<aop:before method="displayTarget" pointcut="execution(* *(..))"/>
+			
+			<!-- returning 속성 : 타겟메소드의 반환값을 전달받아 저장하기 위한 매개변수명을 속성값으로 설정 -->
+			<!-- After Return Advice 메소드에 매개변수가 선언되어 반환값을 전달받을 경우 반드시 returning 속성 선언  -->
+			<aop:after-returning method="displayName" pointcut="execution(* getName())" returning="object"/>
+			
+			<!-- throwing 속성 : 타겟메소드의 예외정보를 전달받아 저장하기 위한 매개변수명을 속성값으로 설정 -->
+			<!-- After Throwing Advice 메소드에 매개변수가 선언되어 반환값을 전달받을 경우 반드시 throwing 속성 선언  -->
+			<aop:after-throwing method="displayException" pointcut="execution(void calc(int,int))" throwing="exception"/>
+		</aop:aspect>
+	</aop:config>	
+</beans>
+
+
+
+
+
+
+
+
+

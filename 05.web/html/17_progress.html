@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>HTML</title>
+</head>
+<body>
+	<h1>progress 태그</h1>
+	<hr>
+	<!-- progress 태그 : 진행상황 표현 -->
+	<p>남은 시간 : 10초 <progress value="50" max="60"></progress></p>
+	<p>진행률 : 30% <progress value="30" max="100"></progress></p>
+	<hr>
+	<!-- button 태그 : 버튼 출력 -->
+	<!-- => type 속성 : button(일반), submit(전달기능 - 기본), reset(초기화기능) -->
+	<!-- => onclick 속성 : 클릭 이벤트에 대한 이벤트 핸들러(JavaScript)를 속성값으로 설정 -->
+	<!-- onXXX 속성 : 이벤트 속성 -->
+	<button type="button" onclick="download();">다운로드</button>
+	<progress id="bar" value="0" max="100" style="width: 200px;"></progress>
+	<span id="message"></span>	
+	
+	<!-- script 태그 : 스크립트 프로그램 작성 -->
+	<!-- type 속성 : 스크립트의 종류를 속성값으로 설정 -->
+	<script type="text/javascript">
+	function download() {
+		var bar=document.getElementById("bar");
+		var message=document.getElementById("message");
+		
+		var loaded=0;
+		var load=function() {
+			loaded+=5;
+			bar.value=loaded;
+			message.innerHTML="진행= "+loaded+"%";
+			if(loaded==100) {
+				clearInterval(dummyLoad);
+			}
+		}
+		
+		var dummyLoad=setInterval(function() {
+			load();
+		},500);
+	}
+	</script>
+</body>
+</html>

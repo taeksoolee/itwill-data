@@ -1,0 +1,15 @@
+<%@page import="site.itwill.dto.MemberDTO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	//세션에 저장된 인증정보를 반환받아 저장
+	MemberDTO loginMember=(MemberDTO)session.getAttribute("loginMember");
+
+	//비정상인 요청에 의한 응답처리 - 권한이 없는 사용자가 요청한 경우
+	if(loginMember==null || loginMember.getStatus()!=9) {
+		out.println("<script type='text/javascript'>");
+		out.println("location.href='"+request.getContextPath()+"/site/index.jsp?workgroup=error&work=error400';");
+		out.println("</script>");
+		return;
+	}
+%>

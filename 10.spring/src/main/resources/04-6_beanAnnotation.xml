@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- <bean class="site.itwill04.bean.AnnotationBean" id="annotationBean"/> -->
+	<!-- <bean class="site.itwill04.bean.ComponentAnnotationBean" id="componentAnnotationBean"/> -->
+	
+	<!-- component-scan : Spring Annotation을 인식하도록 설정하는 엘리먼트 -->
+	<!-- => spring-context 스키마 파일에 component-scan 엘리먼트 선언 -->
+	<!-- => Bean Configuration File에 spring-context 스키마 파일이 포함되도록 설정 -->
+	<!-- base-package 속성 : Spring Annotation을 검색하기 위한 패키지를 속성값으로 설정 -->
+	<context:component-scan base-package="site.itwill04.bean"/>
+</beans>

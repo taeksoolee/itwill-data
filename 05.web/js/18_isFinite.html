@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>내장함수 - isFinite 함수</h1>
+	<hr>
+	<p>isFinite(value) : 전달값이 무한수인 경우 false 반환, 
+	유한수인 경우 true 값을 반환하는 함수</p>
+	
+	<script type="text/javascript">
+	//alert(10/3);
+	//alert(10/0);//Infinity : 무한수
+	
+	//var num1=20,num2=10;
+	var num1=20,num2=0;
+	
+	if(isFinite(num1/num2)) {
+		alert("결과 = "+num1/num2);
+	} else {
+		alert("0으로 나눌 수 없습니다.");
+	}
+	</script>
+</body>
+</html>
+
+
+
+
+
+

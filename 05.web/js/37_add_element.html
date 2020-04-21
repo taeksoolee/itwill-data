@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>DOM(Document Object Model) - Element 객체의 생성과 추가</h1>
+	<hr>
+	<div id="imageDiv"></div>
+	
+	<script type="text/javascript">
+	//document.createElement(nodeName) : 엘리먼트 객체를 생성하여 반환하는 메소드
+	var h3E=document.createElement("h3");//<h3></h3>
+	//alert(h3E);//[object HTMLHeadingElement]
+	
+	//document.createTextNode(nodeName) : 텍스트 객체를 생성하여 반환하는 메소드
+	var h3TN=document.createTextNode("h3 태그의 내용");//h3 태그의 내용
+	//alert(h3TN);//[object Text]
+	
+	//Element.appendChild(newNode) : 엘리먼트 객체의 마지막 자식 엘리먼트로 추가하는 메소드
+	h3E.appendChild(h3TN);//<h3>h3 태그의 내용</h3>
+	
+	//document.body : body 태그를 엘리먼트 객체로 저장한 속성
+	//alert(document.body);//[object HTMLBodyElement]
+	document.body.appendChild(h3E);
+	
+	var imgE=document.createElement("img");//<img>
+	
+	//Element.attributeName : 엘리먼트 객체의 속성 표현 - 태그 속성
+	// => 태그 속성이 아닌 객체 속성으로 표현 가능
+	//imgE.src="Koala.jpg";//<img src="Koala.jpg">
+	//alert(imgE.src);//http://localhost:8000/web/js/Koala.jpg
+	
+	//Element.setAttribute(attributeName, attributeValue) : 엘리먼트 객체의
+	//속성값을 변경하는 메소드 => 태그 속성으로만 표현
+	imgE.setAttribute("src", "Koala.jpg");//<img src="Koala.jpg">
+	//Element.getAttribute(attributeName) : 엘리먼트 객체의 속성값을 반환하는 메소드 => 태그 속성으로만 표현
+	//alert(imgE.getAttribute("src"));//Koala.jpg
+	
+	//imgE.width="200";//<img src="Koala.jpg" width="200">
+	imgE.setAttribute("width", "200");
+	 
+	var imageDiv=document.getElementById("imageDiv");
+	imageDiv.appendChild(imgE);
+	
+	var hrE=document.createElement("hr");//<hr>
+	//Element.insertBefore(newElement, beforeElement) : 기존 엘리먼트 객체
+	//전에 새로운 엘리먼트 객체를 삽입하는 메소드
+	document.body.insertBefore(hrE, h3E);
+	
+	</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<style type="text/css">
+/*
+1.문서 전체의 글꼴을 "궁서"로 설정
+2.가장 큰 글자(h1)의 색상을 "blue"로 설정	
+3.순서목록의 숫자 1과 2를 없애도록 설정
+4.순서목록의 글자크기를 20px로 하고 진하게 설정
+5.비순서목록의 블릿을 사각형으로 설정
+6.비순서목록의 글자크기를 15px, 줄간격을 25px로 하고 진하지 않도록 설정
+*/ 
+body {
+	font-family: "궁서";
+}
+
+h1 {
+	color: blue;
+}
+
+ol > li {
+	list-style-type: none;
+	font-size: 20xp;
+	font-weight: bold;
+}
+
+ul li {
+	list-style-type: square;
+	/*
+	font-size: 15px;
+	line-height: 25px;
+	font-weight: normal;
+	*/
+	
+	font: 15px/25px normal;
+}
+
+</style>
+<title>텍스트 관련 스타일 공부하기</title>
+</head>
+<body>
+<h1> 텍스트 관련 스타일 공부하기</h1>
+<ol>
+	<li>
+		<h3>글꼴 관련 스타일</h3>
+		<ul>
+			<li>font-family</li>
+			<li>font-size</li>
+			<li>line-height</li>
+			<li>font-weight</li>
+			<li>기타</li>
+		</ul>
+	</li>
+	<li>
+		<h3>텍스트 관련 스타일</h3>
+		<ul>
+			<li>text-align</li>
+			<li>text-decoration</li>
+			<li>text-indent</li>
+			<li>letter-spacing</li>
+			<li>기타</li>
+		</ul>
+	</li>
+</ol>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>Submit Event</h1>
+	<hr>
+	<!-- <form name="loginForm" action="" method="post"> -->
+	<!-- onsubmit 속성 : 전달 기능이 구현될 때 호출되는 함수를 속성값으로 설정 -->
+	<!-- => return 명령으로 함수 호출에 대한 반환값이 false인 경우 전달 기능 취소  -->
+	<form name="loginForm" action="" method="post" onsubmit="return submitCheck()">
+	<table>
+		<tr>
+			<td>아이디</td>
+			<td><input type="text" name="id"></td>
+		</tr>
+		<tr>
+			<td>비밀번호</td>
+			<td><input type="password" name="passwd"></td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<button type="submit">로그인</button>
+			</td>
+		</tr>
+	</table>
+	</form>
+	
+	<script type="text/javascript">
+	loginForm.id.focus();
+		
+	/*
+	//Elemetn.onsubmit : 폼 엘리먼트 객체의 전달 기능 관련 이벤트 속성
+	loginForm.onsubmit=function() {
+		if(loginForm.id.value=="") {
+			alert("아이디를 반드시 입력해 주세요.");
+			loginForm.id.focus();
+			
+			//입력값 전달 기능에 대한 기본 이벤트 제거
+			//event.preventDefault();
+			//return;
+
+			//이벤트 핸들러 함수에서 false를 반환하면 기본 이벤트 제거와
+			//이벤트 전달 중지 기능이 동시에 구현
+			return false;
+		}
+	
+		var idReg=/^[a-zA-Z]\w{5,19}$/g;
+		if(!idReg.test(loginForm.id.value)) {
+			alert("아이디를 형식에 맞게 입력해 주세요.");
+			loginForm.id.focus();
+			return false;
+		}
+	
+		if(loginForm.passwd.value=="") {
+			alert("비밀번호를 반드시 입력해 주세요.");
+			loginForm.passwd.focus();
+			return false;
+		}
+	}
+	*/
+	
+	function submitCheck() {
+		if(loginForm.id.value=="") {
+			alert("아이디를 반드시 입력해 주세요.");
+			loginForm.id.focus();
+			return false;
+		}
+	
+		var idReg=/^[a-zA-Z]\w{5,19}$/g;
+		if(!idReg.test(loginForm.id.value)) {
+			alert("아이디를 형식에 맞게 입력해 주세요.");
+			loginForm.id.focus();
+			return false;
+		}
+	
+		if(loginForm.passwd.value=="") {
+			alert("비밀번호를 반드시 입력해 주세요.");
+			loginForm.passwd.focus();
+			return false;
+		}
+		
+		return true;
+	}
+	</script>	
+</body>
+</html>

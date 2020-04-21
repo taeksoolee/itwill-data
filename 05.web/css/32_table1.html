@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS</title>
+<style type="text/css">
+table {
+	border: 1px solid red;
+
+	/* 테이블의 폭을 변경할 경우 셀의 폭 자동 변경  */
+	/* => 셀의 출력대상에 맞게 폭 변경 */
+	width: 300px;
+	
+	/* 테이블의 높이를 변경할 경우 셀의 높이 자동 변경 */
+	/* => 셀의 출력대상에 맞게 높이 변경 */
+	height: 100px;
+	
+	/* table-layout : 테이블 구조 관련 스타일 속성 */
+	/* 속성값 : auto(기본 - 셀의 폭 자동 변경), fixed(셀의 폭 고정) */
+	/* 테이블의 크기에 따라 셀의 폭을 균일하게 변경되어 고정 */
+	/* => 단어가 셀을 벗어나 출력 가능  */
+	table-layout: fixed;
+	
+	/* word-break : 테이블 셀의 출력대상 관련 스타일 속성 */
+	/* 속성값 : keep-all(기본 - 셀을 벗어난 출력), break-all(셀을 벗어나지 않게 출력 - 줄바꿈) */
+	word-break: break-all;
+}
+
+th, td {
+	border: 1px solid green;
+}
+</style>
+</head>
+<body>
+	<h1>테이블 관련 스타일 속성</h1>
+	<hr>
+	<table>
+		<tr>
+			<!-- 셀(Cell - 열) : 표(테이블)에서 내용을 출력하기 위한 영역 -->
+			<!-- 셀의 크기는 출력대상의 의해 폭과 높이가 자동 설정 -->	
+			<!-- => 테이블의 폭과 높이도 셀에 의해 자동 설정 -->	
+			<td>CONSTRAINT_VALIDATION</td>
+			<td>테이블 크기 관련 스타일 속성과 속성값</td>
+		</tr>
+	</table>
+</body>
+</html>
+
+
